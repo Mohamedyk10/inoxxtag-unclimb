@@ -19,7 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://dne4uhaqf1vn5" path="res://art/MC/mc-stop-lantern02.png" id="17_q13i1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4flbx"]
-size = Vector2(30, 60)
+size = Vector2(31, 69)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_op7ga"]
 animations = [{
@@ -130,10 +130,11 @@ animations = [{
 script = ExtResource("1_onrkg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2.5, 4.5)
 shape = SubResource("RectangleShape2D_4flbx")
 
 [node name="Animation" type="AnimatedSprite2D" parent="."]
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_op7ga")
-animation = &"jump"
-frame_progress = 0.756446
+animation = &"run_right"
+frame_progress = 0.650503
