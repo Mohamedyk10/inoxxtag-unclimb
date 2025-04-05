@@ -136,5 +136,4 @@ shape = SubResource("RectangleShape2D_4flbx")
 [node name="Animation" type="AnimatedSprite2D" parent="."]
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_op7ga")
-animation = &"run_right"
-frame_progress = 0.650503
+animation = &"stop"
