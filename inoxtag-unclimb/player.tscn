@@ -6,14 +6,15 @@
 [ext_resource type="Texture2D" uid="uid://cx83sd14uhx25" path="res://art/MC/mc-balancer-left-side.png" id="2_urp6f"]
 [ext_resource type="Texture2D" uid="uid://dujg35vsenrp2" path="res://art/MC/mc-run02.png" id="3_2hs0m"]
 [ext_resource type="Texture2D" uid="uid://bi05ex1nl8gpi" path="res://art/MC/mc-balancer-right-side.png" id="3_bwjto"]
-[ext_resource type="Texture2D" uid="uid://c6g4uwbrfsvar" path="res://art/MC/mc-stop.png" id="3_hqtel"]
 [ext_resource type="Texture2D" uid="uid://ckh1hgsr5gbxd" path="res://art/MC/mc-run01-lantern.png" id="4_1jxqw"]
 [ext_resource type="Texture2D" uid="uid://ddl5vnri5bs12" path="res://art/MC/mc-balancer.png" id="4_606se"]
-[ext_resource type="Texture2D" uid="uid://r83nrpd5od30" path="res://art/MC/mc-stop2.png" id="4_sweqy"]
 [ext_resource type="Texture2D" uid="uid://b5tu0sd8saupx" path="res://art/MC/mc-run02-lantern.png" id="5_dw050"]
+[ext_resource type="Texture2D" uid="uid://dtkh8kh3qq2ti" path="res://art/MC/mc-climb-no-move01.png" id="5_op7ga"]
 [ext_resource type="Texture2D" uid="uid://uj48ikhjl7h2" path="res://art/MC/mc-climb-01.png" id="5_u1c27"]
 [ext_resource type="Texture2D" uid="uid://bj37opilbccoh" path="res://art/MC/mc-climb-02.png" id="6_op7ga"]
-[ext_resource type="Texture2D" uid="uid://cvx3nxpj5cgqh" path="res://art/MC/mc-climb-no-move.png" id="7_u1c27"]
+[ext_resource type="Texture2D" uid="uid://cmfnob65c16cu" path="res://art/MC/mc-climb-no-move02.png" id="6_q13i1"]
+[ext_resource type="Texture2D" uid="uid://bf84vcucepnl1" path="res://art/MC/mc-stop01.png" id="14_pylmc"]
+[ext_resource type="Texture2D" uid="uid://bb14855qoodiu" path="res://art/MC/mc-stop02.png" id="15_pbfsw"]
 [ext_resource type="Texture2D" uid="uid://dxpfhqudpq2ti" path="res://art/MC/mc-stop-lantern01.png" id="16_op7ga"]
 [ext_resource type="Texture2D" uid="uid://dne4uhaqf1vn5" path="res://art/MC/mc-stop-lantern02.png" id="17_q13i1"]
 
@@ -52,10 +53,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": null
+"texture": ExtResource("5_op7ga")
 }, {
 "duration": 1.0,
-"texture": ExtResource("7_u1c27")
+"texture": ExtResource("6_q13i1")
 }],
 "loop": true,
 "name": &"climb_no_move",
@@ -104,10 +105,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("4_sweqy")
+"texture": ExtResource("14_pylmc")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_hqtel")
+"texture": ExtResource("15_pbfsw")
 }],
 "loop": true,
 "name": &"stop",
