@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://bfhdfqj0ty5ax"]
+
+[ext_resource type="Texture2D" uid="uid://cxooeuwxc8lav" path="res://art/Tiles/snowy_spikes.png" id="1_nrdsm"]
+[ext_resource type="Texture2D" uid="uid://d2duhnl6j5dvq" path="res://art/Tiles/cave_spikes.png" id="2_8fhau"]
+
+[node name="Spikes" type="StaticBody2D"]
+
+[node name="Snowy_Spikes" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_nrdsm")
+
+[node name="Cavern_Spikes" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_8fhau")
