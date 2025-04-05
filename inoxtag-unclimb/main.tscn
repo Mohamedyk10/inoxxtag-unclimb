@@ -2,13 +2,14 @@
 
 [ext_resource type="PackedScene" uid="uid://sclpth6g423y" path="res://player.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://bgp7ds7q7ky7b" path="res://hud.tscn" id="3_h2yge"]
-[ext_resource type="PackedScene" uid="uid://b6a3pf41ax484" path="res://zip_line.tscn" id="4_1bvp3"]
+[ext_resource type="PackedScene" path="res://zip_line.tscn" id="4_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://vgah4ipsh4je" path="res://levels.tscn" id="5_lquwl"]
 
 [node name="Main" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_ig7tw")]
-position = Vector2(237, 149)
+top_level = true
+position = Vector2(270, 1227)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 limit_left = 0
@@ -18,5 +19,8 @@ limit_top = 0
 visible = false
 
 [node name="Levels" parent="." instance=ExtResource("5_lquwl")]
+light_mask = 2
+visibility_layer = 2
+position = Vector2(172, 1131)
 
 [node name="Area2D" parent="." instance=ExtResource("4_1bvp3")]

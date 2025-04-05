@@ -9,6 +9,7 @@ const ZIPLINE_SPEED = 1000
 const GRAVITY_ACCELERATION = 7500
 var lantern_status = false
 var is_jumping = false
+var orientation = "droite"
 var animation = ""
 var vertical_speed = 0
 
@@ -51,14 +52,22 @@ func _process(delta) -> void:
 	var uses_ice_axe = false
 	if Input.is_action_pressed("LEFT"):
 		velocity[0] += -HORIZONTAL_SPEED
+		if lantern_status:
+			animation = "run_right_lantern"
+			orientation = "left"
+		else:
+			animation = "run_right"
+			orientation = "left"
 		if is_on_wall():
 			uses_ice_axe = true
 	if Input.is_action_pressed("RIGHT"):
 		velocity[0] += HORIZONTAL_SPEED
 		if lantern_status:
 			animation = "run_right_lantern"
+			orientation = "right"
 		else :
 			animation = "run_right"
+			orientation = "right"
 		if is_on_wall():
 			uses_ice_axe = true
 	if uses_ice_axe:
@@ -84,6 +93,11 @@ func _process(delta) -> void:
 		if Input.is_action_pressed("DOWN") and uses_ice_axe:
 			vertical_speed += VERTICAL_SPEED
 			animation = "climb_up_or_down"
-	$Animation.play(animation)
+	if orientation == "right":
+		$Animation.flip_h = false
+		$Animation.play(animation)
+	else:
+		$Animation.flip_h = true
+		$Animation.play(animation)
 	velocity[1] = vertical_speed
 	move_and_slide()
