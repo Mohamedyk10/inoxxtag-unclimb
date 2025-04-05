@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://sclpth6g423y"]
+[gd_scene load_steps=20 format=3 uid="uid://sclpth6g423y"]
 
 [ext_resource type="Script" uid="uid://cnqivvs3ae66i" path="res://player.gd" id="1_onrkg"]
 [ext_resource type="Texture2D" uid="uid://dpxqjhrusynch" path="res://art/MC/mc-jump.png" id="2_onrkg"]
@@ -15,6 +15,8 @@
 [ext_resource type="Texture2D" uid="uid://suvgjtqth6vt" path="res://art/MC/mc-climb-no-move2.png" id="6_606se"]
 [ext_resource type="Texture2D" uid="uid://bj37opilbccoh" path="res://art/MC/mc-climb-02.png" id="6_op7ga"]
 [ext_resource type="Texture2D" uid="uid://cvx3nxpj5cgqh" path="res://art/MC/mc-climb-no-move.png" id="7_u1c27"]
+[ext_resource type="Texture2D" uid="uid://dxpfhqudpq2ti" path="res://art/MC/mc-stop-lantern01.png" id="16_op7ga"]
+[ext_resource type="Texture2D" uid="uid://dne4uhaqf1vn5" path="res://art/MC/mc-stop-lantern02.png" id="17_q13i1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4flbx"]
 size = Vector2(30, 60)
@@ -111,6 +113,17 @@ animations = [{
 "loop": true,
 "name": &"stop",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("16_op7ga")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_q13i1")
+}],
+"loop": true,
+"name": &"stop_lantern",
+"speed": 5.0
 }]
 
 [node name="Player" type="CharacterBody2D"]
@@ -122,4 +135,4 @@ shape = SubResource("RectangleShape2D_4flbx")
 [node name="Animation" type="AnimatedSprite2D" parent="."]
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_op7ga")
-animation = &"balancer_from_right_notdoneyet"
+animation = &"stop_lantern"
