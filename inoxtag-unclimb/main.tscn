@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://ceql8b1jxod73"]
+
+[ext_resource type="PackedScene" uid="uid://sclpth6g423y" path="res://player.tscn" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://cskrxrx7gpait" path="res://montagne.tscn" id="2_0xm2m"]
+
+[node name="Main" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_ig7tw")]
+position = Vector2(222, 77)
+mass = 75.0
+lock_rotation = true
+
+[node name="Mountain" parent="." instance=ExtResource("2_0xm2m")]
