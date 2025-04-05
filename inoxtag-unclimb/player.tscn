@@ -12,7 +12,6 @@
 [ext_resource type="Texture2D" uid="uid://r83nrpd5od30" path="res://art/MC/mc-stop2.png" id="4_sweqy"]
 [ext_resource type="Texture2D" uid="uid://b5tu0sd8saupx" path="res://art/MC/mc-run02-lantern.png" id="5_dw050"]
 [ext_resource type="Texture2D" uid="uid://uj48ikhjl7h2" path="res://art/MC/mc-climb-01.png" id="5_u1c27"]
-[ext_resource type="Texture2D" uid="uid://suvgjtqth6vt" path="res://art/MC/mc-climb-no-move2.png" id="6_606se"]
 [ext_resource type="Texture2D" uid="uid://bj37opilbccoh" path="res://art/MC/mc-climb-02.png" id="6_op7ga"]
 [ext_resource type="Texture2D" uid="uid://cvx3nxpj5cgqh" path="res://art/MC/mc-climb-no-move.png" id="7_u1c27"]
 [ext_resource type="Texture2D" uid="uid://dxpfhqudpq2ti" path="res://art/MC/mc-stop-lantern01.png" id="16_op7ga"]
@@ -53,7 +52,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("6_606se")
+"texture": null
 }, {
 "duration": 1.0,
 "texture": ExtResource("7_u1c27")

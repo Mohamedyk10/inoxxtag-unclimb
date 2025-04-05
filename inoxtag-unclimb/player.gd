@@ -10,22 +10,15 @@ var is_jumping = false
 var vertical_speed = 0
 
 func _ready() -> void:
-	pass
+	$Animation.play("stop")
+	set_floor_stop_on_slope_enabled(false)
 
 func _process(delta) -> void:
 	velocity = Vector2(0, 0)
+
 	if is_on_floor():
 		vertical_speed = 0
-	vertical_speed += GRAVITY_ACCELERATION * delta
-	if Input.is_action_pressed("JUMP"):
-		if is_jumping:
-			vertical_speed -= 0.5 * GRAVITY_ACCELERATION * delta  # We remove 50% of gravity if jumping
-		else:
-			if is_on_floor():
-				is_jumping = true
-				vertical_speed = JUMP_INITIAL_SPEED
-	else:
-		is_jumping = false
+
 	var uses_ice_axe = false
 	if Input.is_action_pressed("LEFT"):
 		velocity[0] += -HORIZONTAL_SPEED
@@ -37,9 +30,24 @@ func _process(delta) -> void:
 			uses_ice_axe = true
 	if uses_ice_axe:
 		vertical_speed = 0
+
+	if Input.is_action_pressed("JUMP"):
+		if is_jumping:
+			vertical_speed += 0.5 * GRAVITY_ACCELERATION * delta
+		else:
+			if is_on_floor() or is_on_wall():
+				is_jumping = true
+				vertical_speed = JUMP_INITIAL_SPEED
+	else:
+		is_jumping = false
+
+	if not is_jumping and not uses_ice_axe:
+		vertical_speed += GRAVITY_ACCELERATION * delta
+
 	if Input.is_action_pressed("UP") and uses_ice_axe:
 		vertical_speed -= VERTICAL_SPEED
 	if Input.is_action_pressed("DOWN") and uses_ice_axe:
 		vertical_speed += VERTICAL_SPEED
+
 	velocity[1] = vertical_speed
 	move_and_slide()
