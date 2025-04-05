@@ -1,6 +1,6 @@
 extends RigidBody2D
 
-@export var impulse_strenght = 10_000
+@export var impulse_strenght = 1_000
 @export var jump_impulse_strenght = 5_000
 
 const JUMP_MAX_NB_FRAMES = 10
