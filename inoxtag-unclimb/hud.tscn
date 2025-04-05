@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bgp7ds7q7ky7b"]
+[gd_scene load_steps=4 format=3 uid="uid://bgp7ds7q7ky7b"]
 
 [ext_resource type="Script" uid="uid://d28w3jbto0l24" path="res://hud.gd" id="1_64ctp"]
 [ext_resource type="Texture2D" uid="uid://b0faghvogjlum" path="res://art/Backgrounds/title_screen.png" id="2_8sq4i"]
+[ext_resource type="Texture2D" uid="uid://def68kdomtmk" path="res://art/Backgrounds/Press_Start.png" id="3_8sq4i"]
 
 [node name="HUD" type="Node2D"]
 script = ExtResource("1_64ctp")
@@ -10,3 +11,10 @@ script = ExtResource("1_64ctp")
 offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("2_8sq4i")
+
+[node name="Press_Start" type="TextureRect" parent="."]
+offset_left = 489.0
+offset_top = 676.0
+offset_right = 1089.0
+offset_bottom = 746.0
+texture = ExtResource("3_8sq4i")
