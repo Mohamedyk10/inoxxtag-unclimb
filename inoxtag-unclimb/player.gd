@@ -3,12 +3,14 @@ extends RigidBody2D
 @export var impulse_strenght = 1_000
 @export var jump_impulse_strenght = 20_000
 
-
-
 var is_jumping = false
 
 func is_on_floor():
 	set_contact_monitor(true)
+	set_max_contacts_reported(100)
+	print(is_contact_monitor_enabled())
+	print(get_max_contacts_reported())
+	print(get_contact_count())
 	print(get_colliding_bodies())
 	for body in get_colliding_bodies():
 		print(body.name)
