@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://ceql8b1jxod73"]
+[gd_scene load_steps=4 format=3 uid="uid://ceql8b1jxod73"]
 
 [ext_resource type="PackedScene" uid="uid://sclpth6g423y" path="res://player.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://cskrxrx7gpait" path="res://montagne.tscn" id="2_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://bgp7ds7q7ky7b" path="res://hud.tscn" id="3_h2yge"]
 
 [node name="Main" type="Node2D"]
 
@@ -11,3 +12,5 @@ mass = 75.0
 lock_rotation = true
 
 [node name="Mountain" parent="." instance=ExtResource("2_0xm2m")]
+
+[node name="HUD" parent="." instance=ExtResource("3_h2yge")]
