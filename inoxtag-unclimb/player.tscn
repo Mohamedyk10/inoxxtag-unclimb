@@ -1,10 +1,117 @@
-[gd_scene load_steps=4 format=3 uid="uid://sclpth6g423y"]
+[gd_scene load_steps=18 format=3 uid="uid://sclpth6g423y"]
 
 [ext_resource type="Script" uid="uid://cnqivvs3ae66i" path="res://player.gd" id="1_onrkg"]
 [ext_resource type="Texture2D" uid="uid://dpxqjhrusynch" path="res://art/MC/mc-jump.png" id="2_onrkg"]
+[ext_resource type="Texture2D" uid="uid://s1oeckma108f" path="res://art/MC/mc-run01.png" id="2_sweqy"]
+[ext_resource type="Texture2D" uid="uid://cx83sd14uhx25" path="res://art/MC/mc-balancer-left-side.png" id="2_urp6f"]
+[ext_resource type="Texture2D" uid="uid://dujg35vsenrp2" path="res://art/MC/mc-run02.png" id="3_2hs0m"]
+[ext_resource type="Texture2D" uid="uid://bi05ex1nl8gpi" path="res://art/MC/mc-balancer-right-side.png" id="3_bwjto"]
+[ext_resource type="Texture2D" uid="uid://c6g4uwbrfsvar" path="res://art/MC/mc-stop.png" id="3_hqtel"]
+[ext_resource type="Texture2D" uid="uid://ckh1hgsr5gbxd" path="res://art/MC/mc-run01-lantern.png" id="4_1jxqw"]
+[ext_resource type="Texture2D" uid="uid://ddl5vnri5bs12" path="res://art/MC/mc-balancer.png" id="4_606se"]
+[ext_resource type="Texture2D" uid="uid://r83nrpd5od30" path="res://art/MC/mc-stop2.png" id="4_sweqy"]
+[ext_resource type="Texture2D" uid="uid://b5tu0sd8saupx" path="res://art/MC/mc-run02-lantern.png" id="5_dw050"]
+[ext_resource type="Texture2D" uid="uid://uj48ikhjl7h2" path="res://art/MC/mc-climb-01.png" id="5_u1c27"]
+[ext_resource type="Texture2D" uid="uid://suvgjtqth6vt" path="res://art/MC/mc-climb-no-move2.png" id="6_606se"]
+[ext_resource type="Texture2D" uid="uid://bj37opilbccoh" path="res://art/MC/mc-climb-02.png" id="6_op7ga"]
+[ext_resource type="Texture2D" uid="uid://cvx3nxpj5cgqh" path="res://art/MC/mc-climb-no-move.png" id="7_u1c27"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4flbx"]
 size = Vector2(30, 60)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_op7ga"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_urp6f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_bwjto")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_606se")
+}],
+"loop": true,
+"name": &"balancer_from_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_urp6f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_bwjto")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_606se")
+}],
+"loop": true,
+"name": &"balancer_from_right_notdoneyet",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_606se")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_u1c27")
+}],
+"loop": true,
+"name": &"climb_no_move",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_u1c27")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_op7ga")
+}],
+"loop": true,
+"name": &"climb_up_or_down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_onrkg")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_sweqy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_2hs0m")
+}],
+"loop": true,
+"name": &"run_right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_1jxqw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_dw050")
+}],
+"loop": true,
+"name": &"run_right_lantern",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_sweqy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_hqtel")
+}],
+"loop": true,
+"name": &"stop",
+"speed": 5.0
+}]
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_onrkg")
@@ -15,3 +122,7 @@ texture = ExtResource("2_onrkg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_4flbx")
+
+[node name="Animation" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_op7ga")
+animation = &"jump"
