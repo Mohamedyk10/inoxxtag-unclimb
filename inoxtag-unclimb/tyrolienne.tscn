@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://cd0ldfcigvgpt"]
+[gd_scene load_steps=3 format=3 uid="uid://c8f0gd8taqx37"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_tnwwl"]
 b = Vector2(2000, 100)

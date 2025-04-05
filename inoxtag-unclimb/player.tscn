@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://sclpth6g423y"]
+[gd_scene load_steps=20 format=3 uid="uid://sclpth6g423y"]
 
 [ext_resource type="Script" uid="uid://cnqivvs3ae66i" path="res://player.gd" id="1_onrkg"]
 [ext_resource type="Texture2D" uid="uid://dpxqjhrusynch" path="res://art/MC/mc-jump.png" id="2_onrkg"]
