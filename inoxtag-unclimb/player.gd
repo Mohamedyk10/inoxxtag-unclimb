@@ -9,6 +9,8 @@ const GRAVITY_ACCELERATION = 7500
 var is_jumping = false
 var vertical_speed = 0
 
+var is_in_zip_line_area = false
+
 func _ready() -> void:
 	$Animation.play("stop")
 	set_floor_stop_on_slope_enabled(false)
