@@ -1,19 +1,18 @@
 extends RigidBody2D
 
 @export var impulse_strenght = 1_000
-@export var jump_impulse_strenght = 20_000
+@export var jump_impulse_strenght = 5_000
 
-var is_jumping = false
+const JUMP_MAX_NB_FRAMES = 10
+var jump_remaining_frames = JUMP_MAX_NB_FRAMES
+var can_jump = false
+
+func _ready() -> void:
+	set_max_contacts_reported(100)
+	set_contact_monitor(true)
 
 func is_on_floor():
-	set_contact_monitor(true)
-	set_max_contacts_reported(100)
-	print(is_contact_monitor_enabled())
-	print(get_max_contacts_reported())
-	print(get_contact_count())
-	print(get_colliding_bodies())
 	for body in get_colliding_bodies():
-		print(body.name)
 		if "Mountain" in body.name:
 			return true
 	return false
@@ -24,12 +23,14 @@ func _process(delta):
 	var up = Input.is_action_pressed("JUMP")
 	var left = Input.is_action_pressed("LEFT")
 	var right = Input.is_action_pressed("RIGHT")
-	if up and not is_jumping:
-		is_jumping = true
+	if is_on_floor():
+		can_jump = true
+		jump_remaining_frames = JUMP_MAX_NB_FRAMES
+	if up and can_jump and jump_remaining_frames > 0:
 		impulse[1] = -jump_impulse_strenght
+		jump_remaining_frames -= 1
 	else:
-		if is_on_floor():
-			is_jumping = false
+		can_jump = false
 	if left and not right:
 		impulse[0] = -impulse_strenght
 	if right and not left:
