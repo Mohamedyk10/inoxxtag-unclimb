@@ -1,9 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://bfhdfqj0ty5ax"]
+[gd_scene load_steps=5 format=3 uid="uid://bfhdfqj0ty5ax"]
 
+[ext_resource type="Script" uid="uid://dhwbhcaiixf2a" path="res://spikes.gd" id="1_8fhau"]
 [ext_resource type="Texture2D" uid="uid://cxooeuwxc8lav" path="res://art/Tiles/snowy_spikes.png" id="1_nrdsm"]
 [ext_resource type="Texture2D" uid="uid://d2duhnl6j5dvq" path="res://art/Tiles/cave_spikes.png" id="2_8fhau"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8fhau"]
+size = Vector2(40, 33)
+
 [node name="Spikes" type="StaticBody2D"]
+script = ExtResource("1_8fhau")
 
 [node name="Snowy_Spikes" type="TextureRect" parent="."]
 offset_right = 40.0
@@ -14,3 +19,7 @@ texture = ExtResource("1_nrdsm")
 offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("2_8fhau")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(20, 23.5)
+shape = SubResource("RectangleShape2D_8fhau")
