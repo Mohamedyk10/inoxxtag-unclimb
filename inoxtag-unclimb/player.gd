@@ -33,7 +33,7 @@ func _process(delta) -> void:
 	animation = "stop"
 	velocity = Vector2(0, 0)
 	
-	if zip_line_coefs != null and not Input.is_action_pressed("JUMP"):
+	if zip_line_coefs != null and not Input.is_action_pressed("JUMP") and not Input.is_action_pressed("SHIFT"):
 		var x = global_position[0]
 		var y = global_position[1]
 		print("-------")
