@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://sclpth6g423y"]
+[gd_scene load_steps=17 format=3 uid="uid://sclpth6g423y"]
 
 [ext_resource type="Script" uid="uid://cnqivvs3ae66i" path="res://player.gd" id="1_onrkg"]
 [ext_resource type="Texture2D" uid="uid://dpxqjhrusynch" path="res://art/MC/mc-jump.png" id="2_onrkg"]
@@ -12,7 +12,6 @@
 [ext_resource type="Texture2D" uid="uid://r83nrpd5od30" path="res://art/MC/mc-stop2.png" id="4_sweqy"]
 [ext_resource type="Texture2D" uid="uid://b5tu0sd8saupx" path="res://art/MC/mc-run02-lantern.png" id="5_dw050"]
 [ext_resource type="Texture2D" uid="uid://uj48ikhjl7h2" path="res://art/MC/mc-climb-01.png" id="5_u1c27"]
-[ext_resource type="Texture2D" uid="uid://suvgjtqth6vt" path="res://art/MC/mc-climb-no-move2.png" id="6_606se"]
 [ext_resource type="Texture2D" uid="uid://bj37opilbccoh" path="res://art/MC/mc-climb-02.png" id="6_op7ga"]
 [ext_resource type="Texture2D" uid="uid://cvx3nxpj5cgqh" path="res://art/MC/mc-climb-no-move.png" id="7_u1c27"]
 
@@ -51,7 +50,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("6_606se")
+"texture": null
 }, {
 "duration": 1.0,
 "texture": ExtResource("7_u1c27")
@@ -122,4 +121,5 @@ shape = SubResource("RectangleShape2D_4flbx")
 [node name="Animation" type="AnimatedSprite2D" parent="."]
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_op7ga")
-animation = &"balancer_from_right_notdoneyet"
+animation = &"balancer_from_left"
+frame_progress = 0.195533
