@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bgp7ds7q7ky7b" path="res://hud.tscn" id="3_ex8yo"]
 [ext_resource type="Script" uid="uid://dhqpeaxh3j5cg" path="res://playerDorian.gd" id="3_s6wgu"]
 [ext_resource type="Texture2D" uid="uid://ddd3o43mgauui" path="res://TileSetLudumDare.png" id="5_xuyru"]
-[ext_resource type="Texture2D" uid="uid://djhcrspyn0ub4" path="res://art/Gameplay/Crochet.png" id="6_hklxd"]
+[ext_resource type="Texture2D" uid="uid://cnl8ow4arvu4" path="res://art/Gameplay/Crochet.png" id="6_hklxd"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8s4pf"]
 texture = ExtResource("5_xuyru")

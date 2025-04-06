@@ -27,6 +27,14 @@ var is_timed_out = false
 
 var zip_line_coefs = null
 
+var aimed_hook=null
+var current_hook=null
+var uses_grappling_hook=false
+var len_grap = 0
+var er = Vector2(0,0)
+var rot_speed=0
+var acc_rot=0
+
 
 func _ready() -> void:
 	global_position = Vector2(0, 0)
@@ -66,6 +74,7 @@ func f(x: float, coefs: Vector4) -> float:
 
 
 func _process(delta) -> void:
+	
 	if Input.is_action_pressed("RESET"):
 		game_over()
 		return
@@ -92,9 +101,50 @@ func _process(delta) -> void:
 		$PointLight2D.show()
 	else:
 		$PointLight2D.hide()
-
+	
 	velocity = Vector2(0, 0)
 	
+
+	##Grappling hook###########################################################################
+	if Input.is_action_just_pressed("GRAPPLING_HOOK"):
+		if uses_grappling_hook==false:
+			if aimed_hook!=null:	
+				velocity=Vector2(0,0)
+				uses_grappling_hook=true
+				current_hook=aimed_hook
+				len_grap=global_position.distance_to(current_hook.global_position)
+				
+				var diff=global_position-current_hook.global_position
+				er=diff.normalized()
+				var eo=er.orthogonal()
+				rot_speed=10*velocity.dot(eo)
+				acc_rot = 0
+		else:
+			uses_grappling_hook=false
+			
+	if Input.is_action_just_pressed("JUMP") or is_on_ceiling() or is_on_floor() or is_on_wall():
+		uses_grappling_hook=false
+	
+	velocity=Vector2(0,0)
+	if uses_grappling_hook:
+	
+		var theta=er.angle()+PI/2
+		if theta<-PI:
+			theta+=2*PI
+		if theta>=PI:
+			theta-=2*PI
+		
+		acc_rot=sin(theta)
+		print(acc_rot)
+		rot_speed+=10*acc_rot*delta
+		er=er.rotated(rot_speed*delta)
+		
+		global_position=current_hook.global_position + len_grap*er
+		
+		vertical_speed=1.5*JUMP_INITIAL_SPEED*abs(sin(theta))
+		
+		return
+
 	if zip_line_coefs != null and not Input.is_action_pressed("JUMP") and not Input.is_action_pressed("SHIFT"):
 		var x = global_position[0]
 		var y = global_position[1]
@@ -172,3 +222,18 @@ func _process(delta) -> void:
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	game_over()
+
+
+func _on_grappling_area_body_entered(body: Node2D) -> void:
+	print("ok")
+	if body.get_parent().name=="Hooks": 
+		aimed_hook=body
+		print(body)
+	
+func _on_grappling_area_body_exited(body: Node2D) -> void:
+	if body==aimed_hook: 
+		aimed_hook=null
+
+
+func _on_grappting_area_body_exited(body: Node2D) -> void:
+	pass # Replace with function body.
