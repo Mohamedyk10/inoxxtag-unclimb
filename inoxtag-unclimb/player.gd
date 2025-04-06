@@ -146,3 +146,6 @@ func _process(delta) -> void:
 	velocity[1] = vertical_speed
 
 	move_and_slide()
+
+func _on_area_2d_body_entered(body: Node2D) -> void:
+	position = START_COORDINATES

@@ -14,7 +14,8 @@ texture = ExtResource("1_48rmr")
 1:1/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_hbfth"]
-physics_layer_0/collision_layer = 1
+physics_layer_0/collision_layer = 2
+physics_layer_0/collision_mask = 2
 sources/0 = SubResource("TileSetAtlasSource_5k54k")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hbfth"]
@@ -24,9 +25,12 @@ texture = ExtResource("1_48rmr")
 2:0/0 = 0
 3:0/0 = 0
 0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 1:1/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_02xe8"]
+physics_layer_0/collision_layer = 1
+physics_layer_0/collision_priority = 2.0
 sources/0 = SubResource("TileSetAtlasSource_hbfth")
 
 [node name="Levels" type="Node2D"]
