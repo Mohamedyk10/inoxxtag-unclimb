@@ -17,11 +17,9 @@ func f(x: float, coefs: Vector4) -> float:
 	return (D - B) / (C - A) * x + B - (D - B) / (C - A) * A
 
 func _on_body_entered(body: Node2D) -> void:
-	print(body.name)
 	if body.name == "Player":
 		var x = body.global_position[0]
 		var y = f(x, coefs)
-		print(x, y)
 		body.global_position = Vector2(x, y)
 		body.move_and_slide()
 		body.zip_line_coefs = coefs
