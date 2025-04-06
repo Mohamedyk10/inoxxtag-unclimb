@@ -53,3 +53,7 @@ func _process(delta) -> void:
 
 	velocity[1] = vertical_speed
 	move_and_slide()
+
+
+func _on_grappling_range_body_exited(body: Node2D) -> void:
+	pass # Replace with function body.

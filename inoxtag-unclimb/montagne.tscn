@@ -4,4 +4,4 @@
 position = Vector2(-1, -1)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(-500, -500, 500, 500, 1514, 496, 1589, 76, 2056, -199, 2000, 500, -1000, 1000)
+polygon = PackedVector2Array(-500, -500, 500, 500, 1514, 496, 1629, 505, 1686, 430, 1724, 564, -1000, 1000)
