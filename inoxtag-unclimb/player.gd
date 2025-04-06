@@ -18,6 +18,7 @@ var orientation = "droite"
 var animation = ""
 var vertical_speed = 0
 var uses_ice_axe
+var is_climbing
 
 var game_started = false
 var is_timed_out = false
@@ -91,14 +92,14 @@ func _process(delta) -> void:
 	if is_on_wall() and Input.is_action_pressed("HOLD"):
 		uses_ice_axe = true
 
-	if Input.is_action_pressed("LEFT") and not uses_ice_axe:
+	if Input.is_action_pressed("LEFT") and not uses_ice_axe and not is_climbing:
 		velocity[0] += -HORIZONTAL_SPEED
 		orientation = "left"
 		if lantern_status:
 			animation = "run_right_lantern"
 		else:
 			animation = "run_right"
-	if Input.is_action_pressed("RIGHT") and not uses_ice_axe:
+	if Input.is_action_pressed("RIGHT") and not uses_ice_axe and !is_climbing:
 		velocity[0] += HORIZONTAL_SPEED
 		orientation = "right"
 		if lantern_status:
@@ -106,50 +107,50 @@ func _process(delta) -> void:
 		else :
 			animation = "run_right"
 
-	if uses_ice_axe:
+	if uses_ice_axe or is_climbing:
 		vertical_speed = 0
-
-	print(velocity)
 
 	if Input.is_action_pressed("JUMP"):
 		if is_jumping:
 			vertical_speed += 0.5 * GRAVITY_ACCELERATION * delta
 			animation = "jump"
 		else:
-			if is_on_floor() or is_on_wall() or zip_line_coefs != null:
+			if is_on_floor() or is_on_wall() or zip_line_coefs != null or is_climbing:
 				is_jumping = true
 				uses_ice_axe = false
+				is_climbing = false
 				vertical_speed = JUMP_INITIAL_SPEED
 				velocity[1] = vertical_speed
 				animation = "jump"
 	else:
 		is_jumping = false
 
-	if not is_jumping and not uses_ice_axe:
+	if not is_jumping and not uses_ice_axe and not is_climbing:
 		vertical_speed += GRAVITY_ACCELERATION * delta
 
-	if uses_ice_axe:
+	if uses_ice_axe or is_climbing:
 		animation = "climb_no_move"
-		if orientation == "right":
-			velocity[0] += 1
-		else:
-			velocity[0] -= 1
-		if Input.is_action_pressed("UP") and uses_ice_axe:
+		if uses_ice_axe:
+			if orientation == "right":
+				velocity[0] += 1
+			else:
+				velocity[0] -= 1
+		if Input.is_action_pressed("UP") and Input.is_action_pressed("HOLD"):
 			vertical_speed -= VERTICAL_SPEED
 			animation = "climb_up_or_down"
-		if Input.is_action_pressed("DOWN") and uses_ice_axe:
+		if Input.is_action_pressed("DOWN") and Input.is_action_pressed("HOLD"):
 			vertical_speed += VERTICAL_SPEED
 			animation = "climb_up_or_down"
+		if Input.is_action_just_released("HOLD"):
+			is_climbing = false
 	if orientation == "right":
 		$Animation.flip_h = false
 		$Animation.play(animation)
 	else:
 		$Animation.flip_h = true
 		$Animation.play(animation)
-	velocity[1] = vertical_speed
 	
-	print(velocity)
-
+	velocity[1] = vertical_speed
 	move_and_slide()
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
@@ -159,3 +160,9 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 	show_hud()
 	await get_tree().create_timer(0.5).timeout
 	is_timed_out = false
+
+func _on_rope_can_climb() -> void:
+	for rope in get_tree().get_nodes_in_group("ropes"):
+		if rope.is_player_touching_the_rope and Input.is_action_pressed("HOLD"):
+			is_climbing = true
+			position.x = rope.position.x

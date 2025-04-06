@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://e6a7nprviprt"]
+
+[ext_resource type="PackedScene" uid="uid://bfw3pe8ckskug" path="res://lever.tscn" id="1_kknup"]
+[ext_resource type="PackedScene" uid="uid://drvo2faq86u6r" path="res://rope.tscn" id="2_2o2hm"]
+
+[node name="Activables" type="Node2D"]
+
+[node name="Lever" parent="." instance=ExtResource("1_kknup")]
+
+[node name="Rope" parent="." instance=ExtResource("2_2o2hm")]
+
+[connection signal="body_entered" from="Lever" to="Rope" method="_on_lever_body_entered"]
