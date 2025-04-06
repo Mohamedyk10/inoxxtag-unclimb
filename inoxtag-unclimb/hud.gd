@@ -1,6 +1,7 @@
 extends Node2D
 
 var player
+@export var game_started = false
 
 func _ready():
 	hide_game_over()
@@ -12,6 +13,7 @@ func _process(delta):
 		if Input.is_action_just_pressed("JUMP") and not player.is_timed_out:
 			print("START")
 			player.start()
+			game_started = true
 
 func show_hud():
 	$Title_screen.show()
