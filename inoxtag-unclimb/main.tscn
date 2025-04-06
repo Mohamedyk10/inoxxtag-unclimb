@@ -51,7 +51,7 @@ position = Vector2(7942, 869)
 [node name="1" type="Node2D" parent="Level1_1/Rope1"]
 
 [node name="ZipLine1" parent="Level1_1" instance=ExtResource("4_1bvp3")]
-position = Vector2(7872, 1047)
+position = Vector2(7872, 995)
 rotation = 0.628008
 scale = Vector2(2.635, 1)
 
