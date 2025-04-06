@@ -6,6 +6,8 @@ var coefs
 func _ready() -> void:
 	var RECT = $CollisionShape2D.shape.get_rect()
 	coefs = Vector4(RECT.position[0] + position[0], RECT.position[1] + position[1], RECT.end[0] + position[0], RECT.end[1] + position[1])
+	if coefs[1] < coefs[3]:
+		coefs = Vector4(coefs[2], coefs[3], coefs[0], coefs[1])
 
 func f(x: float, coefs: Vector4) -> float:
 	var A = coefs[0]
@@ -15,6 +17,7 @@ func f(x: float, coefs: Vector4) -> float:
 	return (D - B) / (C - A) * x + B - (D - B) / (C - A) * A
 
 func _on_body_entered(body: Node2D) -> void:
+	print(body.name)
 	if body.name == "Player":
 		var x = body.global_position[0]
 		var y = f(x, coefs)

@@ -26,22 +26,29 @@ var zip_line_coefs = null
 
 
 func _ready() -> void:
+	global_position = Vector2(0, 0)
 	hud = $"../HUD"
 	animation = "stop"
 	$Animation.play(animation)
 	set_floor_stop_on_slope_enabled(false)
-	show_hud()
 
 
-func show_hud():
+func game_over():
+	is_timed_out = true
+	game_started = false
 	lantern_status = false
 	zip_line_coefs = null
-	hud.set_show_hud(true)
-	game_started = false
+	await get_tree().create_timer(1).timeout
+	hud.show_game_over()
 	global_position = Vector2(0, 0)
+	await get_tree().create_timer(5).timeout
+	hud.hide_game_over()
+	hud.show_hud()
+	is_timed_out = false
 
 func start():
-	hud.set_show_hud(false)
+	hud.hide_game_over()
+	hud.hide_hud()
 	global_position = START_COORDINATES
 	game_started = true
 
@@ -56,7 +63,7 @@ func f(x: float, coefs: Vector4) -> float:
 
 func _process(delta) -> void:
 	if Input.is_action_pressed("RESET"):
-		show_hud()
+		game_over()
 		return
 	if not game_started:
 		return
@@ -109,8 +116,6 @@ func _process(delta) -> void:
 	if uses_ice_axe:
 		vertical_speed = 0
 
-	print(velocity)
-
 	if Input.is_action_pressed("JUMP"):
 		if is_jumping:
 			vertical_speed += 0.5 * GRAVITY_ACCELERATION * delta
@@ -147,15 +152,8 @@ func _process(delta) -> void:
 		$Animation.flip_h = true
 		$Animation.play(animation)
 	velocity[1] = vertical_speed
-	
-	print(velocity)
 
 	move_and_slide()
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	is_timed_out = true
-	game_started = false
-	await get_tree().create_timer(1).timeout
-	show_hud()
-	await get_tree().create_timer(0.5).timeout
-	is_timed_out = false
+	game_over()

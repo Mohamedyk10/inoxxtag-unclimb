@@ -1,11 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://ceql8b1jxod73"]
+[gd_scene load_steps=6 format=3 uid="uid://ceql8b1jxod73"]
 
 [ext_resource type="PackedScene" uid="uid://sclpth6g423y" path="res://player.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://bgp7ds7q7ky7b" path="res://hud.tscn" id="3_h2yge"]
 [ext_resource type="PackedScene" uid="uid://b6a3pf41ax484" path="res://zip_line.tscn" id="4_1bvp3"]
+[ext_resource type="Script" uid="uid://wgftuiiht26" path="res://camera.gd" id="4_lquwl"]
 [ext_resource type="PackedScene" uid="uid://vgah4ipsh4je" path="res://levels.tscn" id="5_lquwl"]
 
 [node name="Main" type="Node2D"]
+
+[node name="Camera" type="Camera2D" parent="."]
+position = Vector2(2280, 805)
+limit_left = 0
+limit_top = 0
+script = ExtResource("4_lquwl")
 
 [node name="Levels" parent="." instance=ExtResource("5_lquwl")]
 position = Vector2(171, 628)
@@ -15,10 +22,6 @@ position = Vector2(177, 248)
 
 [node name="Player" parent="." instance=ExtResource("1_ig7tw")]
 position = Vector2(2280, 805)
-
-[node name="Camera2D" type="Camera2D" parent="Player"]
-limit_left = 0
-limit_top = 0
 
 [node name="HUD" parent="." instance=ExtResource("3_h2yge")]
 
