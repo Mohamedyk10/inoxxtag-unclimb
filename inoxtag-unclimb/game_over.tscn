@@ -1,6 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://bfspfbgj6wqxh"]
+[gd_scene load_steps=14 format=3 uid="uid://bfspfbgj6wqxh"]
 
 [ext_resource type="Texture2D" uid="uid://xl3yc5t8dklj" path="res://art/Backgrounds/you_lost01.png" id="1_dd2jf"]
+[ext_resource type="Script" uid="uid://cxhmy5cc8nlgf" path="res://game_over.gd" id="1_ku74v"]
 [ext_resource type="Texture2D" uid="uid://np5ebnps8wut" path="res://art/Backgrounds/you_lost02.png" id="2_ku74v"]
 [ext_resource type="Texture2D" uid="uid://d2sa7nll554ke" path="res://art/Backgrounds/you_lost03.png" id="3_nm4t2"]
 [ext_resource type="Texture2D" uid="uid://lxh8l1bxfdet" path="res://art/Backgrounds/you_lost04.png" id="4_745m4"]
@@ -54,6 +55,7 @@ animations = [{
 }]
 
 [node name="Game_OVER" type="Node2D"]
+script = ExtResource("1_ku74v")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_3xhsb")
