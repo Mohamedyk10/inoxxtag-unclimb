@@ -7,7 +7,7 @@ func _ready():
 
 func _process(delta):
 	if not player.game_started:
-		if Input.is_action_just_pressed("JUMP"):
+		if Input.is_action_just_pressed("JUMP") and not player.is_timed_out:
 			print("START")
 			player.start()
 

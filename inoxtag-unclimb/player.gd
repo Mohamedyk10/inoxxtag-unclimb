@@ -20,6 +20,7 @@ var vertical_speed = 0
 var uses_ice_axe
 
 var game_started = false
+var is_timed_out = false
 
 var zip_line_coefs = null
 
@@ -152,6 +153,9 @@ func _process(delta) -> void:
 	move_and_slide()
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
+	is_timed_out = true
 	game_started = false
 	await get_tree().create_timer(1).timeout
 	show_hud()
+	await get_tree().create_timer(0.5).timeout
+	is_timed_out = false
