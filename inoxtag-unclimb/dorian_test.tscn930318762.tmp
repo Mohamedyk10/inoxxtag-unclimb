@@ -1,0 +1,53 @@
+[gd_scene load_steps=11 format=4 uid="uid://bwp4n73galf4p"]
+
+[ext_resource type="Script" uid="uid://b0gecckqlpnam" path="res://dorian_test.gd" id="1_ex8yo"]
+[ext_resource type="PackedScene" uid="uid://sclpth6g423y" path="res://player.tscn" id="1_suy7f"]
+[ext_resource type="PackedScene" uid="uid://cskrxrx7gpait" path="res://montagne.tscn" id="2_hklxd"]
+[ext_resource type="PackedScene" uid="uid://bgp7ds7q7ky7b" path="res://hud.tscn" id="3_ex8yo"]
+[ext_resource type="PackedScene" uid="uid://cd0ldfcigvgpt" path="res://zip_line.tscn" id="4_s6wgu"]
+[ext_resource type="Texture2D" uid="uid://ddd3o43mgauui" path="res://TileSetLudumDare.png" id="5_xuyru"]
+[ext_resource type="Texture2D" uid="uid://djhcrspyn0ub4" path="res://art/Gameplay/Crochet.png" id="6_hklxd"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8s4pf"]
+texture = ExtResource("5_xuyru")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_7mydf"]
+sources/0 = SubResource("TileSetAtlasSource_8s4pf")
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ex8yo"]
+
+[node name="DorianTest" type="Node2D"]
+script = ExtResource("1_ex8yo")
+
+[node name="Player" parent="." instance=ExtResource("1_suy7f")]
+position = Vector2(936, 213)
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+limit_left = 0
+limit_top = 0
+
+[node name="Mountain" parent="." instance=ExtResource("2_hklxd")]
+
+[node name="HUD" parent="." instance=ExtResource("3_ex8yo")]
+visible = false
+
+[node name="StaticBody2D" parent="." instance=ExtResource("4_s6wgu")]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+scale = Vector2(3, 3)
+tile_map_data = PackedByteArray("AAAAAAEAAAABAAAAAAABAAIAAAABAAAAAAACAAMAAAABAAAAAAADAAQAAAABAAAAAAAEAAUAAAABAAAAAAAFAAYAAAABAAAAAAAGAAcAAAABAAAAAAAHAAgAAAABAAAAAAAIAAkAAAABAAAAAAAJAAoAAAABAAAAAAAKAAsAAAABAAAAAAALAAsAAAABAAAAAAAMAAsAAAABAAAAAAANAAsAAAABAAAAAAAOAAsAAAABAAAAAAAPAAsAAAABAAAAAAAQAAsAAAABAAAAAAARAAsAAAABAAAAAAASAAsAAAABAAAAAAATAAsAAAABAAAAAAAUAAsAAAABAAAAAAAVAAsAAAABAAAAAAAWAAsAAAABAAAAAAAXAAsAAAABAAAAAAAYAAsAAAABAAAAAAAZAAsAAAABAAAAAAAaAAsAAAABAAAAAAAbAAsAAAABAAAAAAAcAAsAAAABAAAAAAAdAAsAAAABAAAAAAAeAAsAAAABAAAAAAAfAAsAAAABAAAAAAAgAAsAAAABAAAAAAAgAAoAAAABAAAAAAAgAAkAAAABAAAAAAAgAAgAAAABAAAAAAAgAAcAAAABAAAAAAAgAAYAAAABAAAAAAAhAAUAAAABAAAAAAAhAAQAAAABAAAAAAAhAAMAAAABAAAAAAAhAAIAAAABAAAAAAA=")
+tile_set = SubResource("TileSet_7mydf")
+
+[node name="Node2D" type="Node2D" parent="."]
+material = SubResource("CanvasItemMaterial_ex8yo")
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D"]
+position = Vector2(1031, 190)
+scale = Vector2(3, 3)
+texture = ExtResource("6_hklxd")
