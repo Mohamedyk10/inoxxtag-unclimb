@@ -12,6 +12,7 @@ var is_jumping = false
 var orientation = "droite"
 var animation = ""
 var vertical_speed = 0
+var uses_ice_axe
 
 var zip_line_coefs = null
 
@@ -49,8 +50,10 @@ func _process(delta) -> void:
 	if is_on_floor():
 		vertical_speed = 0
 
-	var uses_ice_axe = false
-	if Input.is_action_pressed("LEFT"):
+	if !Input.is_action_pressed("HOLD"):
+		uses_ice_axe = false
+		
+	if Input.is_action_pressed("LEFT") and !uses_ice_axe:
 		velocity[0] += -HORIZONTAL_SPEED
 		if lantern_status:
 			animation = "run_right_lantern"
@@ -58,9 +61,7 @@ func _process(delta) -> void:
 		else:
 			animation = "run_right"
 			orientation = "left"
-		if is_on_wall():
-			uses_ice_axe = true
-	if Input.is_action_pressed("RIGHT"):
+	if Input.is_action_pressed("RIGHT") and !uses_ice_axe:
 		velocity[0] += HORIZONTAL_SPEED
 		if lantern_status:
 			animation = "run_right_lantern"
@@ -68,17 +69,25 @@ func _process(delta) -> void:
 		else :
 			animation = "run_right"
 			orientation = "right"
-		if is_on_wall():
-			uses_ice_axe = true
+		
+	if is_on_wall() and Input.is_action_pressed("HOLD"):
+		uses_ice_axe = true
+		
 	if uses_ice_axe:
 		vertical_speed = 0
+
 	if Input.is_action_pressed("JUMP"):
 		if is_jumping:
 			vertical_speed += 0.5 * GRAVITY_ACCELERATION * delta
 		else:
 			if is_on_floor() or is_on_wall() or zip_line_coefs != null:
 				is_jumping = true
+				uses_ice_axe = false
 				vertical_speed = JUMP_INITIAL_SPEED
+				velocity[1] = vertical_speed
+				$Animation.play("jump")
+				move_and_slide()
+				await(100)
 		animation = "jump"
 	else:
 		is_jumping = false
@@ -87,6 +96,12 @@ func _process(delta) -> void:
 		vertical_speed += GRAVITY_ACCELERATION * delta
 	if uses_ice_axe:
 		animation = "climb_no_move"
+		if orientation == "right":
+			velocity[0] += 1
+		else:
+			velocity[0] -= 1
+		if !move_and_slide():
+			uses_ice_axe = false
 		if Input.is_action_pressed("UP") and uses_ice_axe:
 			vertical_speed -= VERTICAL_SPEED
 			animation = "climb_up_or_down"
