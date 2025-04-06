@@ -151,7 +151,6 @@ func _process(delta) -> void:
 				rope.global_position=current_hook.global_position
 				rope.scale = Vector2(0.1, (len_grap-0.5)/48)
 				
-				
 		else:
 			if rope!=null:
 				rope.global_position=Vector2(-1000,-1000)
