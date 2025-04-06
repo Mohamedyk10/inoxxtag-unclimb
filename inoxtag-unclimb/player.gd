@@ -33,6 +33,8 @@ func _ready() -> void:
 
 
 func show_hud():
+	lantern_status = false
+	zip_line_coefs = null
 	hud.set_show_hud(true)
 	game_started = false
 	global_position = Vector2(0, 0)
