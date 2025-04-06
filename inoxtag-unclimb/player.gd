@@ -108,6 +108,8 @@ func _process(delta) -> void:
 	if uses_ice_axe:
 		vertical_speed = 0
 
+	print(velocity)
+
 	if Input.is_action_pressed("JUMP"):
 		if is_jumping:
 			vertical_speed += 0.5 * GRAVITY_ACCELERATION * delta
@@ -144,8 +146,12 @@ func _process(delta) -> void:
 		$Animation.flip_h = true
 		$Animation.play(animation)
 	velocity[1] = vertical_speed
+	
+	print(velocity)
 
 	move_and_slide()
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	position = START_COORDINATES
+	game_started = false
+	await get_tree().create_timer(1).timeout
+	show_hud()
