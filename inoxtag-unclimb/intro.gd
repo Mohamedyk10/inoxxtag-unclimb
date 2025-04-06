@@ -21,6 +21,7 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("JUMP"):
 		stop_dialogue()
 		emit_signal("intro_finish")
+
 func start_dialogue():
 	current_message = 0
 	display = ""
