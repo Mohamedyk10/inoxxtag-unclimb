@@ -1,8 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://bgp7ds7q7ky7b"]
+[gd_scene load_steps=17 format=3 uid="uid://bgp7ds7q7ky7b"]
 
 [ext_resource type="Script" uid="uid://d28w3jbto0l24" path="res://hud.gd" id="1_64ctp"]
 [ext_resource type="Texture2D" uid="uid://b0faghvogjlum" path="res://art/Backgrounds/title_screen.png" id="2_8sq4i"]
 [ext_resource type="Texture2D" uid="uid://def68kdomtmk" path="res://art/Backgrounds/Press_Start.png" id="3_8sq4i"]
+[ext_resource type="Texture2D" uid="uid://7ga7nc7tfrxp" path="res://art/Backgrounds/logo.png" id="4_2d608"]
 [ext_resource type="Texture2D" uid="uid://xl3yc5t8dklj" path="res://art/Backgrounds/you_lost01.png" id="4_4q17s"]
 [ext_resource type="Texture2D" uid="uid://np5ebnps8wut" path="res://art/Backgrounds/you_lost02.png" id="5_2d608"]
 [ext_resource type="Texture2D" uid="uid://d2sa7nll554ke" path="res://art/Backgrounds/you_lost03.png" id="6_w71nf"]
@@ -71,6 +72,14 @@ offset_top = 678.0
 offset_right = 1101.0
 offset_bottom = 752.0
 texture = ExtResource("3_8sq4i")
+
+[node name="TextureRect" type="TextureRect" parent="Title_screen"]
+layout_mode = 0
+offset_left = 274.0
+offset_top = 79.0
+offset_right = 1417.0
+offset_bottom = 656.0
+texture = ExtResource("4_2d608")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_8w6vd")
