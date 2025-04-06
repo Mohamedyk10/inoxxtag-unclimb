@@ -32,7 +32,12 @@ func f(x: float, coefs: Vector4) -> float:
 
 
 func _process(delta) -> void:
-	animation = "stop"
+	if Input.is_action_just_pressed("USE_LANTERN"):
+		lantern_status = not(lantern_status)
+	if lantern_status:
+		animation = "stop_lantern"
+	else: animation = "stop"
+
 	velocity = Vector2(0, 0)
 	
 	if zip_line_coefs != null and not Input.is_action_pressed("JUMP") and not Input.is_action_pressed("SHIFT"):
@@ -111,4 +116,8 @@ func _process(delta) -> void:
 		$Animation.flip_h = true
 		$Animation.play(animation)
 	velocity[1] = vertical_speed
+	if lantern_status:
+		$PointLight2D.show()
+	else:
+		$PointLight2D.hide()
 	move_and_slide()

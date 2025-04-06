@@ -24,3 +24,8 @@ visibility_layer = 2
 position = Vector2(172, 1131)
 
 [node name="ZipLine" parent="." instance=ExtResource("4_1bvp3")]
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+color = Color(1, 1, 0, 1)
+energy = 0.7
+blend_mode = 1
