@@ -89,6 +89,18 @@ func _process(delta) -> void:
 			game_over()
 	if is_on_floor() or (is_on_wall() and Input.is_action_pressed("HOLD")) or zip_line_coefs != null or uses_grappling_hook:
 		highest_point = global_position[1]
+	if global_position[1] - highest_point > 0.3 * MAX_HEIGHT:
+		$SpeedIndicatorI.show()
+	else:
+		$SpeedIndicatorI.hide()
+	if global_position[1] - highest_point > 0.5 * MAX_HEIGHT:
+		$SpeedIndicatorII.show()
+	else:
+		$SpeedIndicatorII.hide()
+	if global_position[1] - highest_point > 0.7 * MAX_HEIGHT:
+		$SpeedIndicatorIII.show()
+	else:
+		$SpeedIndicatorIII.hide()
 
 	if Input.is_action_just_pressed("USE_LANTERN"):
 		lantern_status = not(lantern_status)
@@ -226,7 +238,6 @@ func _process(delta) -> void:
 	velocity[1] = vertical_speed
 
 	move_and_slide()
-
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	game_over()
