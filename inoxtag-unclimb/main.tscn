@@ -14,17 +14,19 @@ position = Vector2(171, 628)
 position = Vector2(177, 163)
 
 [node name="Player" parent="." instance=ExtResource("1_ig7tw")]
-position = Vector2(300, 300)
+position = Vector2(2280, 805)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 limit_left = 0
 limit_top = 0
 
 [node name="HUD" parent="." instance=ExtResource("3_h2yge")]
+visible = false
 
-[node name="ZipLine" parent="." instance=ExtResource("4_1bvp3")]
+[node name="ZipLine2" parent="." instance=ExtResource("4_1bvp3")]
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+visible = false
 color = Color(1, 1, 0, 1)
 energy = 0.9
 blend_mode = 1
