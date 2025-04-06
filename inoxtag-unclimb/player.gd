@@ -123,11 +123,11 @@ func _process(delta) -> void:
 			vertical_speed=0
 			uses_grappling_hook=false
 			
-	if Input.is_action_just_pressed("JUMP"):
+	if Input.is_action_just_pressed("JUMP") and uses_grappling_hook==true:
 		vertical_speed=1.5*JUMP_INITIAL_SPEED
 		uses_grappling_hook=false
 	
-	if is_on_ceiling() or is_on_floor() or is_on_wall():
+	if (is_on_ceiling() or is_on_floor() or is_on_wall()) and uses_grappling_hook==true:
 		vertical_speed=0
 		uses_grappling_hook=false
 
