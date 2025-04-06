@@ -75,11 +75,10 @@ func f(x: float, coefs: Vector4) -> float:
 
 
 func _process(delta) -> void:
-	
+	if not game_started:
+		return
 	if Input.is_action_pressed("RESET"):
 		game_over()
-		return
-	if not game_started:
 		return
 
 	if global_position[1] < highest_point:
@@ -88,7 +87,7 @@ func _process(delta) -> void:
 		print("Chute: ", (global_position[1] - highest_point) / 48)
 		if global_position[1] - highest_point > MAX_HEIGHT:
 			game_over()
-	if is_on_floor() or (is_on_wall() and Input.is_action_pressed("HOLD")) or zip_line_coefs != null:
+	if is_on_floor() or (is_on_wall() and Input.is_action_pressed("HOLD")) or zip_line_coefs != null or uses_grappling_hook:
 		highest_point = global_position[1]
 
 	if Input.is_action_just_pressed("USE_LANTERN"):
@@ -104,12 +103,12 @@ func _process(delta) -> void:
 		$PointLight2D.hide()
 	
 	velocity = Vector2(0, 0)
-	
+
 
 	##Grappling hook###########################################################################
 	if Input.is_action_just_pressed("GRAPPLING_HOOK"):
 		if uses_grappling_hook==false:
-			if aimed_hook!=null:	
+			if aimed_hook!=null:
 				velocity=Vector2(0,0)
 				uses_grappling_hook=true
 				current_hook=aimed_hook
@@ -121,9 +120,15 @@ func _process(delta) -> void:
 				rot_speed=10*velocity.dot(eo)
 				acc_rot = 0
 		else:
+			vertical_speed=0
 			uses_grappling_hook=false
 			
-	if Input.is_action_just_pressed("JUMP") or is_on_ceiling() or is_on_floor() or is_on_wall():
+	if Input.is_action_just_pressed("JUMP") and uses_grappling_hook==true:
+		vertical_speed=1.5*JUMP_INITIAL_SPEED
+		uses_grappling_hook=false
+	
+	if (is_on_ceiling() or is_on_floor() or is_on_wall()) and uses_grappling_hook==true:
+		vertical_speed=0
 		uses_grappling_hook=false
 
 	velocity=Vector2(0,0)
@@ -141,8 +146,6 @@ func _process(delta) -> void:
 		er=er.rotated(rot_speed*delta)
 		
 		global_position=current_hook.global_position + len_grap*er
-		
-		vertical_speed=1.5*JUMP_INITIAL_SPEED*abs(sin(theta))
 		
 		return
 
@@ -192,6 +195,10 @@ func _process(delta) -> void:
 				vertical_speed = JUMP_INITIAL_SPEED
 				velocity[1] = vertical_speed
 				animation = "jump"
+				if orientation == "right":
+					velocity[0] -= 1
+				else:
+					velocity[0] += 1
 	else:
 		is_jumping = false
 
@@ -226,15 +233,11 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 
 
 func _on_grappling_area_body_entered(body: Node2D) -> void:
-	print("ok")
 	if body.get_parent().name=="Hooks": 
 		aimed_hook=body
-		print(body)
+		get_node("../Target").global_position=aimed_hook.global_position
 	
 func _on_grappling_area_body_exited(body: Node2D) -> void:
 	if body==aimed_hook: 
 		aimed_hook=null
-
-
-func _on_grappting_area_body_exited(body: Node2D) -> void:
-	pass # Replace with function body.
+		get_node("../Target").global_position=Vector2(-10000,-10000)
