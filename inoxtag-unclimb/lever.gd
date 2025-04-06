@@ -3,7 +3,7 @@ extends Area2D
 signal change
 
 var is_pressed:bool = false
-@export var link_code = 1
+var link_code
 
 func _ready() -> void:
 	add_to_group("levers")
@@ -11,3 +11,8 @@ func _ready() -> void:
 func _on_body_entered(body: Node2D) -> void:
 	is_pressed = true
 	change.emit()
+
+func _on_child_entered_tree(node: Node) -> void:
+	var childrenName = node.name
+	if len(childrenName) == 1:
+		link_code = int(childrenName)

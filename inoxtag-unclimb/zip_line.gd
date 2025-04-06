@@ -2,6 +2,7 @@ extends Area2D
 
 # Coordinates: ((a, b), (c, d))
 var coefs
+var zip_code
 
 func _ready() -> void:
 	print("--------")
@@ -54,3 +55,8 @@ func _on_body_entered(body: Node2D) -> void:
 func _on_body_exited(body: Node2D) -> void:
 	if body.name == "Player":
 		body.zip_line_coefs = null
+
+func _on_child_entered_tree(node: Node) -> void:
+	var childrenName = node.name
+	if len(childrenName) == 1:
+		zip_code = int(childrenName)

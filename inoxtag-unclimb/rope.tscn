@@ -23,3 +23,5 @@ shape = SubResource("RectangleShape2D_0756u")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(5, 2000)
 texture = SubResource("CanvasTexture_0756u")
+
+[connection signal="child_entered_tree" from="." to="." method="_on_child_entered_tree"]

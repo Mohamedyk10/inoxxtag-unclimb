@@ -21,3 +21,4 @@ position = Vector2(0.5, 2.5)
 shape = SubResource("RectangleShape2D_1btnt")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="child_entered_tree" from="." to="." method="_on_child_entered_tree"]

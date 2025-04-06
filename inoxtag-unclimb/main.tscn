@@ -5,12 +5,10 @@
 [ext_resource type="PackedScene" uid="uid://bgp7ds7q7ky7b" path="res://hud.tscn" id="3_h2yge"]
 [ext_resource type="PackedScene" uid="uid://b6a3pf41ax484" path="res://zip_line.tscn" id="4_1bvp3"]
 [ext_resource type="Script" path="res://camera.gd" id="4_lquwl"]
-
 [ext_resource type="PackedScene" uid="uid://drvo2faq86u6r" path="res://rope.tscn" id="5_7mycd"]
 [ext_resource type="PackedScene" uid="uid://vgah4ipsh4je" path="res://levels.tscn" id="5_lquwl"]
 [ext_resource type="Script" path="res://directional_light.gd" id="6_7mycd"]
 [ext_resource type="PackedScene" uid="uid://bfw3pe8ckskug" path="res://lever.tscn" id="6_272bh"]
-
 [ext_resource type="Texture2D" uid="uid://ccdw5wpv3h8wr" path="res://art/Gameplay/Target.png" id="8_5vw27"]
 
 [node name="Main" type="Node2D"]
@@ -25,8 +23,10 @@ script = ExtResource("4_lquwl")
 [node name="Levels" parent="." instance=ExtResource("5_lquwl")]
 position = Vector2(171, 628)
 
-[node name="ZipLine" parent="." instance=ExtResource("4_1bvp3")]
+[node name="ZipLine0" parent="." instance=ExtResource("4_1bvp3")]
 position = Vector2(177, 248)
+
+[node name="0" type="Node2D" parent="ZipLine0"]
 
 [node name="Player" parent="." instance=ExtResource("1_ig7tw")]
 position = Vector2(2228, 821)
@@ -41,17 +41,23 @@ script = ExtResource("6_7mycd")
 
 [node name="Level1_1" type="Node2D" parent="."]
 
-[node name="Lever" parent="Level1_1" instance=ExtResource("6_272bh")]
+[node name="Lever1" parent="Level1_1" instance=ExtResource("6_272bh")]
 position = Vector2(8354, 2213)
 scale = Vector2(3, 3)
 
-[node name="Rope" parent="Level1_1" instance=ExtResource("5_7mycd")]
+[node name="1" type="Node2D" parent="Level1_1/Lever1"]
+
+[node name="Rope1" parent="Level1_1" instance=ExtResource("5_7mycd")]
 position = Vector2(7942, 869)
 
-[node name="ZipLine" parent="Level1_1" instance=ExtResource("4_1bvp3")]
+[node name="1" type="Node2D" parent="Level1_1/Rope1"]
+
+[node name="ZipLine2" parent="Level1_1" instance=ExtResource("4_1bvp3")]
 position = Vector2(7886, 1095)
 rotation = 0.628008
 scale = Vector2(2.635, 1)
+
+[node name="1" type="Node2D" parent="Level1_1/ZipLine2"]
 
 [node name="Target" type="Node2D" parent="."]
 position = Vector2(1923, 861)
@@ -64,13 +70,23 @@ texture = ExtResource("8_5vw27")
 position = Vector2(3649, 345)
 rotation = 0.44837
 
+[node name="2" type="Node2D" parent="ZipLine2"]
+
 [node name="Rope2" parent="." instance=ExtResource("5_7mycd")]
-unique_name_in_owner = true
 position = Vector2(3008, 90)
 
-[connection signal="area_entered" from="Level1_1/Lever" to="Level1_1/Rope" method="_on_lever_area_entered"]
-[connection signal="body_entered" from="Level1_1/Lever" to="Level1_1/Rope" method="_on_lever_body_entered"]
-[connection signal="change" from="Level1_1/Lever" to="Level1_1/Rope" method="_on_lever_change"]
-[connection signal="body_entered" from="Level1_1/Rope" to="Level1_1/Rope" method="_on_body_entered"]
-[connection signal="body_exited" from="Level1_1/Rope" to="Level1_1/Rope" method="_on_body_exited"]
-[connection signal="can_climb" from="Level1_1/Rope" to="Player" method="_on_rope_can_climb"]
+[node name="2" type="Node2D" parent="Rope2"]
+
+[connection signal="area_entered" from="Level1_1/Lever1" to="Level1_1/Rope1" method="_on_lever_area_entered"]
+[connection signal="body_entered" from="Level1_1/Lever1" to="Level1_1/Rope1" method="_on_lever_body_entered"]
+[connection signal="change" from="Level1_1/Lever1" to="Level1_1/Rope1" method="_on_lever_change"]
+[connection signal="body_entered" from="Level1_1/Rope1" to="Level1_1/Rope1" method="_on_body_entered"]
+[connection signal="body_exited" from="Level1_1/Rope1" to="Level1_1/Rope1" method="_on_body_exited"]
+[connection signal="can_climb" from="Level1_1/Rope1" to="Player" method="_on_rope_can_climb"]
+
+[editable path="ZipLine0"]
+[editable path="Level1_1/Lever1"]
+[editable path="Level1_1/Rope1"]
+[editable path="Level1_1/ZipLine2"]
+[editable path="ZipLine2"]
+[editable path="Rope2"]
