@@ -53,6 +53,10 @@ scale = Vector2(3, 3)
 [node name="Sprite2D" type="Sprite2D" parent="Target"]
 texture = ExtResource("8_5vw27")
 
+[node name="ZipLine2" parent="." instance=ExtResource("4_1bvp3")]
+position = Vector2(3649, 345)
+rotation = 0.44837
+
 [connection signal="area_entered" from="FirstAction/Lever" to="FirstAction/Rope" method="_on_lever_area_entered"]
 [connection signal="body_entered" from="FirstAction/Lever" to="FirstAction/Rope" method="_on_lever_body_entered"]
 [connection signal="change" from="FirstAction/Lever" to="FirstAction/Rope" method="_on_lever_change"]

@@ -19,9 +19,9 @@
 [ext_resource type="Texture2D" uid="uid://dne4uhaqf1vn5" path="res://art/MC/mc-stop-lantern02.png" id="17_q13i1"]
 [ext_resource type="Texture2D" uid="uid://by6ytx730ulh2" path="res://art/MC/mc-tyrolienne1.png" id="18_pylmc"]
 [ext_resource type="Texture2D" uid="uid://cfq2t7kfvnyxq" path="res://art/MC/mc-tyrolienne2.png" id="19_pbfsw"]
-[ext_resource type="Texture2D" uid="uid://c5x8xf2oyggg1" path="res://art/Gameplay/Speed I.png" id="20_7ahtn"]
-[ext_resource type="Texture2D" uid="uid://bmi4w4hdm5ci0" path="res://art/Gameplay/Speed II.png" id="21_7lmhl"]
-[ext_resource type="Texture2D" uid="uid://bbncbq5thnyby" path="res://art/Gameplay/Speed III.png" id="22_dx0e4"]
+[ext_resource type="Texture2D" uid="uid://crkg0e5668bl8" path="res://art/Gameplay/Speed I.png" id="20_7ahtn"]
+[ext_resource type="Texture2D" uid="uid://06v4o8v4wrdt" path="res://art/Gameplay/Speed II.png" id="21_7lmhl"]
+[ext_resource type="Texture2D" uid="uid://y2txflcukjha" path="res://art/Gameplay/Speed III.png" id="22_dx0e4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4flbx"]
 size = Vector2(31, 69)
