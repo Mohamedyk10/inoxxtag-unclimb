@@ -24,11 +24,6 @@ script = ExtResource("4_lquwl")
 [node name="Levels" parent="." instance=ExtResource("5_lquwl")]
 position = Vector2(171, 628)
 
-[node name="ZipLine0" parent="." instance=ExtResource("4_1bvp3")]
-position = Vector2(177, 248)
-
-[node name="0" type="Node2D" parent="ZipLine0"]
-
 [node name="Player" parent="." instance=ExtResource("1_ig7tw")]
 position = Vector2(2228, 821)
 
