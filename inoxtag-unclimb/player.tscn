@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://sclpth6g423y"]
+[gd_scene load_steps=25 format=3 uid="uid://sclpth6g423y"]
 
 [ext_resource type="Script" uid="uid://cnqivvs3ae66i" path="res://player.gd" id="1_onrkg"]
 [ext_resource type="Texture2D" uid="uid://dpxqjhrusynch" path="res://art/MC/mc-jump.png" id="2_onrkg"]
@@ -17,6 +17,8 @@
 [ext_resource type="Texture2D" uid="uid://bb14855qoodiu" path="res://art/MC/mc-stop02.png" id="15_pbfsw"]
 [ext_resource type="Texture2D" uid="uid://dxpfhqudpq2ti" path="res://art/MC/mc-stop-lantern01.png" id="16_op7ga"]
 [ext_resource type="Texture2D" uid="uid://dne4uhaqf1vn5" path="res://art/MC/mc-stop-lantern02.png" id="17_q13i1"]
+[ext_resource type="Texture2D" uid="uid://by6ytx730ulh2" path="res://art/MC/mc-tyrolienne1.png" id="18_pylmc"]
+[ext_resource type="Texture2D" uid="uid://cfq2t7kfvnyxq" path="res://art/MC/mc-tyrolienne2.png" id="19_pbfsw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4flbx"]
 size = Vector2(31, 69)
@@ -124,6 +126,17 @@ animations = [{
 "loop": true,
 "name": &"stop_lantern",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("18_pylmc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_pbfsw")
+}],
+"loop": true,
+"name": &"tyrolienne",
+"speed": 5.0
 }]
 
 [sub_resource type="Gradient" id="Gradient_op7ga"]
@@ -152,7 +165,7 @@ shape = SubResource("RectangleShape2D_4flbx")
 [node name="Animation" type="AnimatedSprite2D" parent="."]
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_op7ga")
-animation = &"balancer_from_left"
+animation = &"tyrolienne"
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 position = Vector2(0, 2)
