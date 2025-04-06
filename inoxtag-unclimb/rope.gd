@@ -12,9 +12,11 @@ signal can_climb
 func _on_body_entered(_body):
 	is_player_touching_the_rope = true
 	can_climb.emit()
+	body.current_rope = self
 
 func _on_body_exited(_body):
 	is_player_touching_the_rope = false
+	body.current_rope = null
 
 func _on_lever_change() -> void:
 	for lever in get_tree().get_nodes_in_group("levers"):

@@ -1,8 +1,9 @@
 extends Node2D
+signal intro_finish
 
 var messages = [
 	"Mount Everest, the tallest summit on Earth. Conquering it is no easy feat.\nReaching the summit remains a dream cherished by many.",
-	"This individual achieved the remarkable milestone of reaching the summit after\nintense training and the unwavering support of their team. They turned their\ndream of standing at the highest point on Earth into reality.",
+	"This individual achieved the remarkable milestone of reaching the summit after\nintense training and the unwavering support of his team. They turned the\ndream of standing at the highest point on Earth into reality.",
 	"However, while descending the mountain, he encountered an unimaginable\nthreat—a Yeti. He ran for his life, faster than he ever thought possible. No\none had ever suspected the existence of such a creature.",
 	"In his frantic escape, he stumbled upon a cave. Seeking refuge, he entered,\nhoping to find a hiding spot. The Yeti did not follow him inside, but now the\nhiker must navigate the cave's depths to find another way out."
 ];
@@ -44,6 +45,7 @@ func _on_next_char_timeout():
 func _on_next_message_timeout():
 	if (current_message == len(messages) - 1):
 		stop_dialogue()
+		emit_signal("intro_finish")
 	else: 
 		current_message += 1
 		display = ""
