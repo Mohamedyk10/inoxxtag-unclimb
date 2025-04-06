@@ -11,7 +11,7 @@
 position = Vector2(171, 628)
 
 [node name="ZipLine" parent="." instance=ExtResource("4_1bvp3")]
-position = Vector2(177, 163)
+position = Vector2(177, 248)
 
 [node name="Player" parent="." instance=ExtResource("1_ig7tw")]
 position = Vector2(2280, 805)
@@ -22,8 +22,6 @@ limit_top = 0
 
 [node name="HUD" parent="." instance=ExtResource("3_h2yge")]
 visible = false
-
-[node name="ZipLine2" parent="." instance=ExtResource("4_1bvp3")]
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
 visible = false

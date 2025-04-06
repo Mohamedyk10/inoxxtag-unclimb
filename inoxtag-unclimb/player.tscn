@@ -152,7 +152,7 @@ shape = SubResource("RectangleShape2D_4flbx")
 [node name="Animation" type="AnimatedSprite2D" parent="."]
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_op7ga")
-animation = &"stop"
+animation = &"balancer_from_left"
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 position = Vector2(0, 2)
