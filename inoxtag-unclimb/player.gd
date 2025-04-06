@@ -75,11 +75,10 @@ func f(x: float, coefs: Vector4) -> float:
 
 
 func _process(delta) -> void:
-	
+	if not game_started:
+		return
 	if Input.is_action_pressed("RESET"):
 		game_over()
-		return
-	if not game_started:
 		return
 
 	if global_position[1] < highest_point:
@@ -88,7 +87,7 @@ func _process(delta) -> void:
 		print("Chute: ", (global_position[1] - highest_point) / 48)
 		if global_position[1] - highest_point > MAX_HEIGHT:
 			game_over()
-	if is_on_floor() or (is_on_wall() and Input.is_action_pressed("HOLD")) or zip_line_coefs != null:
+	if is_on_floor() or (is_on_wall() and Input.is_action_pressed("HOLD")) or zip_line_coefs != null or uses_grappling_hook:
 		highest_point = global_position[1]
 
 	if Input.is_action_just_pressed("USE_LANTERN"):
@@ -104,12 +103,12 @@ func _process(delta) -> void:
 		$PointLight2D.hide()
 	
 	velocity = Vector2(0, 0)
-	
+
 
 	##Grappling hook###########################################################################
 	if Input.is_action_just_pressed("GRAPPLING_HOOK"):
 		if uses_grappling_hook==false:
-			if aimed_hook!=null:	
+			if aimed_hook!=null:
 				velocity=Vector2(0,0)
 				uses_grappling_hook=true
 				current_hook=aimed_hook
@@ -192,6 +191,10 @@ func _process(delta) -> void:
 				vertical_speed = JUMP_INITIAL_SPEED
 				velocity[1] = vertical_speed
 				animation = "jump"
+				if orientation == "right":
+					velocity[0] -= 1
+				else:
+					velocity[0] += 1
 	else:
 		is_jumping = false
 
