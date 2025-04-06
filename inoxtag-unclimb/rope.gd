@@ -9,12 +9,12 @@ func _ready():
 var is_player_touching_the_rope: bool = false
 signal can_climb
 
-func _on_body_entered(_body):
+func _on_body_entered(body):
 	is_player_touching_the_rope = true
 	can_climb.emit()
 	body.current_rope = self
 
-func _on_body_exited(_body):
+func _on_body_exited(body):
 	is_player_touching_the_rope = false
 	body.current_rope = null
 
