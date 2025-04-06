@@ -1,0 +1,51 @@
+[gd_scene load_steps=7 format=3 uid="uid://b5q3bd4ii64dj"]
+
+[ext_resource type="Script" uid="uid://drtjr76f468nt" path="res://intro.gd" id="1_7a8ye"]
+[ext_resource type="Texture2D" uid="uid://c0emuplq2ahu5" path="res://art/Intro/Intro_Everest.png" id="2_0a7ni"]
+[ext_resource type="Texture2D" uid="uid://clngcnq851coi" path="res://art/Intro/Intro_SommetEverest.png" id="3_u2rf6"]
+[ext_resource type="Texture2D" uid="uid://m4k3x71rl2q2" path="res://art/Intro/textbox.png" id="3_y72e6"]
+[ext_resource type="Texture2D" uid="uid://bxk1qyfkb4ywx" path="res://art/Intro/Intro_PoursuiviParYéti.png" id="4_y6ycx"]
+[ext_resource type="Texture2D" uid="uid://d3dghddyjkvcl" path="res://art/Intro/Intro_EntreeCave.png" id="5_dpxxx"]
+
+[node name="Intro" type="Node2D"]
+script = ExtResource("1_7a8ye")
+
+[node name="EntreeCave" type="TextureRect" parent="."]
+offset_right = 1600.0
+offset_bottom = 555.0
+texture = ExtResource("5_dpxxx")
+
+[node name="PoursuiviParYeti" type="TextureRect" parent="."]
+offset_right = 1600.0
+offset_bottom = 555.0
+texture = ExtResource("4_y6ycx")
+
+[node name="SommetEverest" type="TextureRect" parent="."]
+offset_right = 1600.0
+offset_bottom = 555.0
+texture = ExtResource("3_u2rf6")
+
+[node name="Everest" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_0a7ni")
+
+[node name="Textbox" type="TextureRect" parent="."]
+offset_top = 555.0
+offset_right = 1600.0
+offset_bottom = 800.0
+texture = ExtResource("3_y72e6")
+
+[node name="next_char" type="Timer" parent="."]
+
+[node name="next_message" type="Timer" parent="."]
+
+[node name="Label" type="Label" parent="."]
+offset_left = 37.0
+offset_top = 597.0
+offset_right = 1542.0
+offset_bottom = 769.0
+theme_override_font_sizes/font_size = 40
+
+[connection signal="timeout" from="next_char" to="." method="_on_next_char_timeout"]
+[connection signal="timeout" from="next_message" to="." method="_on_next_message_timeout"]
