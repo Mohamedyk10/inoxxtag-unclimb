@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://sclpth6g423y"]
+[gd_scene load_steps=26 format=3 uid="uid://sclpth6g423y"]
 
 [ext_resource type="Script" uid="uid://cnqivvs3ae66i" path="res://player.gd" id="1_onrkg"]
 [ext_resource type="Texture2D" uid="uid://dpxqjhrusynch" path="res://art/MC/mc-jump.png" id="2_onrkg"]
@@ -151,6 +151,9 @@ fill_from = Vector2(0.5, 0.5)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_op7ga"]
 size = Vector2(33, 68)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_pylmc"]
+radius = 165.048
+
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
 collision_mask = 2
@@ -183,4 +186,13 @@ collision_priority = 2.0
 position = Vector2(2.5, 6)
 shape = SubResource("RectangleShape2D_op7ga")
 
+[node name="GrapplingArea" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GrapplingArea"]
+shape = SubResource("CircleShape2D_pylmc")
+
 [connection signal="body_entered" from="PlayerArea2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="GrapplingArea" to="." method="_on_grappling_area_body_entered"]
+[connection signal="body_exited" from="GrapplingArea" to="." method="_on_grappting_area_body_exited"]
