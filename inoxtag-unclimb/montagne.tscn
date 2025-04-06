@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://cskrxrx7gpait"]
+[gd_scene load_steps=0 format=3 uid="uid://cskrxrx7gpait"]
 
 [node name="Mountain" type="StaticBody2D"]
 position = Vector2(-1, -1)

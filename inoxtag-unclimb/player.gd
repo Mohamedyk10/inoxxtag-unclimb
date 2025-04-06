@@ -10,7 +10,7 @@ const GRAVITY_ACCELERATION = 7500
 
 const START_COORDINATES = Vector2(250, 750)
 
-const MAX_HEIGHT = 10 * 48  # 10 blocs
+const MAX_HEIGHT = 12.5 * 48  # <= 12 blocs
 
 var hud
 
@@ -52,10 +52,11 @@ func game_over():
 	await get_tree().create_timer(1).timeout
 	global_position = Vector2(0, 0)
 	hud.show_game_over()
-	await get_tree().create_timer(3).timeout
-	hud.hide_game_over()
-	hud.show_hud()
 	is_timed_out = false
+	await get_tree().create_timer(3).timeout
+	if not game_started:
+		hud.hide_game_over()
+		hud.show_hud()
 
 func start():
 	hud.hide_game_over()
@@ -83,10 +84,11 @@ func _process(delta) -> void:
 
 	if global_position[1] < highest_point:
 		highest_point = global_position[1]
-	if is_on_floor():
+	if is_on_floor() and global_position[1] - highest_point > 48:
+		print("Chute: ", (global_position[1] - highest_point) / 48)
 		if global_position[1] - highest_point > MAX_HEIGHT:
 			game_over()
-	if is_on_floor() or is_on_wall():
+	if is_on_floor() or (is_on_wall() and Input.is_action_pressed("HOLD")) or zip_line_coefs != null:
 		highest_point = global_position[1]
 
 	if Input.is_action_just_pressed("USE_LANTERN"):
@@ -129,10 +131,10 @@ func _process(delta) -> void:
 	if is_on_ceiling() or is_on_floor() or is_on_wall():
 		vertical_speed=0
 		uses_grappling_hook=false
-	
+
 	velocity=Vector2(0,0)
 	if uses_grappling_hook:
-	
+
 		var theta=er.angle()+PI/2
 		if theta<-PI:
 			theta+=2*PI
@@ -153,6 +155,7 @@ func _process(delta) -> void:
 		var y = global_position[1]
 		x = x + ZIPLINE_SPEED * delta
 		y = f(x, zip_line_coefs)
+		vertical_speed = (y - global_position[1]) / delta
 		global_position = Vector2(x, y)
 		move_and_slide()
 		return
