@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://ceql8b1jxod73"]
+[gd_scene load_steps=9 format=3 uid="uid://ceql8b1jxod73"]
 
 [ext_resource type="Script" uid="uid://bw2pr0ld1myfj" path="res://main.gd" id="1_7mycd"]
 [ext_resource type="PackedScene" uid="uid://sclpth6g423y" path="res://player.tscn" id="1_ig7tw"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://wgftuiiht26" path="res://camera.gd" id="4_lquwl"]
 [ext_resource type="PackedScene" uid="uid://vgah4ipsh4je" path="res://levels.tscn" id="5_lquwl"]
 [ext_resource type="Script" uid="uid://cxr5vgmwa4ca5" path="res://directional_light.gd" id="6_7mycd"]
+[ext_resource type="Texture2D" uid="uid://ccdw5wpv3h8wr" path="res://art/Gameplay/Target.png" id="8_5vw27"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_7mycd")
@@ -33,3 +34,10 @@ color = Color(1, 1, 0, 1)
 energy = 0.9
 blend_mode = 1
 script = ExtResource("6_7mycd")
+
+[node name="Target" type="Node2D" parent="."]
+position = Vector2(1923, 861)
+scale = Vector2(3, 3)
+
+[node name="Sprite2D" type="Sprite2D" parent="Target"]
+texture = ExtResource("8_5vw27")

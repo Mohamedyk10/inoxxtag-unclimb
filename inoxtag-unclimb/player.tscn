@@ -152,7 +152,7 @@ fill_from = Vector2(0.5, 0.5)
 size = Vector2(33, 68)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pylmc"]
-radius = 165.048
+radius = 241.033
 
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
@@ -195,4 +195,4 @@ shape = SubResource("CircleShape2D_pylmc")
 
 [connection signal="body_entered" from="PlayerArea2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="GrapplingArea" to="." method="_on_grappling_area_body_entered"]
-[connection signal="body_exited" from="GrapplingArea" to="." method="_on_grappting_area_body_exited"]
+[connection signal="body_exited" from="GrapplingArea" to="." method="_on_grappling_area_body_exited"]
