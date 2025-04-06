@@ -270,4 +270,3 @@ func _on_grappling_area_body_exited(body: Node2D) -> void:
 
 func _on_release_grappling_area_body_entered(body: Node2D) -> void:
 	uses_grappling_hook=false
-
