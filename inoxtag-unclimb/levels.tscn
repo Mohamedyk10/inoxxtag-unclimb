@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=4 uid="uid://vgah4ipsh4je"]
+[gd_scene load_steps=14 format=4 uid="uid://vgah4ipsh4je"]
 
 [ext_resource type="Texture2D" uid="uid://b8qnrxlmlsf80" path="res://TileSetLudumDareCollisionTiles.png" id="1_5k54k"]
 [ext_resource type="Texture2D" uid="uid://bd1pb5kv1jmyb" path="res://TileSetLudumDareCollisionBlocks.png" id="1_hbfth"]
 [ext_resource type="Texture2D" uid="uid://c8jnaed8xetxm" path="res://TileSetLudumDareSpikes.png" id="2_hbfth"]
 [ext_resource type="Texture2D" uid="uid://cnl8ow4arvu4" path="res://art/Gameplay/Crochet.png" id="3_hbfth"]
+[ext_resource type="Texture2D" uid="uid://c7fmyht3tu8le" path="res://art/Tiles/SnowTiles.png" id="5_xv4fl"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xv4fl"]
 texture = ExtResource("1_hbfth")
@@ -99,6 +100,12 @@ shape = SubResource("CircleShape2D_02xe8")
 position = Vector2(9.53674e-07, -7.94727e-06)
 texture = ExtResource("3_hbfth")
 
+[node name="Rope" type="Sprite2D" parent="Hooks/Hook3"]
+position = Vector2(-424, -408)
+scale = Vector2(0.125, 3.00001)
+texture = ExtResource("5_xv4fl")
+offset = Vector2(0, 8.5)
+
 [node name="Hook2" type="StaticBody2D" parent="Hooks"]
 position = Vector2(1149, -111)
 scale = Vector2(3.00001, 3.00001)
@@ -113,6 +120,12 @@ shape = SubResource("CircleShape2D_02xe8")
 position = Vector2(9.53674e-07, -7.94727e-06)
 texture = ExtResource("3_hbfth")
 
+[node name="Rope" type="Sprite2D" parent="Hooks/Hook2"]
+position = Vector2(-424, -408)
+scale = Vector2(0.125, 3.00001)
+texture = ExtResource("5_xv4fl")
+offset = Vector2(0, 8.5)
+
 [node name="Hook1" type="StaticBody2D" parent="Hooks"]
 position = Vector2(709, 57)
 scale = Vector2(3.00001, 3.00001)
@@ -126,6 +139,13 @@ shape = SubResource("CircleShape2D_02xe8")
 [node name="Hook1_Texture" type="Sprite2D" parent="Hooks/Hook1"]
 position = Vector2(9.53674e-07, -7.94727e-06)
 texture = ExtResource("3_hbfth")
+
+
+[node name="Rope" type="Sprite2D" parent="Hooks/Hook1"]
+position = Vector2(-424, -408)
+scale = Vector2(0.125, 3.00001)
+texture = ExtResource("5_xv4fl")
+offset = Vector2(0, 8.5)
 
 [node name="Hook4" type="StaticBody2D" parent="Hooks"]
 position = Vector2(1362, 3469)
@@ -154,3 +174,4 @@ shape = SubResource("CircleShape2D_02xe8")
 [node name="Hook1_Texture" type="Sprite2D" parent="Hooks/Hook5"]
 position = Vector2(436.665, 7.34327e-05)
 texture = ExtResource("3_hbfth")
+
