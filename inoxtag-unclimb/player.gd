@@ -35,7 +35,7 @@ var er = Vector2(0,0)
 var rot_speed=0
 var acc_rot=0
 var hooks={}
-
+var rope=null
 
 func _ready() -> void:
 	global_position = Vector2(0, 0)
@@ -133,19 +133,24 @@ func _process(delta) -> void:
 				var eo=er.orthogonal()
 				rot_speed=10*velocity.dot(eo)
 				acc_rot = 0
+				
+				rope=current_hook.get_node("Rope")
+				rope.global_position=current_hook.global_position
+				rope.scale = Vector2(0.1, (len_grap-0.5)/48)
+				
+				
 		else:
+			if rope!=null:
+				rope.global_position=Vector2(-1000,-1000)
 			vertical_speed=0
 			uses_grappling_hook=false
 			
 	if Input.is_action_just_pressed("JUMP") and uses_grappling_hook==true:
-		vertical_speed=1.5*JUMP_INITIAL_SPEED
+		if rope!=null:
+				rope.global_position=Vector2(-1000,-1000)
+		vertical_speed=1.3*JUMP_INITIAL_SPEED
 		uses_grappling_hook=false
 	
-	if (is_on_ceiling() or is_on_floor() or is_on_wall()) and uses_grappling_hook==true:
-		vertical_speed=0
-		print("caca")
-		uses_grappling_hook=false
-
 	velocity=Vector2(0,0)
 	if uses_grappling_hook:
 
@@ -155,11 +160,21 @@ func _process(delta) -> void:
 		if theta>=PI:
 			theta-=2*PI
 		
+		if Input.is_action_pressed("RIGHT"):
+			rot_speed-=0.01
+		if Input.is_action_pressed("LEFT"):
+			rot_speed+=0.01
+		
 		acc_rot=sin(theta)
 		rot_speed+=10*acc_rot*delta
+		rot_speed=min(50,max(-50,rot_speed))
 		er=er.rotated(rot_speed*delta)
 		
 		global_position=current_hook.global_position + len_grap*er
+		rope.rotation_degrees = (er.angle()-PI/2)*180/PI
+		
+		
+		
 		
 		return
 
@@ -255,7 +270,8 @@ func _on_grappling_area_body_exited(body: Node2D) -> void:
 	if body.get_parent().name=="Hooks": 
 		hooks[body]=0
 		
-
-
+		
 func _on_release_grappling_area_body_entered(body: Node2D) -> void:
+	if rope!=null:
+		rope.global_position=Vector2(-1000,-1000)
 	uses_grappling_hook=false
