@@ -6,7 +6,6 @@ func _ready():
 	$Player.hide()
 	pass
 
-
 func _on_intro_intro_finish() -> void:
 	$Intro.hide()
 	$HUD.set_process(true)

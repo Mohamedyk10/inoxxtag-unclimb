@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://ceql8b1jxod73"]
+[gd_scene load_steps=12 format=3 uid="uid://ceql8b1jxod73"]
 
 [ext_resource type="Script" uid="uid://bw2pr0ld1myfj" path="res://main.gd" id="1_7mycd"]
 [ext_resource type="PackedScene" uid="uid://sclpth6g423y" path="res://player.tscn" id="1_ig7tw"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://directional_light.gd" id="6_7mycd"]
 [ext_resource type="PackedScene" uid="uid://bfw3pe8ckskug" path="res://lever.tscn" id="6_272bh"]
 [ext_resource type="Texture2D" uid="uid://ccdw5wpv3h8wr" path="res://art/Gameplay/Target.png" id="8_5vw27"]
+[ext_resource type="PackedScene" uid="uid://b5q3bd4ii64dj" path="res://intro.tscn" id="11_efxa6"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_7mycd")
@@ -74,3 +75,7 @@ rotation = 0.44837
 
 [node name="Rope2" parent="." instance=ExtResource("5_7mycd")]
 position = Vector2(3008, 90)
+
+[node name="Intro" parent="." instance=ExtResource("11_efxa6")]
+
+[connection signal="intro_finish" from="Intro" to="." method="_on_intro_intro_finish"]
