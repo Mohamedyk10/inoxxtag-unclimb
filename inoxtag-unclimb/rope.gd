@@ -4,7 +4,9 @@ var rope_code
 
 func _ready():
 	add_to_group("ropes")
-	$Sprite2D.hide()
+	if rope_code != 0:
+		$Sprite2D.hide()
+		$CollisionShape2D.set_deferred("disabled", true)
 
 var is_player_touching_the_rope: bool = false
 signal can_climb
@@ -25,6 +27,7 @@ func _on_lever_change() -> void:
 			$CollisionShape2D.set_deferred("disabled", false)
 
 func _on_child_entered_tree(node: Node) -> void:
+	print("child")
 	var childrenName = node.name
 	if len(childrenName) == 1:
 		rope_code = int(childrenName)

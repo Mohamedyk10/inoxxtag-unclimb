@@ -53,12 +53,12 @@ position = Vector2(7942, 869)
 
 [node name="1" type="Node2D" parent="Level1_1/Rope1"]
 
-[node name="ZipLine2" parent="Level1_1" instance=ExtResource("4_1bvp3")]
+[node name="ZipLine1" parent="Level1_1" instance=ExtResource("4_1bvp3")]
 position = Vector2(7886, 1095)
 rotation = 0.628008
 scale = Vector2(2.635, 1)
 
-[node name="1" type="Node2D" parent="Level1_1/ZipLine2"]
+[node name="1" type="Node2D" parent="Level1_1/ZipLine1"]
 
 [node name="Target" type="Node2D" parent="."]
 position = Vector2(1923, 861)
@@ -73,9 +73,13 @@ rotation = 0.44837
 
 [node name="2" type="Node2D" parent="ZipLine2"]
 
-[node name="Rope2" parent="." instance=ExtResource("5_7mycd")]
+[node name="Rope0" parent="." instance=ExtResource("5_7mycd")]
 position = Vector2(3008, 90)
+
+[node name="0" type="Node2D" parent="Rope0"]
 
 [node name="Intro" parent="." instance=ExtResource("11_efxa6")]
 
 [connection signal="intro_finish" from="Intro" to="." method="_on_intro_intro_finish"]
+
+[editable path="Rope0"]
