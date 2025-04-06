@@ -35,7 +35,7 @@ position = Vector2(2228, 821)
 [node name="HUD" parent="." instance=ExtResource("3_h2yge")]
 
 [node name="DirectionalLight" type="DirectionalLight2D" parent="."]
-color = Color(1, 1, 0, 1)
+color = Color(0.930138, 0.96239, 1, 1)
 energy = 0.9
 blend_mode = 1
 script = ExtResource("6_7mycd")
