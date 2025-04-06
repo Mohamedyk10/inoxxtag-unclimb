@@ -49,6 +49,8 @@ scale = Vector2(3, 3)
 [node name="1" type="Node2D" parent="Level1_1/Lever1"]
 
 [node name="Rope1" parent="Level1_1" instance=ExtResource("5_7mycd")]
+light_mask = 4
+visibility_layer = 4
 position = Vector2(7942, 869)
 
 [node name="1" type="Node2D" parent="Level1_1/Rope1"]
@@ -74,6 +76,8 @@ rotation = 0.44837
 [node name="2" type="Node2D" parent="ZipLine2"]
 
 [node name="Rope0" parent="." instance=ExtResource("5_7mycd")]
+light_mask = 4
+visibility_layer = 4
 position = Vector2(3008, 90)
 
 [node name="0" type="Node2D" parent="Rope0"]

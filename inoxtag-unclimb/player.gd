@@ -10,7 +10,7 @@ const GRAVITY_ACCELERATION = 7500
 
 const START_COORDINATES = Vector2(250, 750)
 
-const MAX_HEIGHT = 12.5 * 48  # <= 12 blocs
+const MAX_HEIGHT = 10.5 * 48  # <= 10 blocs
 
 var hud
 

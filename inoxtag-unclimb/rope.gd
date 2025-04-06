@@ -27,7 +27,6 @@ func _on_lever_change() -> void:
 			$CollisionShape2D.set_deferred("disabled", false)
 
 func _on_child_entered_tree(node: Node) -> void:
-	print("child")
 	var childrenName = node.name
 	if len(childrenName) == 1:
 		rope_code = int(childrenName)
