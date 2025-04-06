@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://b6a3pf41ax484" path="res://zip_line.tscn" id="4_1bvp3"]
 [ext_resource type="Script" uid="uid://wgftuiiht26" path="res://camera.gd" id="4_lquwl"]
 [ext_resource type="PackedScene" uid="uid://vgah4ipsh4je" path="res://levels.tscn" id="5_lquwl"]
+[ext_resource type="Script" uid="uid://cxr5vgmwa4ca5" path="res://directional_light.gd" id="6_7mycd"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_7mycd")
@@ -27,8 +28,8 @@ position = Vector2(2280, 805)
 
 [node name="HUD" parent="." instance=ExtResource("3_h2yge")]
 
-[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
-visible = false
+[node name="DirectionalLight" type="DirectionalLight2D" parent="."]
 color = Color(1, 1, 0, 1)
 energy = 0.9
 blend_mode = 1
+script = ExtResource("6_7mycd")

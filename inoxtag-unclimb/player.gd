@@ -10,6 +10,8 @@ const GRAVITY_ACCELERATION = 7500
 
 const START_COORDINATES = Vector2(250, 750)
 
+const MAX_HEIGHT = 10 * 48  # 10 blocs
+
 var hud
 
 var lantern_status = false
@@ -18,6 +20,7 @@ var orientation = "droite"
 var animation = ""
 var vertical_speed = 0
 var uses_ice_axe
+var highest_point
 
 var game_started = false
 var is_timed_out = false
@@ -47,9 +50,9 @@ func game_over():
 	lantern_status = false
 	zip_line_coefs = null
 	await get_tree().create_timer(1).timeout
-	hud.show_game_over()
 	global_position = Vector2(0, 0)
-	await get_tree().create_timer(5).timeout
+	hud.show_game_over()
+	await get_tree().create_timer(3).timeout
 	hud.hide_game_over()
 	hud.show_hud()
 	is_timed_out = false
@@ -58,6 +61,7 @@ func start():
 	hud.hide_game_over()
 	hud.hide_hud()
 	global_position = START_COORDINATES
+	highest_point = global_position[1]
 	game_started = true
 
 
@@ -76,6 +80,14 @@ func _process(delta) -> void:
 		return
 	if not game_started:
 		return
+
+	if global_position[1] < highest_point:
+		highest_point = global_position[1]
+	if is_on_floor():
+		if global_position[1] - highest_point > MAX_HEIGHT:
+			game_over()
+	if is_on_floor() or is_on_wall():
+		highest_point = global_position[1]
 
 	if Input.is_action_just_pressed("USE_LANTERN"):
 		lantern_status = not(lantern_status)
