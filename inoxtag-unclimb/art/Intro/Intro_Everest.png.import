@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cbicfuy1qfexh"
-path="res://.godot/imported/Fence right.png-5066cb2e1b1ed96f124b0a1b64150ddc.ctex"
+uid="uid://c0emuplq2ahu5"
+path="res://.godot/imported/Intro_Everest.png-4fb97cab1a991ef4e4d350b2f26f124c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/Useless/Fence right.png"
-dest_files=["res://.godot/imported/Fence right.png-5066cb2e1b1ed96f124b0a1b64150ddc.ctex"]
+source_file="res://art/Intro/Intro_Everest.png"
+dest_files=["res://.godot/imported/Intro_Everest.png-4fb97cab1a991ef4e4d350b2f26f124c.ctex"]
 
 [params]
 

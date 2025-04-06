@@ -3,6 +3,8 @@ extends Node2D
 var player
 
 func _ready():
+	hide_game_over()
+	show_hud()
 	player = $"../Player"
 
 func _process(delta):
@@ -11,8 +13,15 @@ func _process(delta):
 			print("START")
 			player.start()
 
-func set_show_hud(show):
-	if show:
-		$Title_screen.show()
-	else:
-		$Title_screen.hide()
+func show_hud():
+	$Title_screen.show()
+
+func hide_hud():
+	$Title_screen.hide()
+
+func show_game_over():
+	$AnimatedSprite2D.show()
+	$AnimatedSprite2D.play("the_game")
+
+func hide_game_over():
+	$AnimatedSprite2D.hide()

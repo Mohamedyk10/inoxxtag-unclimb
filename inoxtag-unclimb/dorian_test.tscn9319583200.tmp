@@ -1,0 +1,95 @@
+[gd_scene load_steps=11 format=4 uid="uid://bwp4n73galf4p"]
+
+[ext_resource type="Script" uid="uid://b0gecckqlpnam" path="res://dorian_test.gd" id="1_ex8yo"]
+[ext_resource type="PackedScene" uid="uid://sclpth6g423y" path="res://player.tscn" id="1_suy7f"]
+[ext_resource type="PackedScene" uid="uid://cskrxrx7gpait" path="res://montagne.tscn" id="2_hklxd"]
+[ext_resource type="PackedScene" uid="uid://bgp7ds7q7ky7b" path="res://hud.tscn" id="3_ex8yo"]
+[ext_resource type="Script" uid="uid://dhqpeaxh3j5cg" path="res://playerDorian.gd" id="3_s6wgu"]
+[ext_resource type="Texture2D" uid="uid://ddd3o43mgauui" path="res://TileSetLudumDare.png" id="5_xuyru"]
+[ext_resource type="Texture2D" uid="uid://djhcrspyn0ub4" path="res://art/Gameplay/Crochet.png" id="6_hklxd"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8s4pf"]
+texture = ExtResource("5_xuyru")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_7mydf"]
+sources/0 = SubResource("TileSetAtlasSource_8s4pf")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ex8yo"]
+radius = 7.00792
+
+[node name="DorianTest" type="Node2D"]
+position = Vector2(7, -8)
+script = ExtResource("1_ex8yo")
+
+[node name="Player" parent="." instance=ExtResource("1_suy7f")]
+position = Vector2(961, 275)
+script = ExtResource("3_s6wgu")
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2(-7, 4)
+limit_left = 0
+limit_top = 0
+
+[node name="Mountain" parent="." instance=ExtResource("2_hklxd")]
+position = Vector2(-13, 25)
+
+[node name="HUD" parent="." instance=ExtResource("3_ex8yo")]
+visible = false
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+scale = Vector2(3, 3)
+tile_map_data = PackedByteArray("AAAAAAEAAAABAAAAAAABAAIAAAABAAAAAAACAAMAAAABAAAAAAADAAQAAAABAAAAAAAEAAUAAAABAAAAAAAFAAYAAAABAAAAAAAGAAcAAAABAAAAAAAHAAgAAAABAAAAAAAIAAkAAAABAAAAAAAJAAoAAAABAAAAAAAKAAsAAAABAAAAAAALAAsAAAABAAAAAAAMAAsAAAABAAAAAAANAAsAAAABAAAAAAAOAAsAAAABAAAAAAAPAAsAAAABAAAAAAAQAAsAAAABAAAAAAARAAsAAAABAAAAAAASAAsAAAABAAAAAAATAAsAAAABAAAAAAAUAAsAAAABAAAAAAAVAAsAAAABAAAAAAAWAAsAAAABAAAAAAAXAAsAAAABAAAAAAAYAAsAAAABAAAAAAAZAAsAAAABAAAAAAAaAAsAAAABAAAAAAAbAAsAAAABAAAAAAAcAAsAAAABAAAAAAAdAAsAAAABAAAAAAAeAAsAAAABAAAAAAAfAAsAAAABAAAAAAAgAAsAAAABAAAAAAAgAAoAAAABAAAAAAAgAAkAAAABAAAAAAAgAAgAAAABAAAAAAAgAAcAAAABAAAAAAAgAAYAAAABAAAAAAAhAAUAAAABAAAAAAAhAAQAAAABAAAAAAAhAAMAAAABAAAAAAAhAAIAAAABAAAAAAA=")
+tile_set = SubResource("TileSet_7mydf")
+
+[node name="Hooks" type="Node2D" parent="."]
+position = Vector2(-13, -41)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Hooks"]
+position = Vector2(1973, 384)
+scale = Vector2(3, 3)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hooks/StaticBody2D"]
+position = Vector2(-1, -0.333336)
+shape = SubResource("CircleShape2D_ex8yo")
+
+[node name="Hook4" type="Sprite2D" parent="Hooks/StaticBody2D"]
+texture = ExtResource("6_hklxd")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Hooks/StaticBody2D"]
+position = Vector2(1973, 384)
+scale = Vector2(3, 3)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hooks/StaticBody2D/StaticBody2D"]
+position = Vector2(-1, -0.333336)
+shape = SubResource("CircleShape2D_ex8yo")
+
+[node name="Hook4" type="Sprite2D" parent="Hooks/StaticBody2D/StaticBody2D"]
+texture = ExtResource("6_hklxd")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Hooks/StaticBody2D"]
+position = Vector2(138.667, -3.8147e-06)
+scale = Vector2(0.453327, 0.453327)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hooks/StaticBody2D/StaticBody2D2"]
+position = Vector2(-1, -0.333336)
+shape = SubResource("CircleShape2D_ex8yo")
+
+[node name="Hook4" type="Sprite2D" parent="Hooks/StaticBody2D/StaticBody2D2"]
+texture = ExtResource("6_hklxd")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Hooks/StaticBody2D/StaticBody2D2"]
+position = Vector2(1973, 384)
+scale = Vector2(3, 3)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hooks/StaticBody2D/StaticBody2D2/StaticBody2D"]
+position = Vector2(-1, -0.333336)
+shape = SubResource("CircleShape2D_ex8yo")
+
+[node name="Hook4" type="Sprite2D" parent="Hooks/StaticBody2D/StaticBody2D2/StaticBody2D"]
+texture = ExtResource("6_hklxd")

@@ -10,6 +10,8 @@ const GRAVITY_ACCELERATION = 7500
 
 const START_COORDINATES = Vector2(250, 750)
 
+const MAX_HEIGHT = 12.5 * 48  # <= 12 blocs
+
 var hud
 
 var lantern_status = false
@@ -19,31 +21,50 @@ var animation = ""
 var vertical_speed = 0
 var uses_ice_axe
 var is_climbing
+var highest_point
 
 var game_started = false
 var is_timed_out = false
 
 var zip_line_coefs = null
 
+var targeted_hook=null
+var current_hook=null
+var uses_grappling_hook=false
+var len_grap = 0
+var er = Vector2(0,0)
+var rot_speed=0
+var acc_rot=0
+var hooks={}
+
 
 func _ready() -> void:
+	global_position = Vector2(0, 0)
 	hud = $"../HUD"
 	animation = "stop"
 	$Animation.play(animation)
 	set_floor_stop_on_slope_enabled(false)
-	show_hud()
 
 
-func show_hud():
+func game_over():
+	is_timed_out = true
+	game_started = false
 	lantern_status = false
 	zip_line_coefs = null
-	hud.set_show_hud(true)
-	game_started = false
+	await get_tree().create_timer(1).timeout
 	global_position = Vector2(0, 0)
+	hud.show_game_over()
+	is_timed_out = false
+	await get_tree().create_timer(3).timeout
+	if not game_started:
+		hud.hide_game_over()
+		hud.show_hud()
 
 func start():
-	hud.set_show_hud(false)
+	hud.hide_game_over()
+	hud.hide_hud()
 	global_position = START_COORDINATES
+	highest_point = global_position[1]
 	game_started = true
 
 
@@ -56,11 +77,20 @@ func f(x: float, coefs: Vector4) -> float:
 
 
 func _process(delta) -> void:
-	if Input.is_action_pressed("RESET"):
-		show_hud()
-		return
 	if not game_started:
 		return
+	if Input.is_action_pressed("RESET"):
+		game_over()
+		return
+
+	if global_position[1] < highest_point:
+		highest_point = global_position[1]
+	if is_on_floor() and global_position[1] - highest_point > 48:
+		print("Chute: ", (global_position[1] - highest_point) / 48)
+		if global_position[1] - highest_point > MAX_HEIGHT:
+			game_over()
+	if is_on_floor() or (is_on_wall() and Input.is_action_pressed("HOLD")) or zip_line_coefs != null or uses_grappling_hook:
+		highest_point = global_position[1]
 
 	if Input.is_action_just_pressed("USE_LANTERN"):
 		lantern_status = not(lantern_status)
@@ -73,14 +103,73 @@ func _process(delta) -> void:
 		$PointLight2D.show()
 	else:
 		$PointLight2D.hide()
-
-	velocity = Vector2(0, 0)
 	
+	velocity = Vector2(0, 0)
+
+
+	##Grappling hook###########################################################################
+	var min=-1
+	targeted_hook=null
+	
+	for hook in hooks.keys():
+		if hooks[hook]==1:
+			if min==-1 or global_position.distance_to(hook.global_position)<min:
+				targeted_hook=hook
+				min=global_position.distance_to(hook.global_position)
+	if targeted_hook!=null:
+		get_node("../Target").global_position=targeted_hook.global_position
+	else:
+		get_node("../Target").global_position=Vector2(-1000,-1000)
+	
+	if Input.is_action_just_pressed("GRAPPLING_HOOK"):
+		if uses_grappling_hook==false:
+			if targeted_hook!=null:
+				velocity=Vector2(0,0)
+				uses_grappling_hook=true
+				current_hook=targeted_hook
+				len_grap=global_position.distance_to(current_hook.global_position)
+				
+				var diff=global_position-current_hook.global_position
+				er=diff.normalized()
+				var eo=er.orthogonal()
+				rot_speed=10*velocity.dot(eo)
+				acc_rot = 0
+		else:
+			vertical_speed=0
+			uses_grappling_hook=false
+			
+	if Input.is_action_just_pressed("JUMP") and uses_grappling_hook==true:
+		vertical_speed=1.5*JUMP_INITIAL_SPEED
+		uses_grappling_hook=false
+	
+	if (is_on_ceiling() or is_on_floor() or is_on_wall()) and uses_grappling_hook==true:
+		vertical_speed=0
+		print("caca")
+		uses_grappling_hook=false
+
+	velocity=Vector2(0,0)
+	if uses_grappling_hook:
+
+		var theta=er.angle()+PI/2
+		if theta<-PI:
+			theta+=2*PI
+		if theta>=PI:
+			theta-=2*PI
+		
+		acc_rot=sin(theta)
+		rot_speed+=10*acc_rot*delta
+		er=er.rotated(rot_speed*delta)
+		
+		global_position=current_hook.global_position + len_grap*er
+		
+		return
+
 	if zip_line_coefs != null and not Input.is_action_pressed("JUMP") and not Input.is_action_pressed("SHIFT"):
 		var x = global_position[0]
 		var y = global_position[1]
 		x = x + ZIPLINE_SPEED * delta
 		y = f(x, zip_line_coefs)
+		vertical_speed = (y - global_position[1]) / delta
 		global_position = Vector2(x, y)
 		move_and_slide()
 		return
@@ -122,6 +211,10 @@ func _process(delta) -> void:
 				vertical_speed = JUMP_INITIAL_SPEED
 				velocity[1] = vertical_speed
 				animation = "jump"
+				if orientation == "right":
+					velocity[0] -= 1
+				else:
+					velocity[0] += 1
 	else:
 		is_jumping = false
 
@@ -151,18 +244,30 @@ func _process(delta) -> void:
 		$Animation.play(animation)
 	
 	velocity[1] = vertical_speed
+
 	move_and_slide()
 
+
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	is_timed_out = true
-	game_started = false
-	await get_tree().create_timer(1).timeout
-	show_hud()
-	await get_tree().create_timer(0.5).timeout
-	is_timed_out = false
+	game_over()
 
 func _on_rope_can_climb() -> void:
 	for rope in get_tree().get_nodes_in_group("ropes"):
 		if rope.is_player_touching_the_rope and Input.is_action_pressed("HOLD"):
 			is_climbing = true
 			position.x = rope.position.x
+
+func _on_grappling_area_body_entered(body: Node2D) -> void:
+	if body.get_parent().name=="Hooks": 
+		hooks[body]=1
+
+	
+func _on_grappling_area_body_exited(body: Node2D) -> void:
+	if body.get_parent().name=="Hooks": 
+		hooks[body]=0
+		
+
+
+func _on_release_grappling_area_body_entered(body: Node2D) -> void:
+	uses_grappling_hook=false
+

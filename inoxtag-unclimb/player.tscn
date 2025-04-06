@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://sclpth6g423y"]
+[gd_scene load_steps=26 format=3 uid="uid://sclpth6g423y"]
 
 [ext_resource type="Script" uid="uid://cnqivvs3ae66i" path="res://player.gd" id="1_onrkg"]
 [ext_resource type="Texture2D" uid="uid://dpxqjhrusynch" path="res://art/MC/mc-jump.png" id="2_onrkg"]
@@ -151,6 +151,9 @@ fill_from = Vector2(0.5, 0.5)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_op7ga"]
 size = Vector2(33, 68)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_pylmc"]
+radius = 241.033
+
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 6
 collision_mask = 6
@@ -170,17 +173,37 @@ animation = &"tyrolienne"
 [node name="PointLight2D" type="PointLight2D" parent="."]
 position = Vector2(0, 2)
 scale = Vector2(2.61631, 2.70194)
+energy = 1.5
 range_layer_min = -10
 range_layer_max = 10
 range_item_cull_mask = 1023
 texture = SubResource("GradientTexture2D_q13i1")
-texture_scale = 2.0
+texture_scale = 3.0
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="ReleaseGrappling" type="Area2D" parent="."]
+collision_layer = 254
+collision_mask = 254
 collision_priority = 2.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ReleaseGrappling"]
 position = Vector2(2.5, 6)
 shape = SubResource("RectangleShape2D_op7ga")
 
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[node name="PlayerArea2D" type="Area2D" parent="."]
+collision_priority = 2.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerArea2D"]
+position = Vector2(2.5, 6)
+shape = SubResource("RectangleShape2D_op7ga")
+
+[node name="GrapplingArea" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GrapplingArea"]
+shape = SubResource("CircleShape2D_pylmc")
+
+[connection signal="body_entered" from="ReleaseGrappling" to="." method="_on_release_grappling_area_body_entered"]
+[connection signal="body_entered" from="PlayerArea2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="GrapplingArea" to="." method="_on_grappling_area_body_entered"]
+[connection signal="body_exited" from="GrapplingArea" to="." method="_on_grappling_area_body_exited"]
