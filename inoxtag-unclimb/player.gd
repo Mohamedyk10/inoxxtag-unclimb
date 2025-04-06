@@ -57,7 +57,14 @@ func _process(delta) -> void:
 		return
 	if not game_started:
 		return
-	animation = "stop"
+
+	if Input.is_action_just_pressed("USE_LANTERN"):
+		lantern_status = not(lantern_status)
+	if lantern_status:
+		animation = "stop_lantern"
+	else:
+		animation = "stop"
+
 	velocity = Vector2(0, 0)
 	
 	if zip_line_coefs != null and not Input.is_action_pressed("JUMP") and not Input.is_action_pressed("SHIFT"):
@@ -109,7 +116,6 @@ func _process(delta) -> void:
 				$Animation.play("jump")
 				move_and_slide()
 				return
-				#await(100)
 		animation = "jump"
 	else:
 		is_jumping = false
@@ -136,4 +142,8 @@ func _process(delta) -> void:
 		$Animation.flip_h = true
 		$Animation.play(animation)
 	velocity[1] = vertical_speed
+	if lantern_status:
+		$PointLight2D.show()
+	else:
+		$PointLight2D.hide()
 	move_and_slide()
