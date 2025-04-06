@@ -196,4 +196,3 @@ shape = SubResource("CircleShape2D_pylmc")
 [connection signal="body_entered" from="PlayerArea2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="GrapplingArea" to="." method="_on_grappling_area_body_entered"]
 [connection signal="body_exited" from="GrapplingArea" to="." method="_on_grappting_area_body_exited"]
-

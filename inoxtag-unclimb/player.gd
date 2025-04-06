@@ -52,10 +52,11 @@ func game_over():
 	await get_tree().create_timer(1).timeout
 	global_position = Vector2(0, 0)
 	hud.show_game_over()
-	await get_tree().create_timer(3).timeout
-	hud.hide_game_over()
-	hud.show_hud()
 	is_timed_out = false
+	await get_tree().create_timer(3).timeout
+	if not game_started:
+		hud.hide_game_over()
+		hud.show_hud()
 
 func start():
 	hud.hide_game_over()
@@ -124,10 +125,10 @@ func _process(delta) -> void:
 			
 	if Input.is_action_just_pressed("JUMP") or is_on_ceiling() or is_on_floor() or is_on_wall():
 		uses_grappling_hook=false
-	
+
 	velocity=Vector2(0,0)
 	if uses_grappling_hook:
-	
+
 		var theta=er.angle()+PI/2
 		if theta<-PI:
 			theta+=2*PI
