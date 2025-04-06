@@ -155,8 +155,8 @@ size = Vector2(33, 68)
 radius = 241.033
 
 [node name="Player" type="CharacterBody2D"]
-collision_layer = 2
-collision_mask = 2
+collision_layer = 6
+collision_mask = 6
 script = ExtResource("1_onrkg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -180,6 +180,15 @@ range_item_cull_mask = 1023
 texture = SubResource("GradientTexture2D_q13i1")
 texture_scale = 3.0
 
+[node name="ReleaseGrappling" type="Area2D" parent="."]
+collision_layer = 254
+collision_mask = 254
+collision_priority = 2.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ReleaseGrappling"]
+position = Vector2(2.5, 6)
+shape = SubResource("RectangleShape2D_op7ga")
+
 [node name="PlayerArea2D" type="Area2D" parent="."]
 collision_priority = 2.0
 
@@ -194,6 +203,7 @@ collision_mask = 4
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GrapplingArea"]
 shape = SubResource("CircleShape2D_pylmc")
 
+[connection signal="body_entered" from="ReleaseGrappling" to="." method="_on_release_grappling_area_body_entered"]
 [connection signal="body_entered" from="PlayerArea2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="GrapplingArea" to="." method="_on_grappling_area_body_entered"]
 [connection signal="body_exited" from="GrapplingArea" to="." method="_on_grappling_area_body_exited"]

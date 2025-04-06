@@ -1,12 +1,14 @@
-[gd_scene load_steps=9 format=3 uid="uid://ceql8b1jxod73"]
+[gd_scene load_steps=11 format=3 uid="uid://ceql8b1jxod73"]
 
 [ext_resource type="Script" uid="uid://bw2pr0ld1myfj" path="res://main.gd" id="1_7mycd"]
 [ext_resource type="PackedScene" uid="uid://sclpth6g423y" path="res://player.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://bgp7ds7q7ky7b" path="res://hud.tscn" id="3_h2yge"]
 [ext_resource type="PackedScene" uid="uid://b6a3pf41ax484" path="res://zip_line.tscn" id="4_1bvp3"]
 [ext_resource type="Script" path="res://camera.gd" id="4_lquwl"]
+[ext_resource type="PackedScene" uid="uid://drvo2faq86u6r" path="res://rope.tscn" id="5_7mycd"]
 [ext_resource type="PackedScene" uid="uid://vgah4ipsh4je" path="res://levels.tscn" id="5_lquwl"]
 [ext_resource type="Script" path="res://directional_light.gd" id="6_7mycd"]
+[ext_resource type="PackedScene" uid="uid://bfw3pe8ckskug" path="res://lever.tscn" id="6_272bh"]
 [ext_resource type="Texture2D" uid="uid://ccdw5wpv3h8wr" path="res://art/Gameplay/Target.png" id="8_5vw27"]
 
 [node name="Main" type="Node2D"]
@@ -25,9 +27,10 @@ position = Vector2(171, 628)
 position = Vector2(177, 248)
 
 [node name="Player" parent="." instance=ExtResource("1_ig7tw")]
-position = Vector2(2280, 805)
+position = Vector2(2228, 821)
 
 [node name="HUD" parent="." instance=ExtResource("3_h2yge")]
+visible = false
 
 [node name="DirectionalLight" type="DirectionalLight2D" parent="."]
 color = Color(1, 1, 0, 1)
@@ -35,9 +38,25 @@ energy = 0.9
 blend_mode = 1
 script = ExtResource("6_7mycd")
 
+[node name="FirstAction" type="Node2D" parent="."]
+
+[node name="Lever" parent="FirstAction" instance=ExtResource("6_272bh")]
+position = Vector2(2928, 888)
+scale = Vector2(3, 3)
+
+[node name="Rope" parent="FirstAction" instance=ExtResource("5_7mycd")]
+position = Vector2(2987, 128)
+
 [node name="Target" type="Node2D" parent="."]
 position = Vector2(1923, 861)
 scale = Vector2(3, 3)
 
 [node name="Sprite2D" type="Sprite2D" parent="Target"]
 texture = ExtResource("8_5vw27")
+
+[connection signal="area_entered" from="FirstAction/Lever" to="FirstAction/Rope" method="_on_lever_area_entered"]
+[connection signal="body_entered" from="FirstAction/Lever" to="FirstAction/Rope" method="_on_lever_body_entered"]
+[connection signal="change" from="FirstAction/Lever" to="FirstAction/Rope" method="_on_lever_change"]
+[connection signal="body_entered" from="FirstAction/Rope" to="FirstAction/Rope" method="_on_body_entered"]
+[connection signal="body_exited" from="FirstAction/Rope" to="FirstAction/Rope" method="_on_body_exited"]
+[connection signal="can_climb" from="FirstAction/Rope" to="Player" method="_on_rope_can_climb"]

@@ -20,6 +20,7 @@ var orientation = "droite"
 var animation = ""
 var vertical_speed = 0
 var uses_ice_axe
+var is_climbing
 var highest_point
 
 var game_started = false
@@ -27,13 +28,14 @@ var is_timed_out = false
 
 var zip_line_coefs = null
 
-var aimed_hook=null
+var targeted_hook=null
 var current_hook=null
 var uses_grappling_hook=false
 var len_grap = 0
 var er = Vector2(0,0)
 var rot_speed=0
 var acc_rot=0
+var hooks={}
 
 
 func _ready() -> void:
@@ -106,12 +108,25 @@ func _process(delta) -> void:
 
 
 	##Grappling hook###########################################################################
+	var min=-1
+	targeted_hook=null
+	
+	for hook in hooks.keys():
+		if hooks[hook]==1:
+			if min==-1 or global_position.distance_to(hook.global_position)<min:
+				targeted_hook=hook
+				min=global_position.distance_to(hook.global_position)
+	if targeted_hook!=null:
+		get_node("../Target").global_position=targeted_hook.global_position
+	else:
+		get_node("../Target").global_position=Vector2(-1000,-1000)
+	
 	if Input.is_action_just_pressed("GRAPPLING_HOOK"):
 		if uses_grappling_hook==false:
-			if aimed_hook!=null:
+			if targeted_hook!=null:
 				velocity=Vector2(0,0)
 				uses_grappling_hook=true
-				current_hook=aimed_hook
+				current_hook=targeted_hook
 				len_grap=global_position.distance_to(current_hook.global_position)
 				
 				var diff=global_position-current_hook.global_position
@@ -129,6 +144,7 @@ func _process(delta) -> void:
 	
 	if (is_on_ceiling() or is_on_floor() or is_on_wall()) and uses_grappling_hook==true:
 		vertical_speed=0
+		print("caca")
 		uses_grappling_hook=false
 
 	velocity=Vector2(0,0)
@@ -141,7 +157,6 @@ func _process(delta) -> void:
 			theta-=2*PI
 		
 		acc_rot=sin(theta)
-		print(acc_rot)
 		rot_speed+=10*acc_rot*delta
 		er=er.rotated(rot_speed*delta)
 		
@@ -166,14 +181,14 @@ func _process(delta) -> void:
 	if is_on_wall() and Input.is_action_pressed("HOLD"):
 		uses_ice_axe = true
 
-	if Input.is_action_pressed("LEFT") and not uses_ice_axe:
+	if Input.is_action_pressed("LEFT") and not uses_ice_axe and not is_climbing:
 		velocity[0] += -HORIZONTAL_SPEED
 		orientation = "left"
 		if lantern_status:
 			animation = "run_right_lantern"
 		else:
 			animation = "run_right"
-	if Input.is_action_pressed("RIGHT") and not uses_ice_axe:
+	if Input.is_action_pressed("RIGHT") and not uses_ice_axe and !is_climbing:
 		velocity[0] += HORIZONTAL_SPEED
 		orientation = "right"
 		if lantern_status:
@@ -181,7 +196,7 @@ func _process(delta) -> void:
 		else :
 			animation = "run_right"
 
-	if uses_ice_axe:
+	if uses_ice_axe or is_climbing:
 		vertical_speed = 0
 
 	if Input.is_action_pressed("JUMP"):
@@ -189,9 +204,10 @@ func _process(delta) -> void:
 			vertical_speed += 0.5 * GRAVITY_ACCELERATION * delta
 			animation = "jump"
 		else:
-			if is_on_floor() or is_on_wall() or zip_line_coefs != null:
+			if is_on_floor() or is_on_wall() or zip_line_coefs != null or is_climbing:
 				is_jumping = true
 				uses_ice_axe = false
+				is_climbing = false
 				vertical_speed = JUMP_INITIAL_SPEED
 				velocity[1] = vertical_speed
 				animation = "jump"
@@ -202,27 +218,31 @@ func _process(delta) -> void:
 	else:
 		is_jumping = false
 
-	if not is_jumping and not uses_ice_axe:
+	if not is_jumping and not uses_ice_axe and not is_climbing:
 		vertical_speed += GRAVITY_ACCELERATION * delta
 
-	if uses_ice_axe:
+	if uses_ice_axe or is_climbing:
 		animation = "climb_no_move"
-		if orientation == "right":
-			velocity[0] += 1
-		else:
-			velocity[0] -= 1
-		if Input.is_action_pressed("UP") and uses_ice_axe:
+		if uses_ice_axe:
+			if orientation == "right":
+				velocity[0] += 1
+			else:
+				velocity[0] -= 1
+		if Input.is_action_pressed("UP") and Input.is_action_pressed("HOLD"):
 			vertical_speed -= VERTICAL_SPEED
 			animation = "climb_up_or_down"
-		if Input.is_action_pressed("DOWN") and uses_ice_axe:
+		if Input.is_action_pressed("DOWN") and Input.is_action_pressed("HOLD"):
 			vertical_speed += VERTICAL_SPEED
 			animation = "climb_up_or_down"
+		if Input.is_action_just_released("HOLD"):
+			is_climbing = false
 	if orientation == "right":
 		$Animation.flip_h = false
 		$Animation.play(animation)
 	else:
 		$Animation.flip_h = true
 		$Animation.play(animation)
+	
 	velocity[1] = vertical_speed
 
 	move_and_slide()
@@ -231,13 +251,22 @@ func _process(delta) -> void:
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	game_over()
 
+func _on_rope_can_climb() -> void:
+	for rope in get_tree().get_nodes_in_group("ropes"):
+		if rope.is_player_touching_the_rope and Input.is_action_pressed("HOLD"):
+			is_climbing = true
+			position.x = rope.position.x
 
 func _on_grappling_area_body_entered(body: Node2D) -> void:
 	if body.get_parent().name=="Hooks": 
-		aimed_hook=body
-		get_node("../Target").global_position=aimed_hook.global_position
+		hooks[body]=1
+
 	
 func _on_grappling_area_body_exited(body: Node2D) -> void:
-	if body==aimed_hook: 
-		aimed_hook=null
-		get_node("../Target").global_position=Vector2(-10000,-10000)
+	if body.get_parent().name=="Hooks": 
+		hooks[body]=0
+		
+
+
+func _on_release_grappling_area_body_entered(body: Node2D) -> void:
+	uses_grappling_hook=false
