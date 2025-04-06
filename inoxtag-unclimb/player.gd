@@ -120,9 +120,15 @@ func _process(delta) -> void:
 				rot_speed=10*velocity.dot(eo)
 				acc_rot = 0
 		else:
+			vertical_speed=0
 			uses_grappling_hook=false
 			
-	if Input.is_action_just_pressed("JUMP") or is_on_ceiling() or is_on_floor() or is_on_wall():
+	if Input.is_action_just_pressed("JUMP"):
+		vertical_speed=1.5*JUMP_INITIAL_SPEED
+		uses_grappling_hook=false
+	
+	if is_on_ceiling() or is_on_floor() or is_on_wall():
+		vertical_speed=0
 		uses_grappling_hook=false
 
 	velocity=Vector2(0,0)
@@ -140,8 +146,6 @@ func _process(delta) -> void:
 		er=er.rotated(rot_speed*delta)
 		
 		global_position=current_hook.global_position + len_grap*er
-		
-		vertical_speed=1.5*JUMP_INITIAL_SPEED*abs(sin(theta))
 		
 		return
 
@@ -229,15 +233,11 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 
 
 func _on_grappling_area_body_entered(body: Node2D) -> void:
-	print("ok")
 	if body.get_parent().name=="Hooks": 
 		aimed_hook=body
-		print(body)
+		get_node("../Target").global_position=aimed_hook.global_position
 	
 func _on_grappling_area_body_exited(body: Node2D) -> void:
 	if body==aimed_hook: 
 		aimed_hook=null
-
-
-func _on_grappting_area_body_exited(body: Node2D) -> void:
-	pass # Replace with function body.
+		get_node("../Target").global_position=Vector2(-10000,-10000)
