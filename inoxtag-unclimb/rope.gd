@@ -1,12 +1,12 @@
 extends Area2D
 
-var is_player_touching_the_rope: bool = false
-@export var rope_code = 1
-signal can_climb
-
 func _ready():
 	add_to_group("ropes")
 	$Sprite2D.hide()
+
+var is_player_touching_the_rope: bool = false
+var rope_code = 1
+signal can_climb
 
 func _on_body_entered(body):
 	is_player_touching_the_rope = true

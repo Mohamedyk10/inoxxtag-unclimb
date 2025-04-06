@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://b5q3bd4ii64dj"]
+[gd_scene load_steps=8 format=3 uid="uid://b5q3bd4ii64dj"]
 
 [ext_resource type="Script" uid="uid://drtjr76f468nt" path="res://intro.gd" id="1_7a8ye"]
 [ext_resource type="Texture2D" uid="uid://c0emuplq2ahu5" path="res://art/Intro/Intro_Everest.png" id="2_0a7ni"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://m4k3x71rl2q2" path="res://art/Intro/textbox.png" id="3_y72e6"]
 [ext_resource type="Texture2D" uid="uid://bxk1qyfkb4ywx" path="res://art/Intro/Intro_PoursuiviParYéti.png" id="4_y6ycx"]
 [ext_resource type="Texture2D" uid="uid://d3dghddyjkvcl" path="res://art/Intro/Intro_EntreeCave.png" id="5_dpxxx"]
+[ext_resource type="PackedScene" uid="uid://c441awoxm7so8" path="res://pre_intro.tscn" id="7_y6ycx"]
 
 [node name="Intro" type="Node2D"]
 script = ExtResource("1_7a8ye")
@@ -47,5 +48,8 @@ offset_right = 1542.0
 offset_bottom = 769.0
 theme_override_font_sizes/font_size = 40
 
+[node name="PreIntro" parent="." instance=ExtResource("7_y6ycx")]
+
 [connection signal="timeout" from="next_char" to="." method="_on_next_char_timeout"]
 [connection signal="timeout" from="next_message" to="." method="_on_next_message_timeout"]
+[connection signal="finish" from="PreIntro" to="." method="_on_pre_intro_finish"]
