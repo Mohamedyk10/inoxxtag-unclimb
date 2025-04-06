@@ -1,23 +1,24 @@
-[gd_scene load_steps=4 format=3 uid="uid://cd0ldfcigvgpt"]
+[gd_scene load_steps=4 format=3 uid="uid://b6a3pf41ax484"]
 
 [ext_resource type="Script" uid="uid://boyokw3v1vrpn" path="res://zip_line.gd" id="1_qadoo"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_tnwwl"]
-b = Vector2(2000, 100)
+b = Vector2(1000, 0)
 
-[sub_resource type="CanvasTexture" id="CanvasTexture_w5att"]
+[sub_resource type="CanvasTexture" id="CanvasTexture_qadoo"]
 
-[node name="Area2D" type="Area2D"]
+[node name="ZipLine" type="Area2D"]
+collision_layer = 3
+collision_mask = 3
 script = ExtResource("1_qadoo")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("SegmentShape2D_tnwwl")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0.256694, -4.40589)
-rotation = 1.62617
-scale = Vector2(2.80703, -1605.78)
-texture = SubResource("CanvasTexture_w5att")
+position = Vector2(0, -1)
+scale = Vector2(1000, 2)
+texture = SubResource("CanvasTexture_qadoo")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

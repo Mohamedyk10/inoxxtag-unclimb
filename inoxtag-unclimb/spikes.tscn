@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bfhdfqj0ty5ax"]
 
-[ext_resource type="Script" path="res://spikes.gd" id="1_8fhau"]
+[ext_resource type="Script" uid="uid://dhwbhcaiixf2a" path="res://spikes.gd" id="1_8fhau"]
 [ext_resource type="Texture2D" uid="uid://cxooeuwxc8lav" path="res://art/Tiles/snowy_spikes.png" id="1_nrdsm"]
 [ext_resource type="Texture2D" uid="uid://d2duhnl6j5dvq" path="res://art/Tiles/cave_spikes.png" id="2_8fhau"]
 

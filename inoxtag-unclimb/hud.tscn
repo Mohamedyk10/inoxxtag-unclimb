@@ -1,8 +1,60 @@
-[gd_scene load_steps=4 format=3 uid="uid://bgp7ds7q7ky7b"]
+[gd_scene load_steps=16 format=3 uid="uid://bgp7ds7q7ky7b"]
 
 [ext_resource type="Script" uid="uid://d28w3jbto0l24" path="res://hud.gd" id="1_64ctp"]
 [ext_resource type="Texture2D" uid="uid://b0faghvogjlum" path="res://art/Backgrounds/title_screen.png" id="2_8sq4i"]
 [ext_resource type="Texture2D" uid="uid://def68kdomtmk" path="res://art/Backgrounds/Press_Start.png" id="3_8sq4i"]
+[ext_resource type="Texture2D" uid="uid://xl3yc5t8dklj" path="res://art/Backgrounds/you_lost01.png" id="4_4q17s"]
+[ext_resource type="Texture2D" uid="uid://np5ebnps8wut" path="res://art/Backgrounds/you_lost02.png" id="5_2d608"]
+[ext_resource type="Texture2D" uid="uid://d2sa7nll554ke" path="res://art/Backgrounds/you_lost03.png" id="6_w71nf"]
+[ext_resource type="Texture2D" uid="uid://lxh8l1bxfdet" path="res://art/Backgrounds/you_lost04.png" id="7_615i1"]
+[ext_resource type="Texture2D" uid="uid://bnt4b3aympcac" path="res://art/Backgrounds/you_lost05.png" id="8_pw7dr"]
+[ext_resource type="Texture2D" uid="uid://bvtahqkl3oyfv" path="res://art/Backgrounds/you_lost06.png" id="9_ap7yk"]
+[ext_resource type="Texture2D" uid="uid://ce27wrmbc0opk" path="res://art/Backgrounds/you_lost07.png" id="10_5kc73"]
+[ext_resource type="Texture2D" uid="uid://0quo18nnr57m" path="res://art/Backgrounds/you_lost08.png" id="11_bp16l"]
+[ext_resource type="Texture2D" uid="uid://b4j7fe37ro7wk" path="res://art/Backgrounds/you_lost09.png" id="12_5iihh"]
+[ext_resource type="Texture2D" uid="uid://qk2exnmqxdcf" path="res://art/Backgrounds/you_lost10.png" id="13_rgb5v"]
+[ext_resource type="Texture2D" uid="uid://bbbwn5n7717tq" path="res://art/Backgrounds/you_lost11.png" id="14_np8ax"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8w6vd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_4q17s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_2d608")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_w71nf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_615i1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_pw7dr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_ap7yk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_5kc73")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_bp16l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_5iihh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_rgb5v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_np8ax")
+}],
+"loop": false,
+"name": &"the_game",
+"speed": 5.0
+}]
 
 [node name="HUD" type="Node2D"]
 script = ExtResource("1_64ctp")
@@ -13,8 +65,14 @@ offset_bottom = 40.0
 texture = ExtResource("2_8sq4i")
 
 [node name="Press_Start" type="TextureRect" parent="Title_screen"]
+layout_mode = 0
 offset_left = 497.0
 offset_top = 678.0
 offset_right = 1101.0
 offset_bottom = 752.0
 texture = ExtResource("3_8sq4i")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_8w6vd")
+animation = &"the_game"
+offset = Vector2(800, 400)

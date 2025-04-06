@@ -1,42 +1,35 @@
-[gd_scene load_steps=9 format=4 uid="uid://ceql8b1jxod73"]
+[gd_scene load_steps=6 format=3 uid="uid://ceql8b1jxod73"]
 
 [ext_resource type="Script" uid="uid://bw2pr0ld1myfj" path="res://main.gd" id="1_7mycd"]
 [ext_resource type="PackedScene" uid="uid://sclpth6g423y" path="res://player.tscn" id="1_ig7tw"]
-[ext_resource type="PackedScene" uid="uid://cskrxrx7gpait" path="res://montagne.tscn" id="2_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://bgp7ds7q7ky7b" path="res://hud.tscn" id="3_h2yge"]
-[ext_resource type="PackedScene" uid="uid://cd0ldfcigvgpt" path="res://zip_line.tscn" id="4_1bvp3"]
-[ext_resource type="Texture2D" uid="uid://ddd3o43mgauui" path="res://TileSetLudumDare.png" id="5_lquwl"]
+[ext_resource type="PackedScene" uid="uid://b6a3pf41ax484" path="res://zip_line.tscn" id="4_1bvp3"]
+[ext_resource type="Script" uid="uid://wgftuiiht26" path="res://camera.gd" id="4_lquwl"]
+[ext_resource type="PackedScene" uid="uid://vgah4ipsh4je" path="res://levels.tscn" id="5_lquwl"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_272bh"]
-texture = ExtResource("5_lquwl")
-0:0/0 = 0
-1:0/0 = 0
-2:0/0 = 0
-3:0/0 = 0
-0:1/0 = 0
-1:1/0 = 0
-
-[sub_resource type="TileSet" id="TileSet_272bh"]
-sources/0 = SubResource("TileSetAtlasSource_272bh")
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_7mycd")
 
-[node name="Player" parent="." instance=ExtResource("1_ig7tw")]
-position = Vector2(222, 77)
-
-[node name="Camera2D" type="Camera2D" parent="Player"]
+[node name="Camera" type="Camera2D" parent="."]
+position = Vector2(2280, 805)
 limit_left = 0
 limit_top = 0
+script = ExtResource("4_lquwl")
 
-[node name="Mountain" parent="." instance=ExtResource("2_0xm2m")]
+[node name="Levels" parent="." instance=ExtResource("5_lquwl")]
+position = Vector2(171, 628)
+
+[node name="ZipLine" parent="." instance=ExtResource("4_1bvp3")]
+position = Vector2(177, 248)
+
+[node name="Player" parent="." instance=ExtResource("1_ig7tw")]
+position = Vector2(2280, 805)
 
 [node name="HUD" parent="." instance=ExtResource("3_h2yge")]
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
 visible = false
-
-[node name="StaticBody2D" parent="." instance=ExtResource("4_1bvp3")]
-
-[node name="TileMapLayer" type="TileMapLayer" parent="."]
-scale = Vector2(3, 3)
-tile_map_data = PackedByteArray("AAAAAAEAAAABAAAAAAABAAIAAAABAAAAAAACAAMAAAABAAAAAAADAAQAAAABAAAAAAAEAAUAAAABAAAAAAAFAAYAAAABAAAAAAAGAAcAAAABAAAAAAAHAAgAAAABAAAAAAAIAAkAAAABAAAAAAAJAAoAAAABAAAAAAAKAAsAAAABAAAAAAALAAsAAAABAAAAAAAMAAsAAAABAAAAAAANAAsAAAABAAAAAAAOAAsAAAABAAAAAAAPAAsAAAABAAAAAAAQAAsAAAABAAAAAAARAAsAAAABAAAAAAASAAsAAAABAAAAAAATAAsAAAABAAAAAAAUAAsAAAABAAAAAAAVAAsAAAABAAAAAAAWAAsAAAABAAAAAAAXAAsAAAABAAAAAAAYAAsAAAABAAAAAAAZAAsAAAABAAAAAAAaAAsAAAABAAAAAAAbAAsAAAABAAAAAAAcAAsAAAABAAAAAAAdAAsAAAABAAAAAAAeAAsAAAABAAAAAAAfAAsAAAABAAAAAAAgAAsAAAABAAAAAAAgAAoAAAABAAAAAAAgAAkAAAABAAAAAAAgAAgAAAABAAAAAAAgAAcAAAABAAAAAAAgAAYAAAABAAAAAAAhAAUAAAABAAAAAAAhAAQAAAABAAAAAAAhAAMAAAABAAAAAAAhAAIAAAABAAAAAAA=")
-tile_set = SubResource("TileSet_272bh")
+color = Color(1, 1, 0, 1)
+energy = 0.9
+blend_mode = 1
