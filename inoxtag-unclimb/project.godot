@@ -42,6 +42,19 @@ texture={
 "roughness/mode": 0,
 "roughness/src_normal": ""
 }
+font_data_image={
+"ascent": 0,
+"character_margin": Rect2i(0, 0, 0, 0),
+"character_ranges": PackedStringArray(),
+"columns": 16,
+"compress": true,
+"descent": 0,
+"fallbacks": [],
+"image_margin": Rect2i(0, 0, 0, 0),
+"kerning_pairs": PackedStringArray(),
+"rows": 1,
+"scaling_mode": 2
+}
 
 [input]
 
