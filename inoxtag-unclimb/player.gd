@@ -75,6 +75,7 @@ func start():
 	global_position = START_COORDINATES
 	highest_point = global_position[1]
 	game_started = true
+	lantern_status = true
 
 
 func f(x: float, coefs: Vector4) -> float:
