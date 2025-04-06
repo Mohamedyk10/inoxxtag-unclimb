@@ -187,6 +187,12 @@ shape = SubResource("CircleShape2D_02xe8")
 position = Vector2(436.665, 7.34327e-05)
 texture = ExtResource("3_hbfth")
 
+[node name="Rope" type="Sprite2D" parent="Hooks/Hook5"]
+position = Vector2(-424, -408)
+scale = Vector2(0.125, 3.00001)
+texture = ExtResource("5_xv4fl")
+offset = Vector2(0, 8.5)
+
 [node name="Labels" type="Node2D" parent="."]
 
 [node name="Label" type="Label" parent="Labels"]
@@ -261,9 +267,3 @@ offset_bottom = 60.0
 theme_override_fonts/font = ExtResource("6_b0aun")
 text = "You can press \"E\" to turn on/off the light
 Now, go ahead!"
-
-[node name="Rope" type="Sprite2D" parent="Hooks/Hook5"]
-position = Vector2(-424, -408)
-scale = Vector2(0.125, 3.00001)
-texture = ExtResource("5_xv4fl")
-offset = Vector2(0, 8.5)

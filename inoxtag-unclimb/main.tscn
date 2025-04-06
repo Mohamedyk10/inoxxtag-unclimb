@@ -4,10 +4,10 @@
 [ext_resource type="PackedScene" uid="uid://sclpth6g423y" path="res://player.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://bgp7ds7q7ky7b" path="res://hud.tscn" id="3_h2yge"]
 [ext_resource type="PackedScene" uid="uid://b6a3pf41ax484" path="res://zip_line.tscn" id="4_1bvp3"]
-[ext_resource type="Script" path="res://camera.gd" id="4_lquwl"]
+[ext_resource type="Script" uid="uid://wgftuiiht26" path="res://camera.gd" id="4_lquwl"]
 [ext_resource type="PackedScene" uid="uid://drvo2faq86u6r" path="res://rope.tscn" id="5_7mycd"]
 [ext_resource type="PackedScene" uid="uid://vgah4ipsh4je" path="res://levels.tscn" id="5_lquwl"]
-[ext_resource type="Script" path="res://directional_light.gd" id="6_7mycd"]
+[ext_resource type="Script" uid="uid://cxr5vgmwa4ca5" path="res://directional_light.gd" id="6_7mycd"]
 [ext_resource type="PackedScene" uid="uid://bfw3pe8ckskug" path="res://lever.tscn" id="6_272bh"]
 [ext_resource type="Texture2D" uid="uid://ccdw5wpv3h8wr" path="res://art/Gameplay/Target.png" id="8_5vw27"]
 [ext_resource type="PackedScene" uid="uid://b5q3bd4ii64dj" path="res://intro.tscn" id="11_efxa6"]
@@ -51,7 +51,7 @@ position = Vector2(7942, 869)
 [node name="1" type="Node2D" parent="Level1_1/Rope1"]
 
 [node name="ZipLine1" parent="Level1_1" instance=ExtResource("4_1bvp3")]
-position = Vector2(7886, 1095)
+position = Vector2(7872, 1047)
 rotation = 0.628008
 scale = Vector2(2.635, 1)
 
@@ -65,7 +65,7 @@ scale = Vector2(3, 3)
 texture = ExtResource("8_5vw27")
 
 [node name="ZipLine2" parent="." instance=ExtResource("4_1bvp3")]
-position = Vector2(3649, 345)
+position = Vector2(3597, 280)
 rotation = 0.44837
 
 [node name="2" type="Node2D" parent="ZipLine2"]
