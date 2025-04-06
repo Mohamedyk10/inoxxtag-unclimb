@@ -1,13 +1,18 @@
 extends Node2D
-var game_starts = false
 
-func _ready() -> void:
-	$Title_screen.show()
-	game_starts=false
-	pass
+var player
+
+func _ready():
+	player = $"../Player"
 
 func _process(delta):
-	if not game_starts:
+	if not player.game_started:
 		if Input.is_action_just_pressed("JUMP"):
-			$Title_screen.hide()
-	pass
+			print("START")
+			player.start()
+
+func set_show_hud(show):
+	if show:
+		$Title_screen.show()
+	else:
+		$Title_screen.hide()

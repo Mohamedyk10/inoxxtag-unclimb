@@ -7,6 +7,11 @@ const JUMP_INITIAL_SPEED = -1300
 const ZIPLINE_SPEED = 1000
 
 const GRAVITY_ACCELERATION = 7500
+
+const START_COORDINATES = Vector2(250, 750)
+
+var hud
+
 var lantern_status = false
 var is_jumping = false
 var orientation = "droite"
@@ -14,13 +19,28 @@ var animation = ""
 var vertical_speed = 0
 var uses_ice_axe
 
+var game_started = false
+
 var zip_line_coefs = null
 
 
 func _ready() -> void:
+	hud = $"../HUD"
 	animation = "stop"
 	$Animation.play(animation)
 	set_floor_stop_on_slope_enabled(false)
+	show_hud()
+
+
+func show_hud():
+	hud.set_show_hud(true)
+	game_started = false
+	global_position = Vector2(0, 0)
+
+func start():
+	hud.set_show_hud(false)
+	global_position = START_COORDINATES
+	game_started = true
 
 
 func f(x: float, coefs: Vector4) -> float:
@@ -32,6 +52,11 @@ func f(x: float, coefs: Vector4) -> float:
 
 
 func _process(delta) -> void:
+	if Input.is_action_pressed("RESET"):
+		show_hud()
+		return
+	if not game_started:
+		return
 	animation = "stop"
 	velocity = Vector2(0, 0)
 	

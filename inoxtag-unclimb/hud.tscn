@@ -13,6 +13,7 @@ offset_bottom = 40.0
 texture = ExtResource("2_8sq4i")
 
 [node name="Press_Start" type="TextureRect" parent="Title_screen"]
+layout_mode = 0
 offset_left = 497.0
 offset_top = 678.0
 offset_right = 1101.0
