@@ -81,20 +81,13 @@ position = Vector2(3008, 90)
 <<<<<<< HEAD
 [node name="2" type="Node2D" parent="Rope2"]
 
-[connection signal="area_entered" from="Level1_1/Lever1" to="Level1_1/Rope1" method="_on_lever_area_entered"]
-[connection signal="body_entered" from="Level1_1/Lever1" to="Level1_1/Rope1" method="_on_lever_body_entered"]
-[connection signal="change" from="Level1_1/Lever1" to="Level1_1/Rope1" method="_on_lever_change"]
-[connection signal="body_entered" from="Level1_1/Rope1" to="Level1_1/Rope1" method="_on_body_entered"]
-[connection signal="body_exited" from="Level1_1/Rope1" to="Level1_1/Rope1" method="_on_body_exited"]
-[connection signal="can_climb" from="Level1_1/Rope1" to="Player" method="_on_rope_can_climb"]
-
 [editable path="ZipLine0"]
 [editable path="Level1_1/Lever1"]
 [editable path="Level1_1/Rope1"]
 [editable path="Level1_1/ZipLine2"]
 [editable path="ZipLine2"]
 [editable path="Rope2"]
-=======
+
 [node name="Intro" parent="." instance=ExtResource("11_efxa6")]
 
 [connection signal="area_entered" from="Level1_1/Lever" to="Level1_1/Rope" method="_on_lever_area_entered"]
@@ -104,4 +97,3 @@ position = Vector2(3008, 90)
 [connection signal="body_exited" from="Level1_1/Rope" to="Level1_1/Rope" method="_on_body_exited"]
 [connection signal="can_climb" from="Level1_1/Rope" to="Player" method="_on_rope_can_climb"]
 [connection signal="intro_finish" from="Intro" to="." method="_on_intro_intro_finish"]
->>>>>>> refs/remotes/origin/main
