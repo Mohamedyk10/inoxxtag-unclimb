@@ -67,16 +67,18 @@ func _process(delta) -> void:
 	else:
 		animation = "stop"
 
+	if lantern_status:
+		$PointLight2D.show()
+	else:
+		$PointLight2D.hide()
+
 	velocity = Vector2(0, 0)
 	
 	if zip_line_coefs != null and not Input.is_action_pressed("JUMP") and not Input.is_action_pressed("SHIFT"):
 		var x = global_position[0]
 		var y = global_position[1]
-		print("-------")
-		print(x, " ", y)
 		x = x + ZIPLINE_SPEED * delta
 		y = f(x, zip_line_coefs)
-		print(x, " ", y)
 		global_position = Vector2(x, y)
 		move_and_slide()
 		return
@@ -106,19 +108,19 @@ func _process(delta) -> void:
 	if uses_ice_axe:
 		vertical_speed = 0
 
+	print(velocity)
+
 	if Input.is_action_pressed("JUMP"):
 		if is_jumping:
 			vertical_speed += 0.5 * GRAVITY_ACCELERATION * delta
+			animation = "jump"
 		else:
 			if is_on_floor() or is_on_wall() or zip_line_coefs != null:
 				is_jumping = true
 				uses_ice_axe = false
 				vertical_speed = JUMP_INITIAL_SPEED
 				velocity[1] = vertical_speed
-				$Animation.play("jump")
-				move_and_slide()
-				return
-		animation = "jump"
+				animation = "jump"
 	else:
 		is_jumping = false
 
@@ -144,11 +146,12 @@ func _process(delta) -> void:
 		$Animation.flip_h = true
 		$Animation.play(animation)
 	velocity[1] = vertical_speed
-	if lantern_status:
-		$PointLight2D.show()
-	else:
-		$PointLight2D.hide()
+	
+	print(velocity)
+
 	move_and_slide()
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	position = START_COORDINATES
+	game_started = false
+	await get_tree().create_timer(1).timeout
+	show_hud()
