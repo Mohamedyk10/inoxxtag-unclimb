@@ -20,13 +20,14 @@ func _on_body_exited(body):
 	is_player_touching_the_rope = false
 	body.current_rope = null
 
-func _on_lever_change() -> void:
-	for lever in get_tree().get_nodes_in_group("levers"):
-		if lever.link_code == rope_code:
-			$Sprite2D.show()
-			$CollisionShape2D.set_deferred("disabled", false)
-
 func _on_child_entered_tree(node: Node) -> void:
 	var childrenName = node.name
 	if len(childrenName) == 1:
 		rope_code = int(childrenName)
+
+
+func _on_lever_1_change() -> void:
+	for lever in get_tree().get_nodes_in_group("levers"):
+		if lever.link_code == rope_code:
+			$Sprite2D.show()
+			$CollisionShape2D.set_deferred("disabled", false)

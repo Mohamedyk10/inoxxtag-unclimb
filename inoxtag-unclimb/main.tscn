@@ -84,6 +84,7 @@ position = Vector2(3008, 90)
 
 [node name="Intro" parent="." instance=ExtResource("11_efxa6")]
 
+[connection signal="change" from="Level1_1/Lever1" to="Level1_1/Rope1" method="_on_lever_1_change"]
 [connection signal="intro_finish" from="Intro" to="." method="_on_intro_intro_finish"]
 
 [editable path="Rope0"]
