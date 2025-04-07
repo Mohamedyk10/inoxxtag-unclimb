@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://cdo53greytn4r"]
+
+[ext_resource type="Texture2D" uid="uid://dh7i5kaer4oi0" path="res://art/Gameplay/checkpoint.png" id="1_luqgl"]
+
+[node name="Checkpoint" type="Node2D"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_luqgl")
+stretch_mode = 2

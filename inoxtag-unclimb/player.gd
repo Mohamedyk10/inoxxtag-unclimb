@@ -8,7 +8,7 @@ const ZIPLINE_SPEED = 1000
 
 const GRAVITY_ACCELERATION = 7500
 
-const START_COORDINATES = Vector2(250, 750)
+@export var START_COORDINATES = Vector2(250, 750)
 
 const MAX_HEIGHT = 12.5 * 48  # <= 12 blocs
 
@@ -43,7 +43,7 @@ const ROPE_COOLDOWN = 12  # Frames; 2/10sec
 var rope_cooldown = 0
 
 func _ready() -> void:
-	global_position = Vector2(0, 0)
+	global_position = Vector2(0,0)
 	hud = $"../HUD"
 	animation = "stop"
 	$Animation.play(animation)
@@ -61,7 +61,7 @@ func game_over():
 	rope = null
 	current_rope = null
 	await get_tree().create_timer(1).timeout
-	global_position = Vector2(0, 0)
+	global_position = Vector2(0,0)
 	hud.show_game_over()
 	is_timed_out = false
 	await get_tree().create_timer(3).timeout
