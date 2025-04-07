@@ -1,0 +1,109 @@
+[gd_scene load_steps=6 format=3 uid="uid://bxq8e18bp4ngg"]
+
+[ext_resource type="Script" uid="uid://c7hbbg5n31oph" path="res://end.gd" id="1_75yvt"]
+[ext_resource type="Texture2D" uid="uid://dv37dq8dvyd0c" path="res://art/Backgrounds/Background.png" id="1_lt2ag"]
+[ext_resource type="Texture2D" uid="uid://7ga7nc7tfrxp" path="res://art/Backgrounds/logo.png" id="2_75yvt"]
+[ext_resource type="FontFile" uid="uid://3e6lkolbiipn" path="res://art/Intro/fontPreIntro.png" id="3_jclhh"]
+[ext_resource type="Texture2D" uid="uid://b0acf7bt6xr1d" path="res://art/Intro/J203_logo.png" id="5_jclhh"]
+
+[node name="End" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_75yvt")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1600.0
+offset_bottom = 800.0
+texture = ExtResource("1_lt2ag")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 116.0
+offset_top = 815.0
+offset_right = 1912.0
+offset_bottom = 1920.0
+
+[node name="THE_END" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_jclhh")
+theme_override_font_sizes/font_size = 70
+text = "THE END
+"
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 4
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 50
+text = "Level Design : Allan V."
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_jclhh")
+theme_override_font_sizes/font_size = 50
+text = "Mechanics"
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 4
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 50
+text = "Ropes : Allan V.
+ZipLine : Rémi D.
+Hook : Dorian G.
+Lantern : Mohamed Yassine K."
+horizontal_alignment = 1
+
+[node name="Label4" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_jclhh")
+theme_override_font_sizes/font_size = 50
+text = "Graphics"
+horizontal_alignment = 1
+
+[node name="Label5" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 4
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 50
+text = "Intro and End Credits : Mohamed Yassine K.
+Sprites : Mohamed Yassine K.
+Tiles : Mohamed Yassine K. & Dorian G.
+"
+horizontal_alignment = 1
+
+[node name="THANKS" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_jclhh")
+theme_override_font_sizes/font_size = 55
+text = "THANK YOU
+FOR PLAYING"
+horizontal_alignment = 1
+
+[node name="Logo" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -131.0
+offset_top = 201.0
+offset_right = 728.0
+offset_bottom = 610.0
+texture = ExtResource("2_75yvt")
+
+[node name="Logo2" type="TextureRect" parent="."]
+offset_left = 1565.0
+offset_top = 272.0
+offset_right = 2192.0
+offset_bottom = 579.0
+texture = ExtResource("5_jclhh")
