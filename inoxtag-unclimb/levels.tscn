@@ -208,8 +208,8 @@ Then use \"Up\" and \"Down\" like on walls
 You can leave the rope by jumping"
 
 [node name="PointLight2D" type="PointLight2D" parent="Labels/Label5"]
-position = Vector2(379.5, 26)
-scale = Vector2(12.1094, 1.25)
+position = Vector2(313, 26)
+scale = Vector2(10.0313, 1.25)
 texture = SubResource("GradientTexture2D_x8mww")
 
 [node name="Label6" type="Label" parent="Labels"]
