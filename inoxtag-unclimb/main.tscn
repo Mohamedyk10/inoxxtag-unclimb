@@ -61,6 +61,7 @@ rotation = 0.628008
 scale = Vector2(2.635, 1)
 
 [node name="1" type="Node2D" parent="Level1_1/ZipLine1"]
+visible = false
 
 [node name="Target" type="Node2D" parent="."]
 position = Vector2(1923, 861)
@@ -78,7 +79,6 @@ rotation = 0.44837
 [node name="Rope0" parent="." instance=ExtResource("5_7mycd")]
 light_mask = 4
 visibility_layer = 4
-
 position = Vector2(3008, 90)
 scale = Vector2(1, 0.4)
 
@@ -91,7 +91,7 @@ position = Vector2(14890, 2642)
 scale = Vector2(1, 0.2)
 
 [node name="CollisionShape2D" parent="Rope0_1" index="0"]
-scale = Vector2(0.95, 1)
+scale = Vector2(0.7, 1)
 
 [node name="0" type="Node2D" parent="Rope0_1"]
 visible = false
