@@ -2,6 +2,7 @@ extends Node2D
 var checkpoint1 = false
 var checkpoint2 = false
 var checkpoint3 = false
+var checkpoint4 = false
 func _ready():
 	$HUD.set_process(false)
 	$Player.set_process(false)
@@ -22,8 +23,12 @@ func _process(delta: float) -> void:
 			checkpoint2 = true
 		if $Player.global_position.x>=$Levels/Checkpoint3.global_position.x:
 			checkpoint3 = true
+		if $Player.global_position.x>=$Levels/Checkpoint4.global_position.x:
+			checkpoint4 = true
 		
-		if checkpoint3:
+		if checkpoint4:
+			$Player.START_COORDINATES = Vector2($Levels/Checkpoint4.global_position.x,$Levels/Checkpoint4.global_position.y-48)
+		elif checkpoint3:
 			$Player.START_COORDINATES = Vector2($Levels/Checkpoint3.global_position.x,$Levels/Checkpoint3.global_position.y-48)
 		elif checkpoint2:
 			$Player.START_COORDINATES = Vector2($Levels/Checkpoint2.global_position.x,$Levels/Checkpoint2.global_position.y-48)

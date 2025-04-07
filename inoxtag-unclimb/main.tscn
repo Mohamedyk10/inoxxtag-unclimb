@@ -38,7 +38,7 @@ script = ExtResource("6_7mycd")
 [node name="Level1_1" type="Node2D" parent="."]
 
 [node name="Lever1" parent="Level1_1" instance=ExtResource("6_272bh")]
-position = Vector2(8354, 2213)
+position = Vector2(8360, 2235)
 scale = Vector2(3, 3)
 
 [node name="1" type="Node2D" parent="Level1_1/Lever1"]
@@ -47,6 +47,10 @@ scale = Vector2(3, 3)
 light_mask = 4
 visibility_layer = 4
 position = Vector2(7942, 869)
+scale = Vector2(1, 0.71)
+
+[node name="CollisionShape2D" parent="Level1_1/Rope1" index="0"]
+scale = Vector2(0.75, 1)
 
 [node name="1" type="Node2D" parent="Level1_1/Rope1"]
 
@@ -64,22 +68,84 @@ scale = Vector2(3, 3)
 [node name="Sprite2D" type="Sprite2D" parent="Target"]
 texture = ExtResource("8_5vw27")
 
-[node name="ZipLine2" parent="." instance=ExtResource("4_1bvp3")]
+[node name="ZipLine0" parent="." instance=ExtResource("4_1bvp3")]
 position = Vector2(3597, 280)
 rotation = 0.44837
 
-[node name="2" type="Node2D" parent="ZipLine2"]
+[node name="0" type="Node2D" parent="ZipLine0"]
 
 [node name="Rope0" parent="." instance=ExtResource("5_7mycd")]
 light_mask = 4
 visibility_layer = 4
 position = Vector2(3008, 90)
+scale = Vector2(1, 0.4)
 
 [node name="0" type="Node2D" parent="Rope0"]
 
+[node name="Rope0_1" parent="." instance=ExtResource("5_7mycd")]
+light_mask = 4
+visibility_layer = 4
+position = Vector2(14890, 2642)
+scale = Vector2(1, 0.2)
+
+[node name="CollisionShape2D" parent="Rope0_1" index="0"]
+scale = Vector2(0.95, 1)
+
+[node name="0" type="Node2D" parent="Rope0_1"]
+visible = false
+
 [node name="Intro" parent="." instance=ExtResource("11_efxa6")]
+
+[node name="Level2_1" type="Node2D" parent="."]
+
+[node name="ZipLine" parent="Level2_1" instance=ExtResource("4_1bvp3")]
+position = Vector2(14562, 3647)
+scale = Vector2(0.75, 1)
+
+[node name="Rope2" parent="Level2_1" instance=ExtResource("5_7mycd")]
+light_mask = 4
+visibility_layer = 4
+position = Vector2(14644, 2213)
+scale = Vector2(1, 0.4)
+
+[node name="CollisionShape2D" parent="Level2_1/Rope2" index="0"]
+scale = Vector2(0.8, 1)
+
+[node name="2" type="Node2D" parent="Level2_1/Rope2"]
+visible = false
+
+[node name="Lever2" parent="Level2_1" instance=ExtResource("6_272bh")]
+position = Vector2(15912, 4057)
+scale = Vector2(3, 3)
+
+[node name="2" type="Node2D" parent="Level2_1/Lever2"]
+
+[node name="Level2_2" type="Node2D" parent="."]
+
+[node name="Lever3" parent="Level2_2" instance=ExtResource("6_272bh")]
+position = Vector2(14060, 2286)
+scale = Vector2(3, 3)
+
+[node name="3" type="Node2D" parent="Level2_2/Lever3"]
+
+[node name="Rope3" parent="Level2_2" instance=ExtResource("5_7mycd")]
+position = Vector2(15542, 1828)
+scale = Vector2(1, 0.6)
+
+[node name="CollisionShape2D" parent="Level2_2/Rope3" index="0"]
+scale = Vector2(0.7, 1)
+
+[node name="3" type="Node2D" parent="Level2_2/Rope3"]
 
 [connection signal="change" from="Level1_1/Lever1" to="Level1_1/Rope1" method="_on_lever_1_change"]
 [connection signal="intro_finish" from="Intro" to="." method="_on_intro_intro_finish"]
+[connection signal="change" from="Level2_1/Lever2" to="Level2_1/Rope2" method="_on_lever_2_change"]
+[connection signal="change" from="Level2_2/Lever3" to="Level2_2/Rope3" method="_on_lever_3_change"]
 
+[editable path="Level1_1/Rope1"]
 [editable path="Rope0"]
+[editable path="Rope0_1"]
+[editable path="Level2_1/Rope2"]
+[editable path="Level2_1/Lever2"]
+[editable path="Level2_2/Lever3"]
+[editable path="Level2_2/Rope3"]

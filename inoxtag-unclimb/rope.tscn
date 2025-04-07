@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://b8jre1tusa3na" path="res://rope.gd" id="1_0756u"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0756u"]
-size = Vector2(8, 2000)
+size = Vector2(34, 1919.72)
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_0756u"]
 

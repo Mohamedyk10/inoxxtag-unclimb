@@ -25,8 +25,19 @@ func _on_child_entered_tree(node: Node) -> void:
 	if len(childrenName) == 1:
 		rope_code = int(childrenName)
 
-
 func _on_lever_1_change() -> void:
+	for lever in get_tree().get_nodes_in_group("levers"):
+		if lever.link_code == rope_code:
+			$Sprite2D.show()
+			$CollisionShape2D.set_deferred("disabled", false)
+
+func _on_lever_2_change() -> void:
+	for lever in get_tree().get_nodes_in_group("levers"):
+		if lever.link_code == rope_code:
+			$Sprite2D.show()
+			$CollisionShape2D.set_deferred("disabled", false)
+
+func _on_lever_3_change() -> void:
 	for lever in get_tree().get_nodes_in_group("levers"):
 		if lever.link_code == rope_code:
 			$Sprite2D.show()

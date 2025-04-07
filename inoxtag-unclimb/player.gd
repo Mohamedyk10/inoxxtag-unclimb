@@ -130,71 +130,72 @@ func _process(delta) -> void:
 
 
 	##Grappling hook###########################################################################
-	var min=-1
-	targeted_hook=null
-	
-	for hook in hooks.keys():
-		if hooks[hook]==1:
-			if min==-1 or global_position.distance_to(hook.global_position)<min:
-				targeted_hook=hook
-				min=global_position.distance_to(hook.global_position)
-	if targeted_hook!=null:
-		get_node("../Target").global_position=targeted_hook.global_position
-	else:
-		get_node("../Target").global_position=Vector2(-1000,-1000)
-	
-	if Input.is_action_just_pressed("GRAPPLING_HOOK"):
-		if uses_grappling_hook==false:
-			if targeted_hook!=null:
-				velocity=Vector2(0,0)
-				uses_grappling_hook=true
-				current_hook=targeted_hook
-				len_grap=global_position.distance_to(current_hook.global_position)
-				
-				var diff=global_position-current_hook.global_position
-				er=diff.normalized()
-				var eo=er.orthogonal()
-				rot_speed=10*velocity.dot(eo)
-				acc_rot = 0
-				
-				rope=current_hook.get_node("Rope")
-				rope.global_position=current_hook.global_position
-				rope.scale = Vector2(0.1, (len_grap-0.5)/48)
-				
+	if !is_on_floor():
+		var min=-1
+		targeted_hook=null
+		
+		for hook in hooks.keys():
+			if hooks[hook]==1:
+				if min==-1 or global_position.distance_to(hook.global_position)<min:
+					targeted_hook=hook
+					min=global_position.distance_to(hook.global_position)
+		if targeted_hook!=null:
+			get_node("../Target").global_position=targeted_hook.global_position
 		else:
+			get_node("../Target").global_position=Vector2(-1000,-1000)
+		
+		if Input.is_action_just_pressed("GRAPPLING_HOOK"):
+			if uses_grappling_hook==false:
+				if targeted_hook!=null:
+					velocity=Vector2(0,0)
+					uses_grappling_hook=true
+					current_hook=targeted_hook
+					len_grap=global_position.distance_to(current_hook.global_position)
+					
+					var diff=global_position-current_hook.global_position
+					er=diff.normalized()
+					var eo=er.orthogonal()
+					rot_speed=10*velocity.dot(eo)
+					acc_rot = 0
+					
+					rope=current_hook.get_node("Rope")
+					rope.global_position=current_hook.global_position
+					rope.scale = Vector2(0.1, (len_grap-0.5)/48)
+					
+			else:
+				if rope!=null:
+					rope.global_position=Vector2(-1000,-1000)
+				vertical_speed=0
+				uses_grappling_hook=false
+				
+		if Input.is_action_just_pressed("JUMP") and uses_grappling_hook==true:
 			if rope!=null:
-				rope.global_position=Vector2(-1000,-1000)
-			vertical_speed=0
+					rope.global_position=Vector2(-1000,-1000)
+			vertical_speed=1.3*JUMP_INITIAL_SPEED
 			uses_grappling_hook=false
-			
-	if Input.is_action_just_pressed("JUMP") and uses_grappling_hook==true:
-		if rope!=null:
-				rope.global_position=Vector2(-1000,-1000)
-		vertical_speed=1.3*JUMP_INITIAL_SPEED
-		uses_grappling_hook=false
-	
-	velocity=Vector2(0,0)
-	if uses_grappling_hook:
+		
+		velocity=Vector2(0,0)
+		if uses_grappling_hook:
 
-		var theta=er.angle()+PI/2
-		if theta<-PI:
-			theta+=2*PI
-		if theta>=PI:
-			theta-=2*PI
-		
-		if Input.is_action_pressed("RIGHT"):
-			rot_speed-=0.01
-		if Input.is_action_pressed("LEFT"):
-			rot_speed+=0.01
-		
-		acc_rot=sin(theta)
-		rot_speed+=10*acc_rot*delta
-		rot_speed=min(50,max(-50,rot_speed))
-		er=er.rotated(rot_speed*delta)
-		
-		global_position=current_hook.global_position + len_grap*er
-		rope.rotation_degrees = (er.angle()-PI/2)*180/PI
-		return
+			var theta=er.angle()+PI/2
+			if theta<-PI:
+				theta+=2*PI
+			if theta>=PI:
+				theta-=2*PI
+			
+			if Input.is_action_pressed("RIGHT"):
+				rot_speed-=0.01
+			if Input.is_action_pressed("LEFT"):
+				rot_speed+=0.01
+			
+			acc_rot=sin(theta)
+			rot_speed+=10*acc_rot*delta
+			rot_speed=min(50,max(-50,rot_speed))
+			er=er.rotated(rot_speed*delta)
+			
+			global_position=current_hook.global_position + len_grap*er
+			rope.rotation_degrees = (er.angle()-PI/2)*180/PI
+			return
 
 	if zip_line_coefs != null and not Input.is_action_pressed("JUMP") and not Input.is_action_pressed("SHIFT"):
 		orientation = "right"
