@@ -11,8 +11,8 @@
 [ext_resource type="PackedScene" uid="uid://bfw3pe8ckskug" path="res://lever.tscn" id="6_272bh"]
 [ext_resource type="Texture2D" uid="uid://ccdw5wpv3h8wr" path="res://art/Gameplay/Target.png" id="8_5vw27"]
 [ext_resource type="PackedScene" uid="uid://b5q3bd4ii64dj" path="res://intro.tscn" id="11_efxa6"]
-[ext_resource type="PackedScene" uid="uid://ceivne2n4lh7w" path="res://end_door.tscn" id="12_dg77c"]
-[ext_resource type="PackedScene" uid="uid://bxq8e18bp4ngg" path="res://end.tscn" id="13_ycdy4"]
+[ext_resource type="PackedScene" path="res://end_door.tscn" id="12_dg77c"]
+[ext_resource type="PackedScene" path="res://end.tscn" id="13_ycdy4"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_7mycd")
@@ -58,9 +58,9 @@ scale = Vector2(0.75, 1)
 [node name="1" type="Node2D" parent="Level1_1/Rope1"]
 
 [node name="ZipLine1" parent="Level1_1" instance=ExtResource("4_1bvp3")]
-position = Vector2(8169, 995)
+position = Vector2(8089, 1044)
 rotation = 0.628008
-scale = Vector2(2.635, 1)
+scale = Vector2(2.5, 1)
 
 [node name="1" type="Node2D" parent="Level1_1/ZipLine1"]
 visible = false
@@ -117,8 +117,8 @@ scale = Vector2(0.75, 1)
 [node name="Rope2" parent="Level2_1" instance=ExtResource("5_7mycd")]
 light_mask = 4
 visibility_layer = 4
-position = Vector2(14644, 2213)
-scale = Vector2(1, 0.4)
+position = Vector2(14690, 2160)
+scale = Vector2(1, 0.63)
 
 [node name="CollisionShape2D" parent="Level2_1/Rope2" index="0"]
 scale = Vector2(0.8, 1)
