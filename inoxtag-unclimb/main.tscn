@@ -30,6 +30,7 @@ position = Vector2(2228, 821)
 [node name="HUD" parent="." instance=ExtResource("3_h2yge")]
 
 [node name="DirectionalLight" type="DirectionalLight2D" parent="."]
+visible = false
 color = Color(0.930138, 0.96239, 1, 1)
 energy = 0.9
 blend_mode = 1
@@ -55,7 +56,7 @@ scale = Vector2(0.75, 1)
 [node name="1" type="Node2D" parent="Level1_1/Rope1"]
 
 [node name="ZipLine1" parent="Level1_1" instance=ExtResource("4_1bvp3")]
-position = Vector2(7872, 995)
+position = Vector2(8169, 995)
 rotation = 0.628008
 scale = Vector2(2.635, 1)
 
@@ -77,6 +78,7 @@ rotation = 0.44837
 [node name="Rope0" parent="." instance=ExtResource("5_7mycd")]
 light_mask = 4
 visibility_layer = 4
+
 position = Vector2(3008, 90)
 scale = Vector2(1, 0.4)
 

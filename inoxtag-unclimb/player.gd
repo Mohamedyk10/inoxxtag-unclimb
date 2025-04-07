@@ -53,6 +53,7 @@ func _ready() -> void:
 func game_over():
 	is_timed_out = true
 	game_started = false
+	vertical_speed = 0
 	lantern_status = false
 	zip_line_coefs = null
 	targeted_hook = null
@@ -60,6 +61,7 @@ func game_over():
 	uses_grappling_hook = false
 	rope = null
 	current_rope = null
+	is_climbing = false
 	await get_tree().create_timer(1).timeout
 	global_position = Vector2(0,0)
 	hud.show_game_over()
