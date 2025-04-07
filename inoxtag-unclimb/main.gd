@@ -6,15 +6,18 @@ func _ready():
 	$Player.hide()
 	$Levels/Labels/Label.hide()
 	$Levels/Labels/Label2.hide()
+	$Levels/Labels/Label3.hide()
 	pass
 
 func _process(delta: float) -> void:
 	if $Player.game_started:
 		$Levels/Labels/Label.show()
 		$Levels/Labels/Label2.show()
+		$Levels/Labels/Label3.show()
 	else:
 		$Levels/Labels/Label.hide()
 		$Levels/Labels/Label2.hide()
+		$Levels/Labels/Label3.hide()
 	pass
 	
 func _on_intro_intro_finish() -> void:
