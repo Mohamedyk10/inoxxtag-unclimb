@@ -42,6 +42,8 @@ var current_rope = null
 const ROPE_COOLDOWN = 12  # Frames; 2/10sec
 var rope_cooldown = 0
 
+signal end_game
+
 func _ready() -> void:
 	global_position = Vector2(0,0)
 	hud = $"../HUD"
@@ -318,3 +320,8 @@ func _on_release_grappling_area_body_entered(body: Node2D) -> void:
 	if rope!=null:
 		rope.global_position=Vector2(-1000,-1000)
 	uses_grappling_hook=false
+
+
+func _on_end_door_body_entered(body: Node2D) -> void:
+	emit_signal("end_game")
+	pass # Replace with function body.

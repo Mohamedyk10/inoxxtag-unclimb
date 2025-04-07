@@ -102,6 +102,7 @@ offset_bottom = 610.0
 texture = ExtResource("2_75yvt")
 
 [node name="Logo2" type="TextureRect" parent="."]
+layout_mode = 0
 offset_left = 1565.0
 offset_top = 272.0
 offset_right = 2192.0

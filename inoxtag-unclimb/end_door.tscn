@@ -1,11 +1,17 @@
-[gd_scene load_steps=2 format=3 uid="uid://ceivne2n4lh7w"]
+[gd_scene load_steps=3 format=3 uid="uid://ceivne2n4lh7w"]
 
 [ext_resource type="Texture2D" uid="uid://ddldn6jw1w7jx" path="res://art/Gameplay/end_door.png" id="1_4oslf"]
 
-[node name="EndDoor" type="Node2D"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4oslf"]
+
+[node name="EndDoor" type="Area2D"]
 
 [node name="TextureRect" type="TextureRect" parent="."]
 offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("1_4oslf")
 stretch_mode = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(8, 18)
+shape = SubResource("CapsuleShape2D_4oslf")

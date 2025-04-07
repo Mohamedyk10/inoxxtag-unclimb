@@ -7,6 +7,8 @@ func _ready():
 	$HUD.set_process(false)
 	$Player.set_process(false)
 	$Player.hide()
+	$End.set_process(false)
+	$End.hide()
 	$Levels/Labels/Label.hide()
 	$Levels/Labels/Label2.hide()
 	$Levels/Labels/Label3.hide()
@@ -49,4 +51,18 @@ func _on_intro_intro_finish() -> void:
 	$HUD.set_process(true)
 	$Player.show()
 	$Player.set_process(true)
+	pass # Replace with function body.
+
+
+func _on_player_end_game() -> void:
+	$End.set_process(true)
+	$End.show()
+	$Player.global_position = Vector2(0,0)
+	$Player.game_started = false
+	$Player.hide()
+	$Player.set_process(false)
+	
+	$Levels.set_process(false)
+	$Levels.hide()
+	
 	pass # Replace with function body.

@@ -100,14 +100,6 @@ visible = false
 
 [node name="Intro" parent="." instance=ExtResource("11_efxa6")]
 
-[node name="EndDoor" parent="." instance=ExtResource("12_dg77c")]
-position = Vector2(16066, 2253)
-scale = Vector2(3, 3)
-collision_layer = 6
-collision_mask = 6
-
-[node name="End" parent="." instance=ExtResource("13_ycdy4")]
-
 [node name="Level2_1" type="Node2D" parent="."]
 
 [node name="ZipLine" parent="Level2_1" instance=ExtResource("4_1bvp3")]
@@ -149,12 +141,20 @@ scale = Vector2(0.7, 1)
 
 [node name="3" type="Node2D" parent="Level2_2/Rope3"]
 
+[node name="EndDoor" parent="." instance=ExtResource("12_dg77c")]
+position = Vector2(467, 764)
+scale = Vector2(3, 3)
+collision_layer = 6
+collision_mask = 6
+
+[node name="End" parent="." instance=ExtResource("13_ycdy4")]
+
 [connection signal="end_game" from="Player" to="." method="_on_player_end_game"]
 [connection signal="change" from="Level1_1/Lever1" to="Level1_1/Rope1" method="_on_lever_1_change"]
 [connection signal="intro_finish" from="Intro" to="." method="_on_intro_intro_finish"]
-[connection signal="body_entered" from="EndDoor" to="Player" method="_on_end_door_body_entered"]
 [connection signal="change" from="Level2_1/Lever2" to="Level2_1/Rope2" method="_on_lever_2_change"]
 [connection signal="change" from="Level2_2/Lever3" to="Level2_2/Rope3" method="_on_lever_3_change"]
+[connection signal="body_entered" from="EndDoor" to="Player" method="_on_end_door_body_entered"]
 
 [editable path="Level1_1/Rope1"]
 [editable path="Rope0"]
