@@ -94,66 +94,6 @@ tile_set = SubResource("TileSet_x8mww")
 [node name="Hooks" type="Node2D" parent="."]
 position = Vector2(-13, -41)
 
-[node name="Hook3" type="StaticBody2D" parent="Hooks"]
-position = Vector2(917, -31)
-scale = Vector2(3.00001, 3.00001)
-collision_layer = 4
-collision_mask = 4
-
-[node name="Hook1_Collision" type="CollisionShape2D" parent="Hooks/Hook3"]
-position = Vector2(-3.8147e-06, -1.1762e-05)
-shape = SubResource("CircleShape2D_02xe8")
-
-[node name="Hook1_Texture" type="Sprite2D" parent="Hooks/Hook3"]
-position = Vector2(9.53674e-07, -7.94727e-06)
-texture = ExtResource("3_hbfth")
-
-[node name="Rope" type="Sprite2D" parent="Hooks/Hook3"]
-position = Vector2(-424, -408)
-scale = Vector2(0.125, 3.00001)
-texture = ExtResource("5_xv4fl")
-offset = Vector2(0, 8.5)
-
-[node name="Hook2" type="StaticBody2D" parent="Hooks"]
-position = Vector2(1149, -111)
-scale = Vector2(3.00001, 3.00001)
-collision_layer = 4
-collision_mask = 4
-
-[node name="Hook1_Collision" type="CollisionShape2D" parent="Hooks/Hook2"]
-position = Vector2(-3.8147e-06, -1.1762e-05)
-shape = SubResource("CircleShape2D_02xe8")
-
-[node name="Hook1_Texture" type="Sprite2D" parent="Hooks/Hook2"]
-position = Vector2(9.53674e-07, -7.94727e-06)
-texture = ExtResource("3_hbfth")
-
-[node name="Rope" type="Sprite2D" parent="Hooks/Hook2"]
-position = Vector2(-424, -408)
-scale = Vector2(0.125, 3.00001)
-texture = ExtResource("5_xv4fl")
-offset = Vector2(0, 8.5)
-
-[node name="Hook1" type="StaticBody2D" parent="Hooks"]
-position = Vector2(709, 57)
-scale = Vector2(3.00001, 3.00001)
-collision_layer = 4
-collision_mask = 4
-
-[node name="Hook1_Collision" type="CollisionShape2D" parent="Hooks/Hook1"]
-position = Vector2(-3.8147e-06, -1.1762e-05)
-shape = SubResource("CircleShape2D_02xe8")
-
-[node name="Hook1_Texture" type="Sprite2D" parent="Hooks/Hook1"]
-position = Vector2(9.53674e-07, -7.94727e-06)
-texture = ExtResource("3_hbfth")
-
-[node name="Rope" type="Sprite2D" parent="Hooks/Hook1"]
-position = Vector2(-424, -408)
-scale = Vector2(0.125, 3.00001)
-texture = ExtResource("5_xv4fl")
-offset = Vector2(0, 8.5)
-
 [node name="Hook4" type="StaticBody2D" parent="Hooks"]
 position = Vector2(10688, 1892)
 scale = Vector2(3.00001, 3.00001)

@@ -4,6 +4,7 @@ var player
 @export var game_started = false
 
 func _ready():
+	game_started=false
 	hide_game_over()
 	show_hud()
 	player = $"../Player"
@@ -16,6 +17,7 @@ func _process(delta):
 			game_started = true
 
 func show_hud():
+	game_started=false
 	$Title_screen.show()
 
 func hide_hud():

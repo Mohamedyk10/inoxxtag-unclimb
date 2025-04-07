@@ -23,7 +23,7 @@ var uses_ice_axe
 var is_climbing
 var highest_point
 
-var game_started = false
+@export var game_started = false
 var is_timed_out = false
 
 var zip_line_coefs = null
