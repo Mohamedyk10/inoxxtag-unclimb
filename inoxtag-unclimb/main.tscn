@@ -83,7 +83,7 @@ rotation = 0.44837
 [node name="Rope0" parent="." instance=ExtResource("5_7mycd")]
 light_mask = 4
 visibility_layer = 4
-position = Vector2(3002, 242)
+position = Vector2(3015, 242)
 scale = Vector2(1, 0.4)
 
 [node name="CollisionShape2D" parent="Rope0" index="0"]
