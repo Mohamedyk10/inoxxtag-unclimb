@@ -3,18 +3,19 @@ var checkpoint1 = false
 var checkpoint2 = false
 var checkpoint3 = false
 var checkpoint4 = false
+
 func _ready():
 	$HUD.set_process(false)
 	$Player.set_process(false)
 	$Player.hide()
 	$End.set_process(false)
 	$End.hide()
-	$Levels.hide()
+	$Levels.hide_labels()
 	pass
 
 func _process(delta: float) -> void:
 	if $Player.game_started:
-		$Levels.show()
+		$Levels.show_labels()
 		if $Player.global_position.x>=$Levels/Checkpoint.global_position.x:
 			checkpoint1 = true
 		if $Player.global_position.x>=$Levels/Checkpoint2.global_position.x:
@@ -34,7 +35,7 @@ func _process(delta: float) -> void:
 			$Player.START_COORDINATES = Vector2($Levels/Checkpoint.global_position.x,$Levels/Checkpoint.global_position.y-48)
 		
 	else:
-		$Levels.hide()
+		$Levels.hide_labels()
 		checkpoint1 = false
 		checkpoint2 = false
 		checkpoint3 = false
@@ -56,7 +57,7 @@ func _on_player_end_game() -> void:
 	$Player.hide()
 	$Player.set_process(false)
 	
-	$Levels.set_process(false)
-	$Levels.hide()
+	#$Levels.set_process(false)
+	$Levels.hide_labels()
 	
 	pass # Replace with function body.
