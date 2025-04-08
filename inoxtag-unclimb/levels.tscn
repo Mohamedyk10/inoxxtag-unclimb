@@ -6,8 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://cnl8ow4arvu4" path="res://art/Gameplay/Crochet.png" id="3_hbfth"]
 [ext_resource type="Texture2D" uid="uid://c7fmyht3tu8le" path="res://art/Tiles/SnowTiles.png" id="5_xv4fl"]
 [ext_resource type="FontFile" uid="uid://3e6lkolbiipn" path="res://art/Intro/fontPreIntro.png" id="6_b0aun"]
-[ext_resource type="PackedScene" path="res://lampadaire.tscn" id="6_x8mww"]
-[ext_resource type="PackedScene" path="res://checkpoint.tscn" id="8_ci5qh"]
+[ext_resource type="PackedScene" uid="uid://c22ispki67751" path="res://lampadaire.tscn" id="6_x8mww"]
+[ext_resource type="PackedScene" uid="uid://cdo53greytn4r" path="res://checkpoint.tscn" id="8_ci5qh"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xv4fl"]
 texture = ExtResource("1_hbfth")
