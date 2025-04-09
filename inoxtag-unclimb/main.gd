@@ -3,8 +3,9 @@ var checkpoint1 = false
 var checkpoint2 = false
 var checkpoint3 = false
 var checkpoint4 = false
-
-func _ready():
+func _ready():        
+	$CanvasLayer/SpeedRun.set_process(false)
+	$CanvasLayer/SpeedRun.hide()
 	$HUD.set_process(false)
 	$Player.set_process(false)
 	$Player.hide()
@@ -18,12 +19,16 @@ func _process(delta: float) -> void:
 		$Levels.show_labels()
 		if $Player.global_position.x>=$Levels/Checkpoint.global_position.x:
 			checkpoint1 = true
+			$CanvasLayer/SpeedRun.checkpoint1 = true
 		if $Player.global_position.x>=$Levels/Checkpoint2.global_position.x:
 			checkpoint2 = true
+			$CanvasLayer/SpeedRun.checkpoint2 = true
 		if $Player.global_position.x>=$Levels/Checkpoint3.global_position.x:
 			checkpoint3 = true
+			$CanvasLayer/SpeedRun.checkpoint3 = true
 		if $Player.global_position.x>=$Levels/Checkpoint4.global_position.x:
 			checkpoint4 = true
+			$CanvasLayer/SpeedRun.checkpoint4 = true
 		
 		if checkpoint4:
 			$Player.START_COORDINATES = Vector2($Levels/Checkpoint4.global_position.x,$Levels/Checkpoint4.global_position.y-48)
@@ -50,6 +55,7 @@ func _on_intro_intro_finish() -> void:
 
 
 func _on_player_end_game() -> void:
+	$CanvasLayer/SpeedRun.ended = true
 	$End.set_process(true)
 	$End.show()
 	$Player.global_position = Vector2(0,0)

@@ -1,0 +1,266 @@
+[gd_scene load_steps=4 format=3 uid="uid://co6r4i2tyhir4"]
+
+[ext_resource type="Script" uid="uid://bgewhnkpdj1jt" path="res://speed_run.gd" id="1_6h6p6"]
+
+[sub_resource type="Gradient" id="Gradient_6h6p6"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_5p3hn"]
+gradient = SubResource("Gradient_6h6p6")
+
+[node name="SpeedRun" type="Node2D"]
+position = Vector2(4, 1)
+script = ExtResource("1_6h6p6")
+
+[node name="Timer" type="Node2D" parent="."]
+
+[node name="Polygon2D" type="Polygon2D" parent="Timer"]
+position = Vector2(1440.28, 2.4)
+scale = Vector2(1.09396, 1.4)
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-3, -1, 146, -1, 146, 29, -3, 29)
+
+[node name="Minutes" type="Label" parent="Timer"]
+offset_left = 1454.0
+offset_right = 1504.0
+offset_bottom = 42.0
+theme_override_colors/font_color = Color(0, 0.592157, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "00:"
+
+[node name="Seconds" type="Label" parent="Timer"]
+offset_left = 1498.0
+offset_right = 1548.0
+offset_bottom = 42.0
+theme_override_colors/font_color = Color(0, 0.592157, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "00."
+
+[node name="MilliSeconds" type="Label" parent="Timer"]
+offset_left = 1543.0
+offset_right = 1593.0
+offset_bottom = 42.0
+theme_override_colors/font_color = Color(0, 0.592157, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "00"
+
+[node name="Checkpoint1" type="Node2D" parent="."]
+position = Vector2(-1259, 3)
+
+[node name="Polygon2D" type="Polygon2D" parent="Checkpoint1"]
+position = Vector2(1274.41, 6.1)
+scale = Vector2(2.4698, 1.1)
+color = Color(0, 0, 0, 0.309804)
+polygon = PackedVector2Array(-3, -1, 146, -1, 146, 29, -3, 29)
+
+[node name="Minutes" type="Label" parent="Checkpoint1"]
+offset_left = 1489.0
+offset_top = 3.0
+offset_right = 1539.0
+offset_bottom = 45.0
+theme_override_colors/font_color = Color(0, 0.592157, 0, 1)
+theme_override_font_sizes/font_size = 27
+text = "00:"
+metadata/_edit_use_anchors_ = true
+
+[node name="Seconds" type="Label" parent="Checkpoint1"]
+offset_left = 1533.0
+offset_top = 3.0
+offset_right = 1583.0
+offset_bottom = 45.0
+theme_override_colors/font_color = Color(0, 0.592157, 0, 1)
+theme_override_font_sizes/font_size = 27
+text = "00."
+metadata/_edit_use_anchors_ = true
+
+[node name="MilliSeconds" type="Label" parent="Checkpoint1"]
+offset_left = 1573.0
+offset_top = 3.0
+offset_right = 1623.0
+offset_bottom = 45.0
+theme_override_colors/font_color = Color(0, 0.592157, 0, 1)
+theme_override_font_sizes/font_size = 27
+text = "00"
+metadata/_edit_use_anchors_ = true
+
+[node name="Checkpoint" type="Label" parent="Checkpoint1"]
+offset_left = 1271.0
+offset_top = 2.0
+offset_right = 1468.0
+offset_bottom = 44.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 27
+text = "Checkpoint 1:"
+metadata/_edit_use_anchors_ = true
+
+[node name="PointLight2D" type="PointLight2D" parent="Checkpoint1"]
+position = Vector2(1451.5, 21)
+scale = Vector2(5.76563, 0.53125)
+texture = SubResource("GradientTexture2D_5p3hn")
+
+[node name="Checkpoint2" type="Node2D" parent="."]
+position = Vector2(-1259, 3)
+
+[node name="Polygon2D" type="Polygon2D" parent="Checkpoint2"]
+position = Vector2(1274.41, 40.1)
+scale = Vector2(2.4698, 1.1)
+color = Color(0, 0, 0, 0.309804)
+polygon = PackedVector2Array(-3, -1, 146, -1, 146, 29, -3, 29)
+
+[node name="Minutes" type="Label" parent="Checkpoint2"]
+offset_left = 1489.0
+offset_top = 37.0
+offset_right = 1539.0
+offset_bottom = 79.0
+theme_override_colors/font_color = Color(0, 0.592157, 0, 1)
+theme_override_font_sizes/font_size = 27
+text = "00:"
+metadata/_edit_use_anchors_ = true
+
+[node name="Seconds" type="Label" parent="Checkpoint2"]
+offset_left = 1533.0
+offset_top = 37.0
+offset_right = 1583.0
+offset_bottom = 79.0
+theme_override_colors/font_color = Color(0, 0.592157, 0, 1)
+theme_override_font_sizes/font_size = 27
+text = "00."
+metadata/_edit_use_anchors_ = true
+
+[node name="MilliSeconds" type="Label" parent="Checkpoint2"]
+offset_left = 1573.0
+offset_top = 37.0
+offset_right = 1623.0
+offset_bottom = 79.0
+theme_override_colors/font_color = Color(0, 0.592157, 0, 1)
+theme_override_font_sizes/font_size = 27
+text = "00"
+metadata/_edit_use_anchors_ = true
+
+[node name="Checkpoint" type="Label" parent="Checkpoint2"]
+offset_left = 1271.0
+offset_top = 36.0
+offset_right = 1468.0
+offset_bottom = 78.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 27
+text = "Checkpoint 2:"
+metadata/_edit_use_anchors_ = true
+
+[node name="PointLight2D" type="PointLight2D" parent="Checkpoint2"]
+position = Vector2(1451, 56)
+scale = Vector2(5.75, 0.53125)
+texture = SubResource("GradientTexture2D_5p3hn")
+
+[node name="Checkpoint3" type="Node2D" parent="."]
+position = Vector2(-1259, 3)
+
+[node name="Polygon2D" type="Polygon2D" parent="Checkpoint3"]
+position = Vector2(1274.41, 74.1)
+scale = Vector2(2.4698, 1.1)
+color = Color(0, 0, 0, 0.309804)
+polygon = PackedVector2Array(-3, -1, 146, -1, 146, 29, -3, 29)
+
+[node name="Minutes" type="Label" parent="Checkpoint3"]
+offset_left = 1489.0
+offset_top = 71.0
+offset_right = 1539.0
+offset_bottom = 113.0
+theme_override_colors/font_color = Color(0, 0.592157, 0, 1)
+theme_override_font_sizes/font_size = 27
+text = "00:"
+metadata/_edit_use_anchors_ = true
+
+[node name="Seconds" type="Label" parent="Checkpoint3"]
+offset_left = 1533.0
+offset_top = 71.0
+offset_right = 1583.0
+offset_bottom = 113.0
+theme_override_colors/font_color = Color(0, 0.592157, 0, 1)
+theme_override_font_sizes/font_size = 27
+text = "00."
+metadata/_edit_use_anchors_ = true
+
+[node name="MilliSeconds" type="Label" parent="Checkpoint3"]
+offset_left = 1573.0
+offset_top = 71.0
+offset_right = 1623.0
+offset_bottom = 113.0
+theme_override_colors/font_color = Color(0, 0.592157, 0, 1)
+theme_override_font_sizes/font_size = 27
+text = "00"
+metadata/_edit_use_anchors_ = true
+
+[node name="Checkpoint" type="Label" parent="Checkpoint3"]
+offset_left = 1271.0
+offset_top = 70.0
+offset_right = 1468.0
+offset_bottom = 112.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 27
+text = "Checkpoint 3:"
+metadata/_edit_use_anchors_ = true
+
+[node name="PointLight2D" type="PointLight2D" parent="Checkpoint3"]
+position = Vector2(1451, 89)
+scale = Vector2(5.75, 0.53125)
+texture = SubResource("GradientTexture2D_5p3hn")
+
+[node name="PointLight2D2" type="PointLight2D" parent="."]
+position = Vector2(1516.75, 19.75)
+scale = Vector2(2.60156, 0.664063)
+texture = SubResource("GradientTexture2D_5p3hn")
+
+[node name="Checkpoint4" type="Node2D" parent="."]
+position = Vector2(-1259, 3)
+
+[node name="Polygon2D" type="Polygon2D" parent="Checkpoint4"]
+position = Vector2(1274.41, 108.1)
+scale = Vector2(2.4698, 1.1)
+color = Color(0, 0, 0, 0.309804)
+polygon = PackedVector2Array(-3, -1, 146, -1, 146, 29, -3, 29)
+
+[node name="Minutes" type="Label" parent="Checkpoint4"]
+offset_left = 1489.0
+offset_top = 105.0
+offset_right = 1539.0
+offset_bottom = 147.0
+theme_override_colors/font_color = Color(0, 0.592157, 0, 1)
+theme_override_font_sizes/font_size = 27
+text = "00:"
+metadata/_edit_use_anchors_ = true
+
+[node name="Seconds" type="Label" parent="Checkpoint4"]
+offset_left = 1533.0
+offset_top = 105.0
+offset_right = 1583.0
+offset_bottom = 147.0
+theme_override_colors/font_color = Color(0, 0.592157, 0, 1)
+theme_override_font_sizes/font_size = 27
+text = "00."
+metadata/_edit_use_anchors_ = true
+
+[node name="MilliSeconds" type="Label" parent="Checkpoint4"]
+offset_left = 1573.0
+offset_top = 105.0
+offset_right = 1623.0
+offset_bottom = 147.0
+theme_override_colors/font_color = Color(0, 0.592157, 0, 1)
+theme_override_font_sizes/font_size = 27
+text = "00"
+metadata/_edit_use_anchors_ = true
+
+[node name="Checkpoint" type="Label" parent="Checkpoint4"]
+offset_left = 1271.0
+offset_top = 104.0
+offset_right = 1468.0
+offset_bottom = 146.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 27
+text = "Checkpoint 4:"
+metadata/_edit_use_anchors_ = true
+
+[node name="PointLight2D" type="PointLight2D" parent="Checkpoint4"]
+position = Vector2(1451, 124)
+scale = Vector2(5.75, 0.53125)
+texture = SubResource("GradientTexture2D_5p3hn")

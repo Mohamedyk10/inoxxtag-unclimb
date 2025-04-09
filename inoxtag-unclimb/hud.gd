@@ -21,6 +21,8 @@ func show_hud():
 	$Title_screen.show()
 
 func hide_hud():
+	$"../CanvasLayer/SpeedRun".set_process(true)
+	$"../CanvasLayer/SpeedRun".show()
 	$Title_screen.hide()
 
 func show_game_over():

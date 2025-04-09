@@ -1,15 +1,16 @@
-[gd_scene load_steps=15 format=3 uid="uid://ceql8b1jxod73"]
+[gd_scene load_steps=16 format=3 uid="uid://ceql8b1jxod73"]
 
 [ext_resource type="Script" uid="uid://bw2pr0ld1myfj" path="res://main.gd" id="1_7mycd"]
 [ext_resource type="PackedScene" uid="uid://sclpth6g423y" path="res://player.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://bgp7ds7q7ky7b" path="res://hud.tscn" id="3_h2yge"]
 [ext_resource type="PackedScene" uid="uid://b6a3pf41ax484" path="res://zip_line.tscn" id="4_1bvp3"]
-[ext_resource type="Script" uid="uid://wgftuiiht26" path="res://camera.gd" id="4_lquwl"]
+[ext_resource type="Script" path="res://camera.gd" id="4_lquwl"]
 [ext_resource type="Script" uid="uid://r3a6xsek5mru" path="res://levels.gd" id="4_w48qg"]
 [ext_resource type="PackedScene" uid="uid://drvo2faq86u6r" path="res://rope.tscn" id="5_7mycd"]
 [ext_resource type="PackedScene" uid="uid://vgah4ipsh4je" path="res://levels.tscn" id="5_lquwl"]
-[ext_resource type="Script" uid="uid://cxr5vgmwa4ca5" path="res://directional_light.gd" id="6_7mycd"]
+[ext_resource type="Script" path="res://directional_light.gd" id="6_7mycd"]
 [ext_resource type="PackedScene" uid="uid://bfw3pe8ckskug" path="res://lever.tscn" id="6_272bh"]
+[ext_resource type="PackedScene" uid="uid://co6r4i2tyhir4" path="res://speed_run.tscn" id="6_vivmo"]
 [ext_resource type="Texture2D" uid="uid://ccdw5wpv3h8wr" path="res://art/Gameplay/Target.png" id="8_5vw27"]
 [ext_resource type="PackedScene" uid="uid://b5q3bd4ii64dj" path="res://intro.tscn" id="11_efxa6"]
 [ext_resource type="PackedScene" uid="uid://ceivne2n4lh7w" path="res://end_door.tscn" id="12_dg77c"]
@@ -18,18 +19,18 @@
 [node name="Main" type="Node2D"]
 script = ExtResource("1_7mycd")
 
-[node name="Camera" type="Camera2D" parent="."]
-position = Vector2(2280, 805)
-limit_left = 0
-limit_top = 0
-script = ExtResource("4_lquwl")
-
 [node name="Levels" parent="." instance=ExtResource("5_lquwl")]
 position = Vector2(171, 628)
 script = ExtResource("4_w48qg")
 
 [node name="Player" parent="." instance=ExtResource("1_ig7tw")]
 position = Vector2(2228, 821)
+
+[node name="Camera" type="Camera2D" parent="."]
+position = Vector2(2280, 805)
+limit_left = 0
+limit_top = 0
+script = ExtResource("4_lquwl")
 
 [node name="HUD" parent="." instance=ExtResource("3_h2yge")]
 
@@ -157,6 +158,11 @@ scale = Vector2(1, 0.6)
 scale = Vector2(0.7, 1)
 
 [node name="3" type="Node2D" parent="Level2_2/Rope3"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="SpeedRun" parent="CanvasLayer" instance=ExtResource("6_vivmo")]
+position = Vector2(0, 0)
 
 [connection signal="end_game" from="Player" to="." method="_on_player_end_game"]
 [connection signal="change" from="Level1_1/Lever1" to="Level1_1/Rope1" method="_on_lever_1_change"]
