@@ -2,7 +2,7 @@ extends Area2D
 
 signal change
 
-var is_pressed:bool = false
+@export var is_pressed:bool = false
 var link_code
 
 func _ready() -> void:

@@ -7,9 +7,14 @@ func _ready():
 	if rope_code != 0:
 		$Sprite2D.hide()
 		$CollisionShape2D.set_deferred("disabled", true)
-
 var is_player_touching_the_rope: bool = false
 signal can_climb
+
+func _process(delta: float) -> void:
+	for lever in get_tree().get_nodes_in_group("levers"):
+		if lever.link_code == rope_code and not lever.is_pressed:
+			$Sprite2D.hide()
+			$CollisionShape2D.set_deferred("disabled", true)
 
 func _on_body_entered(body):
 	is_player_touching_the_rope = true

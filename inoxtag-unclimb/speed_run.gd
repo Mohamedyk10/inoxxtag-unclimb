@@ -50,4 +50,13 @@ func _process(delta: float) -> void:
 		$Checkpoint4/Minutes.text = "%02d:" % minutes
 		checkpoint4_time = true
 		$Checkpoint4.show()
+	
+	if not checkpoint1:
+		$Checkpoint1.hide()
+	if not checkpoint1:
+		$Checkpoint2.hide()
+	if not checkpoint1:
+		$Checkpoint3.hide()
+	if not checkpoint1:
+		$Checkpoint4.hide()
 	pass

@@ -95,6 +95,17 @@ func _process(delta) -> void:
 		return
 	if Input.is_action_pressed("RESET"):
 		game_over()
+		START_COORDINATES = Vector2(250, 750)
+		$"../CanvasLayer/SpeedRun".checkpoint1 = false; $"../CanvasLayer/SpeedRun".checkpoint1_time = false
+		$"../CanvasLayer/SpeedRun".checkpoint2 = false; $"../CanvasLayer/SpeedRun".checkpoint2_time = false
+		$"../CanvasLayer/SpeedRun".checkpoint3 = false; $"../CanvasLayer/SpeedRun".checkpoint3_time = false
+		$"../CanvasLayer/SpeedRun".checkpoint4 = false; $"../CanvasLayer/SpeedRun".checkpoint4_time = false
+		$"../CanvasLayer/SpeedRun".time = 0
+		$"../CanvasLayer/SpeedRun".set_process(false)
+		$"../CanvasLayer/SpeedRun".hide()
+		$"../Level1_1/Lever1".is_pressed = false
+		$"../Level2_1/Lever2".is_pressed = false
+		$"../Level2_2/Lever3".is_pressed = false
 		return
 
 	if global_position[1] < highest_point:
@@ -293,7 +304,6 @@ func _process(delta) -> void:
 		$Animation.play(animation)
 	
 	velocity[1] = vertical_speed
-
 	move_and_slide()
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
